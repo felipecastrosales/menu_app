@@ -18,11 +18,13 @@ class ProductRepository {
   Future<List<Product>> getProducts() async {
     final response = await _dio.get(
       '/products',
-      queryParameters: {'populate': 'deep'},
+      queryParameters: {
+        'populate': 'deep',
+      },
     );
     return List<Product>.from(response.data['data']
         .map<Product?>((json) => Product.fromJson(json))
-        .where((p) => p != null)
+        .where((product) => product != null)
         .toList());
   }
 }

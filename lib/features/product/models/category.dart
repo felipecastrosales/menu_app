@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
 
 class Category {
-  Category({required this.id, required this.title});
+  Category({
+    required this.id,
+    required this.title,
+  });
 
   static Category? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
@@ -11,7 +14,8 @@ class Category {
         title: json['attributes']['title'],
       );
     } catch (e, s) {
-      //debugPrint('$e $s');
+      debugPrint('Category.fromJson: $e');
+      debugPrint('Category.fromJson: $s');
       return null;
     }
   }
