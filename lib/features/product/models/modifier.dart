@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+import 'package:menu/features/product/models/modifier_info.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
 import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
 
-import 'modifier_info.dart';
-
 class Modifier {
-  Modifier({
-    required this.info,
-  });
+  Modifier({required this.info});
 
   static Modifier? fromJson(Map<String, dynamic> json) {
     try {

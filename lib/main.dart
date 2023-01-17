@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/repositories/product_repository.dart';
+import 'package:menu/features/product/repositories/product_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -61,9 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+
     final repository = ProductRepository();
-    final products = await repository.getProducts();
-    debugPrint(products.toString());
+    print(await repository.getProducts());
   }
 
   @override

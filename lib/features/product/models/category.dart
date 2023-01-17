@@ -1,22 +1,17 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class Category {
-  Category({
-    required this.id,
-    required this.title,
-  });
+  Category({required this.id, required this.title});
 
   static Category? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
-    final attributes = json['attributes'];
     try {
       return Category(
         id: json['id'],
-        title: attributes['title'],
+        title: json['attributes']['title'],
       );
     } catch (e, s) {
-      debugPrint('Category.fromJson: $e');
-      debugPrint('Category.fromJson: $s');
+      //debugPrint('$e $s');
       return null;
     }
   }
@@ -25,5 +20,7 @@ class Category {
   final String title;
 
   @override
-  String toString() => 'Category(id: $id, title: $title)';
+  String toString() {
+    return 'Category{id: $id, title: $title}';
+  }
 }
