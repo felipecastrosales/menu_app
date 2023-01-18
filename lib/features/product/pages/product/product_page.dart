@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menu/features/product/repositories/product_repository.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({
@@ -18,7 +19,19 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     debugPrint('Building ProductPage with id: ${controller.id}');
-    return const Placeholder();
+    return Column(
+      children: [
+        const Placeholder(),
+        ElevatedButton(
+          onPressed: () async {
+            final repository = ProductRepository();
+            final product = await repository.getProducts();
+            debugPrint('Product: $product');
+          },
+          child: const Text('Add to cart'),
+        ),
+      ],
+    );
   }
 }
 
