@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart' hide Category;
+import 'package:flutter/material.dart';
+
 import 'package:menu/features/product/models/category.dart';
 import 'package:menu/features/product/models/modifier.dart';
 
@@ -26,13 +27,18 @@ class Product {
         basePrice: attributes['basePrice'],
         imageUrl: attributes['image']['data']['attributes']['url'],
         category: Category.fromJson(attributes['data']),
-        modifiers: attributes['options']
-            .map<Modifier?>((modifier) => Modifier.fromJson(modifier))
-            .where((m) => m != null)
-            .toList(),
+        modifiers: List<Modifier>.from(
+          attributes['options']
+              .map<Modifier?>(
+                (modifier) => Modifier.fromJson(modifier),
+              )
+              .where((modifier) => modifier != null)
+              .toList(),
+        ),
       );
     } catch (e, s) {
-      debugPrint('$e $s');
+      debugPrint('Error parsing product: $e');
+      debugPrint('StackTrace: $s');
       return null;
     }
   }
@@ -48,6 +54,6 @@ class Product {
 
   @override
   String toString() {
-    return 'Product{id: $id, title: $title, basePrice: $basePrice, modifiers: $modifiers}';
+    return 'Product(id: $id, title: $title, basePrice: $basePrice, modifiers: $modifiers)';
   }
 }

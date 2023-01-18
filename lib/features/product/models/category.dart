@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class Category {
   Category({
@@ -14,8 +14,8 @@ class Category {
         title: json['attributes']['title'],
       );
     } catch (e, s) {
-      debugPrint('Category.fromJson: $e');
-      debugPrint('Category.fromJson: $s');
+      debugPrint('Error parsing category: $e');
+      debugPrint('StackTrace: $s');
       return null;
     }
   }
@@ -24,7 +24,5 @@ class Category {
   final String title;
 
   @override
-  String toString() {
-    return 'Category{id: $id, title: $title}';
-  }
+  String toString() => 'Category(id: $id, title: $title)';
 }

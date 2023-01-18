@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-
 import 'package:menu/features/product/models/product.dart';
 
 class ProductRepository {
@@ -22,6 +21,7 @@ class ProductRepository {
         'populate': 'deep',
       },
     );
+
     return List<Product>.from(response.data['data']
         .map<Product?>((json) => Product.fromJson(json))
         .where((product) => product != null)

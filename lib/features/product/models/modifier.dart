@@ -5,7 +5,7 @@ import 'package:menu/features/product/models/modifiers/modifier_with_category.da
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
 import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
 
-class Modifier {
+abstract class Modifier {
   Modifier({
     required this.info,
   });

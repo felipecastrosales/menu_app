@@ -1,6 +1,6 @@
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/modifier_info.dart';
-import 'package:menu/features/product/models/product.dart';
+import 'package:menu/features/product/models/product_with_discount.dart';
 
 class ModifierWithProducts extends Modifier {
   ModifierWithProducts({
@@ -9,13 +9,16 @@ class ModifierWithProducts extends Modifier {
   });
 
   ModifierWithProducts.fromJson(Map<String, dynamic> json)
-      : products = json['products']
-            .map<Product?>((product) => Product.fromJson(product))
-            .toList()
-            .clear,
+      : products = List<ProductWithDiscount>.from(
+          json['products']
+              .map<ProductWithDiscount?>(
+                  (product) => ProductWithDiscount.fromJson(product))
+              .where((product) => product != null)
+              .toList(),
+        ),
         super(
           info: ModifierInfo.fromJson(json['info']),
         );
 
-  final List<Product> products;
+  final List<ProductWithDiscount> products;
 }
