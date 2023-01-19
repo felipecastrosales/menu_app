@@ -25,7 +25,8 @@ class Product {
         description: attributes['description'],
         originalBasePrice: attributes['originalBasePrice'],
         basePrice: attributes['basePrice'],
-        imageUrl: attributes['image']['data']['attributes']['url'],
+        imageUrl:
+            'http://localhost:1337${attributes['image']['data']['attributes']['url']}',
         category: Category.fromJson(attributes['data']),
         modifiers: List<Modifier>.from(
           attributes['options']

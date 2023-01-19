@@ -16,6 +16,8 @@ class MenuApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xff1f2027),
+        primaryColor: const Color(0xff7a3dff),
       ),
       routerConfig: router,
     );

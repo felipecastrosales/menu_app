@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: ^6.0.1
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
