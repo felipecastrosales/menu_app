@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:menu/features/product/models/category.dart';
 import 'package:menu/features/product/models/modifier.dart';
+import 'package:menu/features/product/models/modifier_item.dart';
 
-class Product {
+class Product implements ModifierItem {
   Product({
     required this.id,
     required this.title,

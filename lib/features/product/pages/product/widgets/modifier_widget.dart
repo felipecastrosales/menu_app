@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
 import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
+import 'package:menu/features/product/pages/product/widgets/modifier_with_category_widget.dart';
+import 'package:menu/features/product/pages/product/widgets/modifier_with_products_widget.dart';
+import 'package:menu/features/product/pages/product/widgets/simple_modifier_widget.dart';
 
 class ModifierWidget extends StatelessWidget {
   const ModifierWidget({
@@ -18,18 +22,21 @@ class ModifierWidget extends StatelessWidget {
       children: [
         ModifierHeader(modifier: modifier),
         Builder(
-          builder: (_) {
+          builder: (context) {
             if (modifier is SimpleModifier) {
-              // return SimpleModifierWidget();
-              return const SizedBox();
+              return SimpleModifierWidget(
+                modifier: modifier as SimpleModifier,
+              );
             } else if (modifier is ModifierWithProducts) {
-              // return ModifierWithProductsWidget();
-              return const SizedBox();
+              return ModifierWithProductsWidget(
+                modifier: modifier as ModifierWithProducts,
+              );
             } else if (modifier is ModifierWithCategory) {
-              // return ModifierWithCategoryWidget();
-              return const SizedBox();
+              return ModifierWithCategoryWidget(
+                modifier: modifier as ModifierWithCategory,
+              );
             } else {
-              return const SizedBox();
+              return const SizedBox.shrink();
             }
           },
         ),
@@ -43,7 +50,35 @@ class ModifierHeader extends StatelessWidget {
     super.key,
     required this.modifier,
   });
+
   final Modifier modifier;
+
+  String getDescription() {
+    final info = modifier.info;
+    if (info.maxQuantity == null) {
+      if (info.minQuantity == 0) {
+        return 'Opcional';
+      } else if (info.minQuantity == 1) {
+        return 'Selecione ao menos uma opção';
+      } else {
+        return 'Selecione ao menos ${info.minQuantity} opções';
+      }
+    } else if (info.maxQuantity == 1) {
+      if (info.minQuantity == 0) {
+        return 'Selecione até uma opção';
+      } else if (info.minQuantity == 1) {
+        return 'Selecione uma opção';
+      } else {
+        return '';
+      }
+    } else {
+      if (info.minQuantity == 0) {
+        return 'Selecione até ${info.maxQuantity} opções';
+      } else {
+        return 'Selecione de 1 a ${info.maxQuantity} opções';
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +87,10 @@ class ModifierHeader extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Color(0xff2a2e3d),
         borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(10),
+          bottom: Radius.circular(24),
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: Column(
@@ -65,14 +99,14 @@ class ModifierHeader extends StatelessWidget {
                 Text(
                   modifier.info.title,
                   style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
                     fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white,
                   ),
                 ),
-                const Text(
-                  'Selecione uma opção',
-                  style: TextStyle(
+                Text(
+                  getDescription(),
+                  style: const TextStyle(
                     color: Colors.white60,
                     fontSize: 12,
                   ),
@@ -80,24 +114,21 @@ class ModifierHeader extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: 4,
-            ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Text(
-              'Obrigatório',
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+          if (modifier.info.minQuantity > 0)
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Theme.of(context).primaryColor,
+              ),
+              padding: const EdgeInsets.all(6),
+              child: const Text(
+                'Obrigatório',
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/modifier_info.dart';
+import 'package:menu/features/product/models/modifier_item.dart';
 
 class SimpleModifier extends Modifier {
   SimpleModifier({
@@ -19,7 +20,7 @@ class SimpleModifier extends Modifier {
   final List<SimpleModifierOption> options;
 }
 
-class SimpleModifierOption {
+class SimpleModifierOption extends ModifierItem {
   SimpleModifierOption({
     required this.title,
     required this.price,

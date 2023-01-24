@@ -21,13 +21,13 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  final ProductRepository productRepository = ProductRepositoryStrapi();
+  final ProductRepository productRepository = StrapiProductRepository();
   late final Future<Product> productFuture;
 
   @override
   void initState() {
     super.initState();
-    productFuture = productRepository.getProduct(1);
+    productFuture = productRepository.getProduct(9);
   }
 
   @override

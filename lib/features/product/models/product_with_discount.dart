@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:menu/features/product/models/product.dart';
 
-class ProductWithDiscount {
+import 'modifier_item.dart';
+import 'product.dart';
+
+class ProductWithDiscount implements ModifierItem {
   ProductWithDiscount({
     required this.product,
     required this.discountPercentage,
