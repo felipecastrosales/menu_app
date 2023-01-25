@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
+import 'package:menu/features/product/pages/product/widgets/product_list_item.dart';
 
 class ModifierWithProductsWidget extends StatelessWidget {
   const ModifierWithProductsWidget({
@@ -13,80 +15,24 @@ class ModifierWithProductsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: modifier.products.length,
-      itemBuilder: (context, index) {
-        final productModifier = modifier.products[index].product;
-
-        return InkWell(
-          onTap: () {},
-          splashColor: Colors.white10,
-          highlightColor: Colors.transparent,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 24,
-            ),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(
-                    productModifier.imageUrl,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        productModifier.title,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        '+ ${NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$').format(productModifier.basePrice)}',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.remove),
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: Text(
-                        '0',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.add),
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
+    return ChangeNotifierProvider.value(
+      value: modifier,
+      child: Consumer<ModifierWithProducts>(
+        builder: (context, value, child) {
+          final products = modifier.products;
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              final product = products[index].product;
+              return ProductListItem(
+                product: product,
+                modifier: modifier,
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

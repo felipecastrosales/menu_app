@@ -7,7 +7,7 @@ import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
 
 import 'modifier_item.dart';
 
-abstract class Modifier {
+abstract class Modifier extends ChangeNotifier {
   Modifier({
     required this.info,
   });
@@ -45,14 +45,20 @@ abstract class Modifier {
     if (info.maxQuantity == 1) {
       _selectedOptions.removeWhere((element) => element != option);
     }
+    notifyListeners();
   }
 
   void removeItem(ModifierItem option) {
     _selectedOptions.remove(option);
+    notifyListeners();
   }
 
   bool contains(ModifierItem option) {
     return _selectedOptions.contains(option);
+  }
+
+  int count(ModifierItem option) {
+    return _selectedOptions.where((element) => element == option).length;
   }
 
   @override

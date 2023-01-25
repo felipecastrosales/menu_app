@@ -19,21 +19,25 @@ class ModifierItemAction extends StatelessWidget {
       return Row(
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              modifier.removeItem(item);
+            },
             color: Theme.of(context).primaryColor,
             icon: const Icon(Icons.remove),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
-              '0',
-              style: TextStyle(
+              modifier.count(item).toString(),
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              modifier.addItem(item);
+            },
             color: Theme.of(context).primaryColor,
             icon: const Icon(Icons.add),
           ),
@@ -43,7 +47,7 @@ class ModifierItemAction extends StatelessWidget {
       return Checkbox(
         value: modifier.contains(item),
         onChanged: (b) {
-          if (b!) {
+          if (!b!) {
             modifier.removeItem(item);
           } else {
             modifier.addItem(item);

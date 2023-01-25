@@ -7,6 +7,7 @@ import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
 import 'package:menu/features/product/pages/product/widgets/modifier_with_category_widget.dart';
 import 'package:menu/features/product/pages/product/widgets/modifier_with_products_widget.dart';
 import 'package:menu/features/product/pages/product/widgets/simple_modifier_widget.dart';
+import 'package:provider/provider.dart';
 
 class ModifierWidget extends StatelessWidget {
   const ModifierWidget({
@@ -24,8 +25,9 @@ class ModifierWidget extends StatelessWidget {
         Builder(
           builder: (context) {
             if (modifier is SimpleModifier) {
-              return SimpleModifierWidget(
-                modifier: modifier as SimpleModifier,
+              return ChangeNotifierProvider<SimpleModifier>.value(
+                value: modifier as SimpleModifier,
+                child: const SimpleModifierWidget(),
               );
             } else if (modifier is ModifierWithProducts) {
               return ModifierWithProductsWidget(
