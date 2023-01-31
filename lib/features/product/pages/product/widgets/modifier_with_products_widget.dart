@@ -24,9 +24,8 @@ class ModifierWithProductsWidget extends StatelessWidget {
             shrinkWrap: true,
             itemCount: products.length,
             itemBuilder: (context, index) {
-              final product = products[index].product;
               return ProductListItem(
-                product: product,
+                productWithDiscount: modifier.products[index],
                 modifier: modifier,
               );
             },

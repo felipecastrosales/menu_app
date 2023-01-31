@@ -17,13 +17,15 @@ class SimpleModifierWidget extends StatelessWidget {
           children: [
             for (final option in modifier.options)
               InkWell(
-                onTap: () {
-                  if (modifier.contains(option)) {
-                    modifier.removeItem(option);
-                  } else {
-                    modifier.addItem(option);
-                  }
-                },
+                onTap: modifier.canAddItem || modifier.contains(option)
+                    ? () {
+                        if (modifier.contains(option)) {
+                          modifier.removeItem(option);
+                        } else {
+                          modifier.addItem(option);
+                        }
+                      }
+                    : null,
                 splashColor: Colors.white10,
                 highlightColor: Colors.transparent,
                 child: Padding(
@@ -50,7 +52,7 @@ class SimpleModifierWidget extends StatelessWidget {
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                 ),
-                              )
+                              ),
                           ],
                         ),
                       ),

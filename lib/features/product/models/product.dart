@@ -1,11 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 import 'package:menu/features/product/models/category.dart';
 import 'package:menu/features/product/models/modifier.dart';
-import 'package:menu/features/product/models/modifier_item.dart';
 
-class Product implements ModifierItem {
-  Product({
+class Product extends Equatable {
+  const Product({
     required this.id,
     required this.title,
     required this.description,
@@ -54,8 +54,24 @@ class Product implements ModifierItem {
   final Category? category;
   final List<Modifier> modifiers;
 
+  num get totalPrice =>
+      basePrice +
+      modifiers.fold(0, (total, modifier) => total + modifier.total);
+
   @override
   String toString() {
     return 'Product(id: $id, title: $title, basePrice: $basePrice, modifiers: $modifiers)';
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        description,
+        originalBasePrice,
+        basePrice,
+        imageUrl,
+        category,
+        modifiers,
+      ];
 }

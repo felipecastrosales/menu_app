@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
+import 'package:menu/features/product/models/product_with_discount.dart';
 import 'package:menu/features/product/pages/product/widgets/product_list_item.dart';
 import 'package:menu/features/product/repositories/product_repository.dart';
 import 'package:provider/provider.dart';
@@ -30,8 +31,11 @@ class ModifierWithCategoryWidget extends StatelessWidget {
               itemCount: snapshot.data?.length ?? 0,
               itemBuilder: (context, index) {
                 return ProductListItem(
-                  product: snapshot.data![index],
                   modifier: modifier,
+                  productWithDiscount: ProductWithDiscount(
+                    product: snapshot.data![index],
+                    discountPercentage: 0,
+                  ),
                 );
               },
             );

@@ -61,6 +61,22 @@ abstract class Modifier extends ChangeNotifier {
     return _selectedOptions.where((element) => element == option).length;
   }
 
+  bool get canAddItem =>
+      info.maxQuantity == null || _selectedOptions.length < info.maxQuantity!;
+
+  bool get isValid =>
+      info.minQuantity <= _selectedOptions.length &&
+      (info.maxQuantity == null ||
+          _selectedOptions.length <= info.maxQuantity!);
+
+  num get total {
+    num total = 0;
+    for (final option in _selectedOptions) {
+      total += option.totalPrice;
+    }
+    return total;
+  }
+
   @override
   String toString() => 'Modifier(info: $info)';
 }

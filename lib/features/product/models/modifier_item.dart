@@ -1,1 +1,3 @@
-abstract class ModifierItem {}
+abstract class ModifierItem {
+  num get totalPrice;
+}

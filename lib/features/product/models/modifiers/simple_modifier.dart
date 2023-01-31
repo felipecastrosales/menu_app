@@ -32,4 +32,7 @@ class SimpleModifierOption extends ModifierItem {
 
   final String title;
   final num? price;
+
+  @override
+  num get totalPrice => price ?? 0;
 }

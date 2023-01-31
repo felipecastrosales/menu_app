@@ -18,22 +18,24 @@ class ModifierItemAction extends StatelessWidget {
     if (modifier.info.allowRepeated) {
       return Row(
         children: [
-          IconButton(
-            onPressed: () {
-              modifier.removeItem(item);
-            },
-            color: Theme.of(context).primaryColor,
-            icon: const Icon(Icons.remove),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              modifier.count(item).toString(),
-              style: const TextStyle(
-                color: Colors.white,
+          if (modifier.count(item) > 0) ...[
+            IconButton(
+              onPressed: () {
+                modifier.removeItem(item);
+              },
+              color: Theme.of(context).primaryColor,
+              icon: const Icon(Icons.remove),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                modifier.count(item).toString(),
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
+          ],
           IconButton(
             onPressed: () {
               modifier.addItem(item);
@@ -46,15 +48,19 @@ class ModifierItemAction extends StatelessWidget {
     } else {
       return Checkbox(
         value: modifier.contains(item),
-        onChanged: (b) {
-          if (!b!) {
-            modifier.removeItem(item);
-          } else {
-            modifier.addItem(item);
-          }
-        },
+        onChanged: modifier.canAddItem || modifier.contains(item)
+            ? (b) {
+                if (!b!) {
+                  modifier.removeItem(item);
+                } else {
+                  modifier.addItem(item);
+                }
+              }
+            : null,
         fillColor: MaterialStateProperty.all(
-          Theme.of(context).primaryColor,
+          modifier.canAddItem || modifier.contains(item)
+              ? Theme.of(context).primaryColor
+              : Colors.grey[800],
         ),
       );
     }
