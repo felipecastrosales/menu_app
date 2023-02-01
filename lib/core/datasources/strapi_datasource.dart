@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:menu/features/home/models/home_section.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class StrapiDatasourceImpl implements StrapiDatasource {
@@ -39,9 +40,26 @@ class StrapiDatasourceImpl implements StrapiDatasource {
     );
     return Product.fromJson(response.data['data'])!;
   }
+
+  @override
+  Future<List<HomeSection>> getHomeSections() async {
+    final response = await _dio.get(
+      '/home',
+      queryParameters: {
+        'populate': 'deep',
+      },
+    );
+    return List<HomeSection>.from(
+      response.data['data']['attributes']['sections']
+          .map<HomeSection?>((json) => HomeSection.fromJson(json))
+          .where((p) => p != null)
+          .toList(),
+    );
+  }
 }
 
 abstract class StrapiDatasource {
   Future<List<Product>> getProducts({int? categoryId});
   Future<Product> getProduct(int id);
+  Future<List<HomeSection>> getHomeSections();
 }

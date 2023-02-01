@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menu/features/home/pages/home/home_page.dart';
 import 'package:menu/features/product/pages/product/product_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,7 +9,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => Container(color: Colors.red),
+      builder: (context, state) => const HomePage(),
     ),
     GoRoute(
       path: '/products/:id',

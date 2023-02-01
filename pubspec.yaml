@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: ^6.0.1
+  google_fonts: ^4.0.1
   intl: ^0.18.0
   loading_animation_widget: ^1.2.0+4
   provider: ^6.0.5

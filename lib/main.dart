@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:menu/core/routes/app_routes.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class MenuApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color(0xff1f2027),
         primaryColor: const Color(0xff7a3dff),
+        textTheme: GoogleFonts.latoTextTheme(),
       ),
       routerConfig: router,
     );

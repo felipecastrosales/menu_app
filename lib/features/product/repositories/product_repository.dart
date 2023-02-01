@@ -1,6 +1,6 @@
 import 'package:menu/features/product/models/category.dart';
 import 'package:menu/features/product/models/product.dart';
-import 'package:menu/features/product/pages/product/datasources/strapi_datasource.dart';
+import 'package:menu/core/datasources/strapi_datasource.dart';
 
 class StrapiProductRepository implements ProductRepository {
   final StrapiDatasource _datasource = StrapiDatasourceImpl();
