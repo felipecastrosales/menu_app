@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
@@ -23,9 +22,9 @@ class ModifierWidget extends StatelessWidget {
       children: [
         ModifierHeader(modifier: modifier),
         Builder(
-          builder: (context) {
+          builder: (_) {
             if (modifier is SimpleModifier) {
-              return ChangeNotifierProvider<SimpleModifier>.value(
+              return ChangeNotifierProvider.value(
                 value: modifier as SimpleModifier,
                 child: const SimpleModifierWidget(),
               );
@@ -85,13 +84,13 @@ class ModifierHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
       decoration: const BoxDecoration(
-        color: Color(0xff2a2e3d),
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(24),
         ),
+        color: Color(0xff2a2e3d),
       ),
+      padding: const EdgeInsets.all(24),
       child: Row(
         children: [
           Expanded(
@@ -110,9 +109,8 @@ class ModifierHeader extends StatelessWidget {
                   getDescription(),
                   style: const TextStyle(
                     color: Colors.white60,
-                    fontSize: 12,
                   ),
-                ),
+                )
               ],
             ),
           ),

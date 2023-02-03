@@ -54,13 +54,13 @@ class Product extends Equatable {
   final Category? category;
   final List<Modifier> modifiers;
 
-  num get totalPrice =>
+  num get total =>
       basePrice +
       modifiers.fold(0, (total, modifier) => total + modifier.total);
 
   @override
   String toString() {
-    return 'Product(id: $id, title: $title, basePrice: $basePrice, modifiers: $modifiers)';
+    return 'Product{id: $id, title: $title, basePrice: $basePrice, modifiers: $modifiers}';
   }
 
   @override

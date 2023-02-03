@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'package:provider/provider.dart';
-
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
 import 'package:menu/features/product/pages/product/widgets/product_list_item.dart';
+import 'package:provider/provider.dart';
 
 class ModifierWithProductsWidget extends StatelessWidget {
-  const ModifierWithProductsWidget({
-    super.key,
-    required this.modifier,
-  });
+  const ModifierWithProductsWidget({super.key, required this.modifier});
 
   final ModifierWithProducts modifier;
 
@@ -18,11 +13,10 @@ class ModifierWithProductsWidget extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: modifier,
       child: Consumer<ModifierWithProducts>(
-        builder: (context, value, child) {
-          final products = modifier.products;
+        builder: (_, __, ___) {
           return ListView.builder(
             shrinkWrap: true,
-            itemCount: products.length,
+            itemCount: modifier.products.length,
             itemBuilder: (context, index) {
               return ProductListItem(
                 productWithDiscount: modifier.products[index],

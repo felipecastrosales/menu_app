@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:intl/intl.dart';
 import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
 import 'package:menu/features/product/pages/product/widgets/modifier_item_action.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class SimpleModifierWidget extends StatelessWidget {
@@ -29,10 +28,8 @@ class SimpleModifierWidget extends StatelessWidget {
                 splashColor: Colors.white10,
                 highlightColor: Colors.transparent,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 10,
-                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                   child: Row(
                     children: [
                       Expanded(
@@ -52,7 +49,7 @@ class SimpleModifierWidget extends StatelessWidget {
                                 style: TextStyle(
                                   color: Theme.of(context).primaryColor,
                                 ),
-                              ),
+                              )
                           ],
                         ),
                       ),
@@ -63,7 +60,7 @@ class SimpleModifierWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
+              )
           ],
         );
       },

@@ -2,14 +2,14 @@ import 'package:menu/core/extensions/string_extension.dart';
 import 'package:menu/features/home/models/home_section.dart';
 import 'package:menu/features/product/models/product.dart';
 
-class HomeProductsCarouselSection extends HomeSection {
-  HomeProductsCarouselSection({
+class HomeProductsListingSection extends HomeSection {
+  HomeProductsListingSection({
     required this.title,
     required this.products,
   });
 
-  static HomeProductsCarouselSection fromJson(Map<String, dynamic> json) {
-    return HomeProductsCarouselSection(
+  static HomeProductsListingSection fromJson(Map<String, dynamic> json) {
+    return HomeProductsListingSection(
       title: json['category']['data']['attributes']['title'],
       products: List<Product>.from(
         json['category']['data']['attributes']['products']['data']
@@ -33,7 +33,7 @@ class HomeProductsCarouselSection extends HomeSection {
         )
         .toList();
     if (filteredProducts.isEmpty) return null;
-    return HomeProductsCarouselSection(
+    return HomeProductsListingSection(
       title: title,
       products: filteredProducts,
     );

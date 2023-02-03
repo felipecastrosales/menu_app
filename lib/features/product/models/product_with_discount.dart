@@ -1,8 +1,9 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import 'modifier_item.dart';
-import 'product.dart';
+import 'package:equatable/equatable.dart';
+
+import 'package:menu/features/product/models/modifier_item.dart';
+import 'package:menu/features/product/models/product.dart';
 
 class ProductWithDiscount extends Equatable implements ModifierItem {
   const ProductWithDiscount({
@@ -27,7 +28,7 @@ class ProductWithDiscount extends Equatable implements ModifierItem {
   final num discountPercentage;
 
   @override
-  num get totalPrice => product.basePrice * (1 - discountPercentage / 100);
+  num get total => product.basePrice * (1 - discountPercentage / 100);
 
   @override
   List<Object?> get props => [product.id, discountPercentage];

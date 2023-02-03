@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'package:intl/intl.dart';
-
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/product_with_discount.dart';
 import 'package:menu/features/product/pages/product/widgets/modifier_item_action.dart';
+import 'package:intl/intl.dart';
 
 class ProductListItem extends StatelessWidget {
-  const ProductListItem({
-    super.key,
-    required this.modifier,
-    required this.productWithDiscount,
-  });
+  const ProductListItem(
+      {super.key, required this.modifier, required this.productWithDiscount});
 
   final Modifier modifier;
   final ProductWithDiscount productWithDiscount;
@@ -31,10 +26,9 @@ class ProductListItem extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
+              foregroundImage:
+                  NetworkImage(productWithDiscount.product.imageUrl),
               radius: 20,
-              foregroundImage: NetworkImage(
-                productWithDiscount.product.imageUrl,
-              ),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -49,22 +43,22 @@ class ProductListItem extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      if (productWithDiscount.totalPrice != 0) ...[
+                      if (productWithDiscount.total != 0) ...[
                         Text(
-                          '+ ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(productWithDiscount.product.basePrice)}',
+                          '+ ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(productWithDiscount.total)}',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
+                        const SizedBox(width: 8),
                       ],
-                      const SizedBox(width: 8),
-                      if (productWithDiscount.totalPrice > 0)
+                      if (productWithDiscount.discountPercentage > 0)
                         Text(
-                          '+ ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(productWithDiscount.product.originalBasePrice)}',
+                          '+ ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(productWithDiscount.product.basePrice)}',
                           style: const TextStyle(
-                            color: Colors.grey,
+                            color: Color(0xff5f6066),
                             fontSize: 10,
                             decoration: TextDecoration.lineThrough,
                           ),

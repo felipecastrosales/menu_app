@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 
 class CorePageTitle extends StatelessWidget {
-  const CorePageTitle({super.key});
+  const CorePageTitle({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
-            'Felipe\'s Menu',
-            style: TextStyle(
+            title,
+            style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 8),
-          Text(
+          const SizedBox(height: 8),
+          const Text(
             'Mesa 1',
-            style: TextStyle(
-              color: Color(0xff5f6066),
-            ),
-          ),
+            style: TextStyle(color: Color(0xff5f6066)),
+          )
         ],
       ),
     );

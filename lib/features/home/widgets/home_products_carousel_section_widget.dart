@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:menu/features/home/models/home_products_carousel_section.dart';
-import 'package:menu/features/product/pages/product/widgets/product_card.dart';
+import 'package:menu/features/product/widgets/product_card.dart';
 
 class HomeProductsCarouselSectionWidget extends StatelessWidget {
   const HomeProductsCarouselSectionWidget({
-    Key? key,
+    super.key,
     required this.section,
-  }) : super(key: key);
+  });
 
   final HomeProductsCarouselSection section;
 
@@ -36,9 +37,7 @@ class HomeProductsCarouselSectionWidget extends StatelessWidget {
                 product: section.products[index],
               );
             },
-            separatorBuilder: (_, __) => const SizedBox(
-              width: 12,
-            ),
+            separatorBuilder: (_, __) => const SizedBox(width: 12),
             itemCount: section.products.length,
           ),
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/modifier_item.dart';
 
@@ -18,7 +17,7 @@ class ModifierItemAction extends StatelessWidget {
     if (modifier.info.allowRepeated) {
       return Row(
         children: [
-          if (modifier.count(item) > 0) ...[
+          if (modifier.countOption(item) > 0) ...[
             IconButton(
               onPressed: () {
                 modifier.removeItem(item);
@@ -29,7 +28,7 @@ class ModifierItemAction extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                modifier.count(item).toString(),
+                '${modifier.countOption(item)}',
                 style: const TextStyle(
                   color: Colors.white,
                 ),
@@ -37,9 +36,11 @@ class ModifierItemAction extends StatelessWidget {
             ),
           ],
           IconButton(
-            onPressed: () {
-              modifier.addItem(item);
-            },
+            onPressed: modifier.canAddItem
+                ? () {
+                    modifier.addItem(item);
+                  }
+                : null,
             color: Theme.of(context).primaryColor,
             icon: const Icon(Icons.add),
           ),

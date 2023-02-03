@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/product_with_discount.dart';
 import 'package:menu/features/product/pages/product/widgets/product_list_item.dart';
@@ -16,31 +15,33 @@ class ModifierWithCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final getProductsByCategory =
+    final future =
         StrapiProductRepository().getProductsByCategory(modifier.category);
 
     return ChangeNotifierProvider.value(
       value: modifier,
       child: Consumer<ModifierWithCategory>(
-        builder: (context, value, child) => FutureBuilder(
-          future: getProductsByCategory,
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) return const SizedBox();
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data?.length ?? 0,
-              itemBuilder: (context, index) {
-                return ProductListItem(
-                  modifier: modifier,
-                  productWithDiscount: ProductWithDiscount(
-                    product: snapshot.data![index],
-                    discountPercentage: 0,
-                  ),
-                );
-              },
-            );
-          },
-        ),
+        builder: (_, __, ___) {
+          return FutureBuilder(
+            future: future,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return const SizedBox();
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return ProductListItem(
+                    productWithDiscount: ProductWithDiscount(
+                      product: snapshot.data![index],
+                      discountPercentage: 0,
+                    ),
+                    modifier: modifier,
+                  );
+                },
+              );
+            },
+          );
+        },
       ),
     );
   }

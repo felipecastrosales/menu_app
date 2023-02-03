@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+
 import 'package:menu/features/home/models/home_section.dart';
 import 'package:menu/features/product/models/product.dart';
 
@@ -26,17 +27,16 @@ class StrapiDatasourceImpl implements StrapiDatasource {
     );
     return List<Product>.from(response.data['data']
         .map<Product?>((json) => Product.fromJson(json))
-        .where((p) => p != null)
+        .where((product) => product != null)
         .toList());
   }
 
   @override
   Future<Product> getProduct(int id) async {
+    await Future.delayed(const Duration(seconds: 1));
     final response = await _dio.get(
       '/products/$id',
-      queryParameters: {
-        'populate': 'deep',
-      },
+      queryParameters: {'populate': 'deep'},
     );
     return Product.fromJson(response.data['data'])!;
   }
@@ -46,15 +46,29 @@ class StrapiDatasourceImpl implements StrapiDatasource {
     final response = await _dio.get(
       '/home',
       queryParameters: {
-        'populate': 'deep',
+        'populate': 'deep,6',
       },
     );
-    return List<HomeSection>.from(
-      response.data['data']['attributes']['sections']
-          .map<HomeSection?>((json) => HomeSection.fromJson(json))
-          .where((p) => p != null)
-          .toList(),
+    return List<HomeSection>.from(response.data['data']['attributes']
+            ['sections']
+        .map<HomeSection?>((json) => HomeSection.fromJson(json))
+        .where((product) => product != null)
+        .toList());
+  }
+
+  @override
+  Future<List<HomeSection>> getMenuSections() async {
+    final response = await _dio.get(
+      '/menu',
+      queryParameters: {
+        'populate': 'deep,6',
+      },
     );
+    return List<HomeSection>.from(response.data['data']['attributes']
+            ['sections']
+        .map<HomeSection?>((json) => HomeSection.fromJson(json))
+        .where((product) => product != null)
+        .toList());
   }
 }
 
@@ -62,4 +76,5 @@ abstract class StrapiDatasource {
   Future<List<Product>> getProducts({int? categoryId});
   Future<Product> getProduct(int id);
   Future<List<HomeSection>> getHomeSections();
+  Future<List<HomeSection>> getMenuSections();
 }

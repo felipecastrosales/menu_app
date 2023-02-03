@@ -11,6 +11,7 @@ class ModifierInfo {
   final bool allowRepeated;
 
   @override
-  String toString() =>
-      'ModifierInfo(title: $title, minQuantity: $minQuantity, maxQuantity: $maxQuantity, allowRepeated: $allowRepeated)';
+  String toString() {
+    return 'ModifierInfo{title: $title, minQuantity: $minQuantity, maxQuantity: $maxQuantity, allowRepeated: $allowRepeated}';
+  }
 }

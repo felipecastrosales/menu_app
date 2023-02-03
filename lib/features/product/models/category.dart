@@ -1,8 +1,7 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
-class Category extends Equatable {
-  const Category({
+class Category {
+  Category({
     required this.id,
     required this.title,
   });
@@ -15,7 +14,7 @@ class Category extends Equatable {
         title: json['attributes']['title'],
       );
     } catch (e, s) {
-      debugPrint('Error parsing category: $e');
+      debugPrint('Error parsing Category: $e');
       debugPrint('StackTrace: $s');
       return null;
     }
@@ -25,8 +24,7 @@ class Category extends Equatable {
   final String title;
 
   @override
-  String toString() => 'Category(id: $id, title: $title)';
-
-  @override
-  List<Object?> get props => [id, title];
+  String toString() {
+    return 'Category{id: $id, title: $title}';
+  }
 }

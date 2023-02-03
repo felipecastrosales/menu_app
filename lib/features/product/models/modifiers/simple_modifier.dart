@@ -3,15 +3,11 @@ import 'package:menu/features/product/models/modifier_info.dart';
 import 'package:menu/features/product/models/modifier_item.dart';
 
 class SimpleModifier extends Modifier {
-  SimpleModifier({
-    required super.info,
-    required this.options,
-  });
+  SimpleModifier({required super.info, required this.options});
 
   SimpleModifier.fromJson(Map<String, dynamic> json)
       : options = json['options']
-            .map<SimpleModifierOption>(
-                (option) => SimpleModifierOption.fromJson(option))
+            .map<SimpleModifierOption>((o) => SimpleModifierOption.fromJson(o))
             .toList(),
         super(
           info: ModifierInfo.fromJson(json['info']),
@@ -20,11 +16,8 @@ class SimpleModifier extends Modifier {
   final List<SimpleModifierOption> options;
 }
 
-class SimpleModifierOption extends ModifierItem {
-  SimpleModifierOption({
-    required this.title,
-    required this.price,
-  });
+class SimpleModifierOption implements ModifierItem {
+  SimpleModifierOption({required this.title, required this.price});
 
   SimpleModifierOption.fromJson(Map<String, dynamic> json)
       : title = json['title'],
@@ -34,5 +27,5 @@ class SimpleModifierOption extends ModifierItem {
   final num? price;
 
   @override
-  num get totalPrice => price ?? 0;
+  num get total => price ?? 0;
 }

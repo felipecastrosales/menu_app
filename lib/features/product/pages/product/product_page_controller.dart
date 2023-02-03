@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'package:menu/features/product/models/product.dart';
 import 'package:menu/features/product/repositories/product_repository.dart';
 
@@ -8,30 +9,29 @@ class ProductPageController extends ChangeNotifier {
   });
 
   final int id;
-  final ProductRepository _productRepository = StrapiProductRepository();
+
+  final ProductRepository productRepository = StrapiProductRepository();
 
   Product? product;
 
   Future<void> getProduct() async {
-    product = await _productRepository.getProduct(id);
+    product = await productRepository.getProduct(id);
     if (product != null) {
-      for (var modifier in product?.modifiers ?? []) {
+      for (final modifier in product!.modifiers) {
         modifier.addListener(notifyListeners);
       }
     }
     notifyListeners();
   }
 
-  num? get totalPrice => product?.totalPrice;
-
+  num? get total => product?.total;
   bool get isValid =>
-      product != null &&
-      !product!.modifiers.any((modifier) => !modifier.isValid);
+      product != null && !product!.modifiers.any((m) => !m.isValid);
 
   @override
   void dispose() {
     if (product != null) {
-      for (var modifier in product?.modifiers ?? []) {
+      for (final modifier in product!.modifiers) {
         modifier.removeListener(notifyListeners);
       }
     }

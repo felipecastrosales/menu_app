@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:menu/features/product/models/modifier_info.dart';
+import 'package:menu/features/product/models/modifier_item.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
 import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
-
-import 'modifier_item.dart';
 
 abstract class Modifier extends ChangeNotifier {
   Modifier({
@@ -57,8 +56,8 @@ abstract class Modifier extends ChangeNotifier {
     return _selectedOptions.contains(option);
   }
 
-  int count(ModifierItem option) {
-    return _selectedOptions.where((element) => element == option).length;
+  int countOption(ModifierItem option) {
+    return _selectedOptions.where((option) => option == option).length;
   }
 
   bool get canAddItem =>
@@ -70,13 +69,15 @@ abstract class Modifier extends ChangeNotifier {
           _selectedOptions.length <= info.maxQuantity!);
 
   num get total {
-    num total = 0;
+    num totalPrice = 0;
     for (final option in _selectedOptions) {
-      total += option.totalPrice;
+      totalPrice += option.total;
     }
-    return total;
+    return totalPrice;
   }
 
   @override
-  String toString() => 'Modifier(info: $info)';
+  String toString() {
+    return 'Modifier{info: $info}';
+  }
 }

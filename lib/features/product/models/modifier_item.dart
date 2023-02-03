@@ -1,3 +1,3 @@
 abstract class ModifierItem {
-  num get totalPrice;
+  num get total;
 }
