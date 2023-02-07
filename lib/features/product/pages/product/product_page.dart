@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:menu/core/widgets/core_back_button.dart';
 import 'package:menu/core/widgets/core_elevated_button.dart';
+import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/product/pages/product/product_page_controller.dart';
 import 'package:menu/features/product/pages/product/widgets/modifier_widget.dart';
 import 'package:intl/intl.dart';
@@ -156,7 +158,14 @@ class _ProductPageState extends State<ProductPage> {
                     child: CoreElevatedButton(
                       title:
                           'Adicionar por ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(controller.total)}',
-                      onPressed: controller.isValid ? () {} : null,
+                      onPressed: controller.isValid
+                          ? () {
+                              final cartController =
+                                  context.read<CartController>();
+                              cartController.addProduct(product);
+                              context.push('/');
+                            }
+                          : null,
                     ),
                   )
                 ],
