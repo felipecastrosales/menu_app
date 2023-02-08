@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 
 import 'package:menu/features/product/models/modifier_info.dart';
@@ -32,6 +34,8 @@ abstract class Modifier extends ChangeNotifier {
 
   final ModifierInfo info;
   final List<ModifierItem> _selectedOptions = [];
+  UnmodifiableListView<ModifierItem> get selectedOptions =>
+      UnmodifiableListView(_selectedOptions);
 
   void addItem(ModifierItem option) {
     if (_selectedOptions.contains(option)) {

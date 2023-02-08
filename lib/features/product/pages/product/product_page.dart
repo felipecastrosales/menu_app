@@ -163,11 +163,24 @@ class _ProductPageState extends State<ProductPage> {
                               final cartController =
                                   context.read<CartController>();
                               cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
+                              cartController.addProduct(product);
                               context.push('/');
                             }
                           : null,
                     ),
-                  )
+                  ),
                 ],
               );
             }

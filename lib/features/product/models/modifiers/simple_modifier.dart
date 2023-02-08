@@ -23,6 +23,7 @@ class SimpleModifierOption implements ModifierItem {
       : title = json['title'],
         price = json['price'];
 
+  @override
   final String title;
   final num? price;
 

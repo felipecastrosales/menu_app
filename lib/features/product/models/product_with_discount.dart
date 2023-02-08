@@ -31,5 +31,8 @@ class ProductWithDiscount extends Equatable implements ModifierItem {
   num get total => product.basePrice * (1 - discountPercentage / 100);
 
   @override
+  String get title => product.title;
+
+  @override
   List<Object?> get props => [product.id, discountPercentage];
 }
