@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/home/pages/home/home_page_controller.dart';
 import 'package:menu/features/home/pages/home/tabs/home/home_tab.dart';
 import 'package:menu/features/home/pages/home/tabs/menu/menu_tab.dart';
@@ -9,7 +10,12 @@ import 'widgets/home_cart_button.dart';
 import 'widgets/home_cart_drawer.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({
+    super.key,
+    required this.table,
+  });
+
+  final String? table;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -30,6 +36,12 @@ class _HomePageState extends State<HomePage> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.ease,
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<CartController>().setTable(widget.table);
   }
 
   @override

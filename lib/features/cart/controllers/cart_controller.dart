@@ -1,10 +1,24 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:menu/features/cart/models/order.dart';
+import 'package:menu/features/cart/pages/cart/cart_page_actions.dart';
+import 'package:menu/features/cart/repositories/cart_repository.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class CartController extends ChangeNotifier {
   final List<Product> _products = [];
+  final CartRepository _cartRepository = CartRepository();
+
+  CartPageActions? actions;
+  void setActions(CartPageActions? actions) {
+    this.actions = actions;
+  }
+
+  String? table;
+  void setTable(String? t) {
+    t = table;
+  }
 
   void addProduct(Product product) {
     _products.add(product);
@@ -38,15 +52,30 @@ class CartController extends ChangeNotifier {
   }
 
   bool get isFormValid =>
-      userName.length > 3 && userPhone.length > 9 && !loading;
+      userName.length > 4 && userPhone.length > 14 && !loading;
 
   bool loading = false;
 
   Future<void> sendOrder() async {
     loading = true;
     notifyListeners();
-    await Future.delayed(const Duration(seconds: 3));
+    _cartRepository.createOrder(
+      Order(
+        table: table!,
+        products: _products,
+        userName: userName,
+        userPhone: userPhone,
+      ),
+    );
+    _products.clear();
+    actions?.goToHome();
     loading = false;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    actions = null;
+    super.dispose();
   }
 }

@@ -51,6 +51,7 @@ class _ProductPageState extends State<ProductPage> {
               final product = controller.product!;
 
               return Stack(
+                fit: StackFit.expand,
                 children: [
                   SingleChildScrollView(
                     padding: const EdgeInsets.only(bottom: 90),
@@ -176,7 +177,7 @@ class _ProductPageState extends State<ProductPage> {
                               cartController.addProduct(product);
                               cartController.addProduct(product);
                               cartController.addProduct(product);
-                              context.push('/');
+                              context.push('/menu');
                             }
                           : null,
                     ),

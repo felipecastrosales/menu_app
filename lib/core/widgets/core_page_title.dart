@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:menu/features/cart/controllers/cart_controller.dart';
+import 'package:provider/provider.dart';
 
 class CorePageTitle extends StatelessWidget {
   const CorePageTitle({
@@ -24,9 +26,16 @@ class CorePageTitle extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Mesa 1',
-            style: TextStyle(color: Color(0xff5f6066)),
+          Consumer<CartController>(
+            builder: (context, cartController, child) {
+              if (cartController.table == null) {
+                return const SizedBox.shrink();
+              }
+              return Text(
+                'Mesa ${cartController.table}',
+                style: const TextStyle(color: Color(0xff5f6066)),
+              );
+            },
           )
         ],
       ),

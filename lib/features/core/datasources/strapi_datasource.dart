@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:menu/features/cart/models/order.dart';
 
 import 'package:menu/features/home/models/home_section.dart';
 import 'package:menu/features/product/models/product.dart';
@@ -46,7 +47,7 @@ class StrapiDatasourceImpl implements StrapiDatasource {
     final response = await _dio.get(
       '/home',
       queryParameters: {
-        'populate': 'deep,6',
+        'populate': 'deep,7',
       },
     );
     return List<HomeSection>.from(response.data['data']['attributes']
@@ -61,7 +62,7 @@ class StrapiDatasourceImpl implements StrapiDatasource {
     final response = await _dio.get(
       '/menu',
       queryParameters: {
-        'populate': 'deep,6',
+        'populate': 'deep,7',
       },
     );
     return List<HomeSection>.from(response.data['data']['attributes']
@@ -70,6 +71,16 @@ class StrapiDatasourceImpl implements StrapiDatasource {
         .where((product) => product != null)
         .toList());
   }
+
+  @override
+  Future<void> createOrder(
+    Order order,
+  ) async {
+    await _dio.post(
+      '/orders',
+      data: order.toJson(),
+    );
+  }
 }
 
 abstract class StrapiDatasource {
@@ -77,4 +88,5 @@ abstract class StrapiDatasource {
   Future<Product> getProduct(int id);
   Future<List<HomeSection>> getHomeSections();
   Future<List<HomeSection>> getMenuSections();
+  Future<void> createOrder(Order order);
 }

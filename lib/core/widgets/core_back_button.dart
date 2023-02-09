@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CoreBackButton extends StatelessWidget {
   const CoreBackButton({super.key});
@@ -14,7 +15,9 @@ class CoreBackButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(buttonSize / 2),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          context.canPop() ? context.pop() : context.push('/menu');
+        },
         child: const SizedBox(
           width: buttonSize,
           height: buttonSize,

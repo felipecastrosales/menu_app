@@ -31,6 +31,30 @@ class MenuApp extends StatelessWidget {
         ),
         routerConfig: router,
       ),
+      builder: (context, child) {
+        return ColoredBox(
+          color: const Color(0xff1f2027),
+          child: Align(
+            child: Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xff7a3dff).withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              constraints: const BoxConstraints(
+                maxWidth: 700,
+              ),
+              child: child,
+            ),
+          ),
+        );
+      },
     );
   }
 }

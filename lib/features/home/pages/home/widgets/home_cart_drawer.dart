@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
-import 'package:menu/features/cart/widgets/cart_item_summary.dart';
+import 'package:menu/features/cart/pages/cart/widgets/cart_item_summary.dart';
 import 'package:provider/provider.dart';
 
 class HomeCartDrawer extends StatelessWidget {
