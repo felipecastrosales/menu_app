@@ -27,9 +27,11 @@ class CartItemSummary extends StatelessWidget {
               Positioned(
                 top: 0,
                 right: 10,
-                child: CoreDeleteButton(onTap: () {
-                  context.read<CartController>().removeProduct(product);
-                },),
+                child: CoreDeleteButton(
+                  onTap: () {
+                    context.read<CartController>().removeProduct(product);
+                  },
+                ),
               )
             ],
           ),

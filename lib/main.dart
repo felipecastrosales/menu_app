@@ -28,7 +28,8 @@ class MenuApp extends StatelessWidget {
             cursorColor: Color(0xff7a3dff),
           ),
           drawerTheme: DrawerThemeData(
-              backgroundColor: const Color(0xff1f2027).withOpacity(0.9),),
+            backgroundColor: const Color(0xff1f2027).withOpacity(0.9),
+          ),
         ),
         routerConfig: router,
         builder: (context, child) {
@@ -40,18 +41,20 @@ class MenuApp extends StatelessWidget {
                 child: Container(
                   constraints: const BoxConstraints(maxWidth: 700),
                   clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xff7a3dff).withOpacity(0.4),
-                      offset: const Offset(4, 4),
-                      blurRadius: 10,
-                    ),
-                    BoxShadow(
-                      color: const Color(0xff7a3dff).withOpacity(0.4),
-                      offset: const Offset(-4, 4),
-                      blurRadius: 10,
-                    )
-                  ],),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xff7a3dff).withOpacity(0.4),
+                        offset: const Offset(4, 4),
+                        blurRadius: 10,
+                      ),
+                      BoxShadow(
+                        color: const Color(0xff7a3dff).withOpacity(0.4),
+                        offset: const Offset(-4, 4),
+                        blurRadius: 10,
+                      )
+                    ],
+                  ),
                   child: child!,
                 ),
               ),
@@ -66,7 +69,10 @@ class MenuApp extends StatelessWidget {
 class NoGlowBehavior extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details,) {
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
     return child;
   }
 }

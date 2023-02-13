@@ -43,7 +43,8 @@ class HomeBottomBar extends StatelessWidget {
                             left: Radius.circular(24),
                           )
                         : const BorderRadius.horizontal(
-                            right: Radius.circular(24),),
+                            right: Radius.circular(24),
+                          ),
                   ),
                 ),
               ),

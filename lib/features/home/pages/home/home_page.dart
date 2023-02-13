@@ -58,24 +58,28 @@ class _HomePageState extends State<HomePage> {
             },
             body: Stack(
               children: [
-                Builder(builder: (context) {
-                  return PageView(
-                    controller: pageController,
-                    onPageChanged: homePageController.onPageChanged,
-                    children: const [
-                      HomeTab(),
-                      MenuTab(),
-                    ],
-                  );
-                },),
+                Builder(
+                  builder: (context) {
+                    return PageView(
+                      controller: pageController,
+                      onPageChanged: homePageController.onPageChanged,
+                      children: const [
+                        HomeTab(),
+                        MenuTab(),
+                      ],
+                    );
+                  },
+                ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Consumer<HomePageController>(builder: (_, __, ___) {
-                    return HomeBottomBar(
-                      page: homePageController.page,
-                      onChanged: changePage,
-                    );
-                  },),
+                  child: Consumer<HomePageController>(
+                    builder: (_, __, ___) {
+                      return HomeBottomBar(
+                        page: homePageController.page,
+                        onChanged: changePage,
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

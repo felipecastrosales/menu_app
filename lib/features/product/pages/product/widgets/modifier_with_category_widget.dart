@@ -17,27 +17,29 @@ class ModifierWithCategoryWidget extends StatelessWidget {
 
     return ChangeNotifierProvider.value(
       value: modifier,
-      child: Consumer<ModifierWithCategory>(builder: (_, __, ___) {
-        return FutureBuilder(
-          future: future,
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) return Container();
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, i) {
-                return ProductListItem(
-                  productWithDiscount: ProductWithDiscount(
-                    product: snapshot.data![i],
-                    discountPercentage: 0,
-                  ),
-                  modifier: modifier,
-                );
-              },
-            );
-          },
-        );
-      },),
+      child: Consumer<ModifierWithCategory>(
+        builder: (_, __, ___) {
+          return FutureBuilder(
+            future: future,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return Container();
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, i) {
+                  return ProductListItem(
+                    productWithDiscount: ProductWithDiscount(
+                      product: snapshot.data![i],
+                      discountPercentage: 0,
+                    ),
+                    modifier: modifier,
+                  );
+                },
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

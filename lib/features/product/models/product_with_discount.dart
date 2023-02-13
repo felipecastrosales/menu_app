@@ -3,8 +3,10 @@ import 'package:menu/features/product/models/modifier_item.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class ProductWithDiscount extends Equatable implements ModifierItem {
-  const ProductWithDiscount(
-      {required this.product, required this.discountPercentage,});
+  const ProductWithDiscount({
+    required this.product,
+    required this.discountPercentage,
+  });
 
   static ProductWithDiscount? fromJson(Map<String, dynamic> json) {
     try {

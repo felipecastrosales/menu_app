@@ -24,8 +24,9 @@ class _HomeCartButtonState extends State<HomeCartButton>
   );
 
   late Animation<Color?> colorAnimation = ColorTween(
-          begin: Theme.of(context).primaryColor, end: const Color(0xff393c44),)
-      .animate(controller);
+    begin: Theme.of(context).primaryColor,
+    end: const Color(0xff393c44),
+  ).animate(controller);
 
   late Animation<double> rotationAnimation =
       Tween<double>(begin: 1, end: 0.75).animate(controller);
@@ -106,17 +107,18 @@ class _HomeCartButtonState extends State<HomeCartButton>
                 ),
                 margin: EdgeInsets.only(right: widget.drawerOpen ? 14 : 0),
                 alignment: Alignment.center,
-                child:
-                    Consumer<CartController>(builder: (_, cartController, __) {
-                  return Text(
-                    cartController.productCount.toString(),
-                    style: TextStyle(
-                      fontSize: 11,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  );
-                },),
+                child: Consumer<CartController>(
+                  builder: (_, cartController, __) {
+                    return Text(
+                      cartController.productCount.toString(),
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           )

@@ -28,10 +28,12 @@ class Product extends Equatable {
         imageUrl:
             'http://localhost:1337${attr['image']['data']['attributes']['url']}',
         category: Category.fromJson(attr['data']),
-        modifiers: List<Modifier>.from(attr['options']
-            .map<Modifier?>((modifier) => Modifier.fromJson(modifier))
-            .where((m) => m != null)
-            .toList(),),
+        modifiers: List<Modifier>.from(
+          attr['options']
+              .map<Modifier?>((modifier) => Modifier.fromJson(modifier))
+              .where((m) => m != null)
+              .toList(),
+        ),
       );
     } catch (e) {
       //debugPrint('$e $s');
@@ -52,7 +54,9 @@ class Product extends Equatable {
   num get total =>
       basePrice +
       modifiers.fold(
-          0, (previousValue, element) => previousValue + element.total,);
+        0,
+        (previousValue, element) => previousValue + element.total,
+      );
 
   @override
   String toString() {

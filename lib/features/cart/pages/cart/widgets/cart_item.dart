@@ -76,13 +76,15 @@ class CartItem extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.topRight,
-          child: CoreDeleteButton(onTap: () {
-            final cartController = context.read<CartController>();
-            cartController.removeProduct(product);
-            if (cartController.products.isEmpty) {
-              context.push('/menu');
-            }
-          },),
+          child: CoreDeleteButton(
+            onTap: () {
+              final cartController = context.read<CartController>();
+              cartController.removeProduct(product);
+              if (cartController.products.isEmpty) {
+                context.push('/menu');
+              }
+            },
+          ),
         )
       ],
     );

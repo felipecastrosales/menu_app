@@ -21,22 +21,26 @@ class ModifierWidget extends StatelessWidget {
     return Column(
       children: [
         ModifierHeader(modifier: modifier),
-        Builder(builder: (_) {
-          if (modifier is SimpleModifier) {
-            return ChangeNotifierProvider.value(
-              value: modifier as SimpleModifier,
-              child: const SimpleModifierWidget(),
-            );
-          } else if (modifier is ModifierWithProducts) {
-            return ModifierWithProductsWidget(
-                modifier: modifier as ModifierWithProducts,);
-          } else if (modifier is ModifierWithCategory) {
-            return ModifierWithCategoryWidget(
-                modifier: modifier as ModifierWithCategory,);
-          } else {
-            return const SizedBox.shrink();
-          }
-        },),
+        Builder(
+          builder: (_) {
+            if (modifier is SimpleModifier) {
+              return ChangeNotifierProvider.value(
+                value: modifier as SimpleModifier,
+                child: const SimpleModifierWidget(),
+              );
+            } else if (modifier is ModifierWithProducts) {
+              return ModifierWithProductsWidget(
+                modifier: modifier as ModifierWithProducts,
+              );
+            } else if (modifier is ModifierWithCategory) {
+              return ModifierWithCategoryWidget(
+                modifier: modifier as ModifierWithCategory,
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ),
       ],
     );
   }

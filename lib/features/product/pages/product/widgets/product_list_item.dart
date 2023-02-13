@@ -5,8 +5,11 @@ import 'package:menu/features/product/pages/product/widgets/modifier_item_action
 import 'package:intl/intl.dart';
 
 class ProductListItem extends StatelessWidget {
-  const ProductListItem(
-      {super.key, required this.modifier, required this.productWithDiscount,});
+  const ProductListItem({
+    super.key,
+    required this.modifier,
+    required this.productWithDiscount,
+  });
 
   final Modifier modifier;
   final ProductWithDiscount productWithDiscount;

@@ -206,8 +206,12 @@ class MyClipper extends CustomClipper<Path> {
       ..lineTo(size.width - borderRadius, 0)
       ..quadraticBezierTo(size.width, 0, size.width - dx, dy)
       ..lineTo(size.width - dX + dx, size.height - dy)
-      ..quadraticBezierTo(size.width - dX, size.height,
-          size.width - dX - borderRadius, size.height,)
+      ..quadraticBezierTo(
+        size.width - dX,
+        size.height,
+        size.width - dX - borderRadius,
+        size.height,
+      )
       ..close();
 
     return path;
