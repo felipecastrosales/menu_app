@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:provider/provider.dart';
-
 import 'package:menu/core/widgets/core_page_title.dart';
 import 'package:menu/features/home/models/home_banner_section.dart';
 import 'package:menu/features/home/models/home_menu_button_section.dart';
@@ -11,6 +7,8 @@ import 'package:menu/features/home/pages/home/tabs/home/home_tab_controller.dart
 import 'package:menu/features/home/widgets/home_banner_section_widget.dart';
 import 'package:menu/features/home/widgets/home_menu_button_section_widget.dart';
 import 'package:menu/features/home/widgets/home_products_carousel_section_widget.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -25,6 +23,7 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
+
     controller.loadSections();
   }
 
@@ -39,7 +38,7 @@ class _HomeTabState extends State<HomeTab> {
         ),
         children: [
           const CorePageTitle(
-            title: 'Felipe Foods',
+            title: 'Startto\'s Mexican Food',
           ),
           Consumer<HomeTabController>(
             builder: (_, __, ___) {
@@ -55,10 +54,8 @@ class _HomeTabState extends State<HomeTab> {
               return ListView.separated(
                 shrinkWrap: true,
                 padding: const EdgeInsets.only(top: 24),
-                itemCount: controller.sections!.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 24),
-                itemBuilder: (_, index) {
-                  final section = controller.sections![index];
+                itemBuilder: (_, i) {
+                  final section = controller.sections![i];
                   if (section is HomeProductsCarouselSection) {
                     return HomeProductsCarouselSectionWidget(section: section);
                   } else if (section is HomeBannerSection) {
@@ -66,9 +63,11 @@ class _HomeTabState extends State<HomeTab> {
                   } else if (section is HomeMenuButtonSection) {
                     return HomeMenuButtonSectionWidget(section: section);
                   } else {
-                    return const SizedBox();
+                    return Container();
                   }
                 },
+                separatorBuilder: (_, __) => const SizedBox(height: 24),
+                itemCount: controller.sections!.length,
               );
             },
           ),

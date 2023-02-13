@@ -1,10 +1,7 @@
 import 'package:menu/core/extensions/string_extension.dart';
 import 'package:menu/features/home/models/home_section.dart';
 
-enum HomeBannerSize {
-  small,
-  big,
-}
+enum HomeBannerSize { small, big }
 
 class HomeBannerSection extends HomeSection {
   HomeBannerSection({

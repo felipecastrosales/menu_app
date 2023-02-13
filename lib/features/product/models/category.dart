@@ -1,10 +1,5 @@
-import 'package:flutter/foundation.dart';
-
 class Category {
-  Category({
-    required this.id,
-    required this.title,
-  });
+  Category({required this.id, required this.title});
 
   static Category? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
@@ -13,9 +8,8 @@ class Category {
         id: json['id'],
         title: json['attributes']['title'],
       );
-    } catch (e, s) {
-      debugPrint('Error parsing Category: $e');
-      debugPrint('StackTrace: $s');
+    } catch (e) {
+      //debugPrint('$e $s');
       return null;
     }
   }

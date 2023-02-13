@@ -1,9 +1,9 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
+import 'package:menu/features/cart/controllers/cart_controller.dart';
+import 'package:menu/features/cart/widgets/cart_item_summary.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:menu/features/cart/controllers/cart_controller.dart';
-import 'package:menu/features/cart/pages/cart/widgets/cart_item_summary.dart';
 import 'package:provider/provider.dart';
 
 class HomeCartDrawer extends StatelessWidget {
@@ -11,7 +11,7 @@ class HomeCartDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartController = context.watch<CartController>();
+    final CartController cartController = context.watch();
 
     return SizedBox(
       width: 102,
@@ -22,59 +22,62 @@ class HomeCartDrawer extends StatelessWidget {
               options: const LiveOptions(
                 delay: Duration.zero,
                 showItemInterval: Duration(milliseconds: 50),
-                showItemDuration: Duration(milliseconds: 250),
-                visibleFraction: 0.05,
+                showItemDuration: Duration(milliseconds: 300),
                 reAnimateOnVisibility: false,
+                visibleFraction: 0.05,
               ),
-              padding: const EdgeInsets.only(),
-              itemCount: cartController.productCount,
-              itemBuilder: (context, index, animation) {
-                final product = cartController.products[index];
+              padding: EdgeInsets.only(
+                top: 102 + MediaQuery.of(context).viewPadding.top,
+                bottom: 160,
+              ),
+              itemBuilder: (_, i, anim) {
+                final product = cartController.products[i];
+
                 return SlideTransition(
                   position: Tween<Offset>(
                     begin: const Offset(1, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
+                    end: const Offset(0, 0),
+                  ).animate(anim),
                   child: CartItemSummary(
                     product: product,
                   ),
                 );
               },
+              itemCount: cartController.productCount,
             ),
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                height: 102 + MediaQuery.of(context).padding.top,
-                width: 102,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).drawerTheme.backgroundColor,
                   gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: const [.5, 1],
                     colors: [
                       Theme.of(context).drawerTheme.backgroundColor!,
                       Colors.transparent,
                     ],
+                    stops: const [0.5, 1],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                   ),
                 ),
+                height: 102 + MediaQuery.of(context).viewPadding.top,
+                width: 102,
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
                 width: 102,
-                height: 200,
+                height: 260,
+                alignment: Alignment.bottomCenter,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).drawerTheme.backgroundColor,
                   gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    stops: const [.5, 1],
                     colors: [
                       Theme.of(context).drawerTheme.backgroundColor!,
                       Colors.transparent,
                     ],
+                    stops: const [0.5, 1],
+                    end: Alignment.topCenter,
+                    begin: Alignment.bottomCenter,
                   ),
                 ),
                 child: Column(
@@ -84,7 +87,7 @@ class HomeCartDrawer extends StatelessWidget {
                       '${cartController.productCount} ${cartController.productCount == 1 ? 'item' : 'itens'}',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: 12,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -92,50 +95,48 @@ class HomeCartDrawer extends StatelessWidget {
                     const Text(
                       'Total:',
                       style: TextStyle(
-                        color: Colors.white,
                         fontSize: 11,
+                        color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      NumberFormat.simpleCurrency(
-                        locale: 'pt_BR',
-                      ).format(
-                        cartController.totalPrice,
-                      ),
+                      NumberFormat.simpleCurrency(locale: 'pt_BR')
+                          .format(cartController.totalPrice),
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: 12,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(height: 24),
                     if (cartController.productCount > 0) ...[
-                      SizedBox.square(
-                        dimension: 54,
+                      SizedBox(
+                        width: 54,
+                        height: 54,
                         child: Material(
-                          clipBehavior: Clip.antiAlias,
-                          color: Theme.of(context).primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(27),
                           ),
+                          color: Theme.of(context).primaryColor,
+                          clipBehavior: Clip.antiAlias,
                           child: InkWell(
                             onTap: () {
                               context.push('/checkout');
                             },
-                            borderRadius: BorderRadius.circular(27),
                             child: const Icon(
-                              Icons.arrow_forward_ios_rounded,
+                              Icons.arrow_forward_outlined,
                               color: Colors.white,
                             ),
                           ),
                         ),
                       ),
+                      const SizedBox(height: 24),
                     ],
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),

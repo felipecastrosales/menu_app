@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 
 class CoreDeleteButton extends StatelessWidget {
-  const CoreDeleteButton({
-    super.key,
-    required this.onTap,
-  });
+  const CoreDeleteButton({Key? key, required this.onTap}) : super(key: key);
 
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white.withOpacity(0.2),
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(14),
-        onTap: () {
-          onTap();
-        },
-        child: const Icon(
-          Icons.close,
-          color: Colors.white,
-          size: 16,
+    return SizedBox(
+      width: 28,
+      height: 28,
+      child: Material(
+        color: Colors.white.withOpacity(0.2),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: const Icon(
+            Icons.close,
+            color: Colors.white,
+            size: 16,
+          ),
         ),
       ),
     );

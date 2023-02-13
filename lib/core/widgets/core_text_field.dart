@@ -3,21 +3,21 @@ import 'package:flutter/services.dart';
 
 class CoreTextField extends StatelessWidget {
   const CoreTextField({
-    super.key,
+    Key? key,
     required this.title,
     required this.hint,
     this.textInputType,
     this.formatters,
-    this.onChanged,
+    required this.onChanged,
     this.initialValue,
-  });
+  }) : super(key: key);
 
+  final String? initialValue;
   final String title;
   final String hint;
   final TextInputType? textInputType;
   final List<TextInputFormatter>? formatters;
-  final ValueChanged<String>? onChanged;
-  final String? initialValue;
+  final Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -34,36 +34,31 @@ class CoreTextField extends StatelessWidget {
         const SizedBox(height: 8),
         Container(
           decoration: BoxDecoration(
-            color: const Color(0xFF393c44),
-            borderRadius: BorderRadius.circular(16),
+            color: const Color(0xff2a2e3d),
+            borderRadius: BorderRadius.circular(24),
           ),
           child: TextFormField(
             initialValue: initialValue,
-            keyboardType: textInputType,
-            inputFormatters: formatters,
-            onChanged: onChanged,
             decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: const TextStyle(
-                color: Colors.white54,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              isCollapsed: true,
+              border: InputBorder.none,
               contentPadding: const EdgeInsets.symmetric(
                 vertical: 14,
                 horizontal: 16,
               ),
-              isCollapsed: true,
-              filled: true,
-              border: InputBorder.none,
+              hintText: hint,
+              hintStyle: const TextStyle(
+                color: Colors.white54,
+              ),
             ),
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
             ),
+            keyboardType: textInputType,
+            inputFormatters: formatters,
+            onChanged: onChanged,
           ),
-        ),
+        )
       ],
     );
   }

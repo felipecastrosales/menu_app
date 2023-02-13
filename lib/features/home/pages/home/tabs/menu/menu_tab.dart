@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
+
 import 'package:menu/core/widgets/core_page_title.dart';
 import 'package:menu/features/home/models/home_banner_section.dart';
 import 'package:menu/features/home/models/home_products_carousel_section.dart';
@@ -8,8 +12,6 @@ import 'package:menu/features/home/pages/home/tabs/menu/widgets/menu_tab_search_
 import 'package:menu/features/home/widgets/home_banner_section_widget.dart';
 import 'package:menu/features/home/widgets/home_products_carousel_section_widget.dart';
 import 'package:menu/features/home/widgets/home_products_listing_section_widget.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:provider/provider.dart';
 
 class MenuTab extends StatefulWidget {
   const MenuTab({super.key});
@@ -58,18 +60,20 @@ class _MenuTabState extends State<MenuTab> {
                   ListView.separated(
                     shrinkWrap: true,
                     padding: const EdgeInsets.only(top: 24),
-                    itemBuilder: (_, index) {
-                      final section = controller.sections![index];
+                    itemBuilder: (_, i) {
+                      final section = controller.sections![i];
                       if (section is HomeProductsListingSection) {
                         return HomeProductsListingSectionWidget(
-                            section: section);
+                          section: section,
+                        );
                       } else if (section is HomeBannerSection) {
                         return HomeBannerSectionWidget(section: section);
                       } else if (section is HomeProductsCarouselSection) {
                         return HomeProductsCarouselSectionWidget(
-                            section: section);
+                          section: section,
+                        );
                       } else {
-                        return const SizedBox();
+                        return Container();
                       }
                     },
                     separatorBuilder: (_, __) => const SizedBox(height: 24),

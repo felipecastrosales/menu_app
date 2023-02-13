@@ -6,21 +6,17 @@ class CoreBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const buttonSize = 42.0;
-
     return Material(
-      color: const Color(0xFF393c44),
-      clipBehavior: Clip.antiAlias,
+      color: const Color(0xff393c44),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(buttonSize / 2),
+        borderRadius: BorderRadius.circular(21),
       ),
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () {
-          context.canPop() ? context.pop() : context.push('/menu');
-        },
+        onTap: () => context.canPop() ? context.pop() : context.push('/'),
         child: const SizedBox(
-          width: buttonSize,
-          height: buttonSize,
+          width: 42,
+          height: 42,
           child: Icon(
             Icons.arrow_back_ios_new_outlined,
             color: Colors.white,

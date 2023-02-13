@@ -1,15 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:equatable/equatable.dart';
-
 import 'package:menu/features/product/models/modifier_item.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class ProductWithDiscount extends Equatable implements ModifierItem {
-  const ProductWithDiscount({
-    required this.product,
-    required this.discountPercentage,
-  });
+  const ProductWithDiscount(
+      {required this.product, required this.discountPercentage,});
 
   static ProductWithDiscount? fromJson(Map<String, dynamic> json) {
     try {
@@ -17,9 +12,7 @@ class ProductWithDiscount extends Equatable implements ModifierItem {
         product: Product.fromJson(json['product']['data'])!,
         discountPercentage: json['discountPercentage'],
       );
-    } catch (e, s) {
-      debugPrint('Error parsing ProductWithDiscount: $e');
-      debugPrint('StackTrace: $s');
+    } catch (e) {
       return null;
     }
   }
@@ -31,8 +24,8 @@ class ProductWithDiscount extends Equatable implements ModifierItem {
   num get total => product.basePrice * (1 - discountPercentage / 100);
 
   @override
-  String get title => product.title;
+  List<Object?> get props => [product.id, discountPercentage];
 
   @override
-  List<Object?> get props => [product.id, discountPercentage];
+  String get title => product.title;
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class HomeBottomBar extends StatelessWidget {
   const HomeBottomBar({
-    super.key,
+    Key? key,
     required this.page,
     required this.onChanged,
-  });
+  }) : super(key: key);
 
   final int page;
   final Function(int) onChanged;
@@ -43,7 +43,7 @@ class HomeBottomBar extends StatelessWidget {
                             left: Radius.circular(24),
                           )
                         : const BorderRadius.horizontal(
-                            right: Radius.circular(24)),
+                            right: Radius.circular(24),),
                   ),
                 ),
               ),

@@ -1,7 +1,6 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-
 import 'package:menu/features/product/models/modifier_info.dart';
 import 'package:menu/features/product/models/modifier_item.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
@@ -9,9 +8,7 @@ import 'package:menu/features/product/models/modifiers/modifier_with_products.da
 import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
 
 abstract class Modifier extends ChangeNotifier {
-  Modifier({
-    required this.info,
-  });
+  Modifier({required this.info});
 
   static Modifier? fromJson(Map<String, dynamic> json) {
     try {
@@ -26,14 +23,15 @@ abstract class Modifier extends ChangeNotifier {
           return null;
       }
     } catch (e, s) {
-      debugPrint('Error parsing Modifier: $e');
-      debugPrint('StackTrace: $s');
+      debugPrint('$e $s');
       return null;
     }
   }
 
   final ModifierInfo info;
+
   final List<ModifierItem> _selectedOptions = [];
+
   UnmodifiableListView<ModifierItem> get selectedOptions =>
       UnmodifiableListView(_selectedOptions);
 
@@ -61,7 +59,7 @@ abstract class Modifier extends ChangeNotifier {
   }
 
   int countOption(ModifierItem option) {
-    return _selectedOptions.where((option) => option == option).length;
+    return _selectedOptions.where((e) => e == option).length;
   }
 
   bool get canAddItem =>
@@ -73,11 +71,11 @@ abstract class Modifier extends ChangeNotifier {
           _selectedOptions.length <= info.maxQuantity!);
 
   num get total {
-    num totalPrice = 0;
+    num t = 0;
     for (final option in _selectedOptions) {
-      totalPrice += option.total;
+      t += option.total;
     }
-    return totalPrice;
+    return t;
   }
 
   @override

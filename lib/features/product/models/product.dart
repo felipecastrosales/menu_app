@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 import 'package:menu/features/product/models/category.dart';
 import 'package:menu/features/product/models/modifier.dart';
@@ -19,28 +18,23 @@ class Product extends Equatable {
   static Product? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
     try {
-      final attributes = json['attributes'];
+      final attr = json['attributes'];
       return Product(
         id: json['id'],
-        title: attributes['title'],
-        description: attributes['description'],
-        originalBasePrice: attributes['originalBasePrice'],
-        basePrice: attributes['basePrice'],
+        title: attr['title'],
+        description: attr['description'],
+        originalBasePrice: attr['originalBasePrice'],
+        basePrice: attr['basePrice'],
         imageUrl:
-            'http://localhost:1337${attributes['image']['data']['attributes']['url']}',
-        category: Category.fromJson(attributes['data']),
-        modifiers: List<Modifier>.from(
-          attributes['options']
-              .map<Modifier?>(
-                (modifier) => Modifier.fromJson(modifier),
-              )
-              .where((modifier) => modifier != null)
-              .toList(),
-        ),
+            'http://localhost:1337${attr['image']['data']['attributes']['url']}',
+        category: Category.fromJson(attr['data']),
+        modifiers: List<Modifier>.from(attr['options']
+            .map<Modifier?>((modifier) => Modifier.fromJson(modifier))
+            .where((m) => m != null)
+            .toList(),),
       );
-    } catch (e, s) {
-      debugPrint('Error parsing product: $e');
-      debugPrint('StackTrace: $s');
+    } catch (e) {
+      //debugPrint('$e $s');
       return null;
     }
   }
@@ -51,12 +45,14 @@ class Product extends Equatable {
   final num? originalBasePrice;
   final num basePrice;
   final String imageUrl;
+
   final Category? category;
   final List<Modifier> modifiers;
 
   num get total =>
       basePrice +
-      modifiers.fold(0, (total, modifier) => total + modifier.total);
+      modifiers.fold(
+          0, (previousValue, element) => previousValue + element.total,);
 
   @override
   String toString() {

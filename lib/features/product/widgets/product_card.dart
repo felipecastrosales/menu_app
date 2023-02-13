@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:menu/features/product/models/product.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import 'package:menu/features/product/models/product.dart';
-
 class ProductCard extends StatelessWidget {
-  const ProductCard({
-    super.key,
-    required this.product,
-  });
+  const ProductCard({super.key, required this.product});
 
   final Product product;
 

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:menu/features/product/models/product.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
-import 'package:menu/features/product/models/product.dart';
-
 class HorizontalProductCard extends StatelessWidget {
-  const HorizontalProductCard({
-    super.key,
-    required this.product,
-  });
+  const HorizontalProductCard({Key? key, required this.product})
+      : super(key: key);
 
   final Product product;
 

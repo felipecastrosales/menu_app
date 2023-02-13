@@ -25,6 +25,7 @@ class SimpleModifierOption implements ModifierItem {
 
   @override
   final String title;
+
   final num? price;
 
   @override

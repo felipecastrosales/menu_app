@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 
 class HomeBannerSectionWidget extends StatelessWidget {
   const HomeBannerSectionWidget({
-    super.key,
+    Key? key,
     required this.section,
-  });
+  }) : super(key: key);
 
   final HomeBannerSection section;
 

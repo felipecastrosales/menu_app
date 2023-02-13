@@ -4,16 +4,12 @@ import 'package:menu/features/home/pages/home/home_page_controller.dart';
 import 'package:menu/features/home/pages/home/tabs/home/home_tab.dart';
 import 'package:menu/features/home/pages/home/tabs/menu/menu_tab.dart';
 import 'package:menu/features/home/pages/home/widgets/home_bottom_bar.dart';
+import 'package:menu/features/home/pages/home/widgets/home_cart_button.dart';
+import 'package:menu/features/home/pages/home/widgets/home_cart_drawer.dart';
 import 'package:provider/provider.dart';
 
-import 'widgets/home_cart_button.dart';
-import 'widgets/home_cart_drawer.dart';
-
 class HomePage extends StatefulWidget {
-  const HomePage({
-    super.key,
-    required this.table,
-  });
+  const HomePage({Key? key, required this.table}) : super(key: key);
 
   final String? table;
 
@@ -26,9 +22,10 @@ class _HomePageState extends State<HomePage> {
     changePage: changePage,
   );
 
-  final pageController = PageController();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  bool isDrawerOpen = false;
+  final PageController pageController = PageController();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool drawerOpen = false;
 
   void changePage(int page) {
     pageController.animateToPage(
@@ -41,6 +38,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
     context.read<CartController>().setTable(widget.table);
   }
 
@@ -53,43 +51,41 @@ class _HomePageState extends State<HomePage> {
           Scaffold(
             key: scaffoldKey,
             endDrawer: const HomeCartDrawer(),
-            onEndDrawerChanged: (isOpen) {
+            onEndDrawerChanged: (open) {
               setState(() {
-                isDrawerOpen = isOpen;
+                drawerOpen = open;
               });
             },
             body: Stack(
               children: [
-                PageView(
-                  controller: pageController,
-                  onPageChanged: (page) {
-                    homePageController.onPageChanged(page);
-                  },
-                  children: const [
-                    HomeTab(),
-                    MenuTab(),
-                  ],
-                ),
+                Builder(builder: (context) {
+                  return PageView(
+                    controller: pageController,
+                    onPageChanged: homePageController.onPageChanged,
+                    children: const [
+                      HomeTab(),
+                      MenuTab(),
+                    ],
+                  );
+                },),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Consumer<HomePageController>(
-                    builder: (_, __, ___) {
-                      return HomeBottomBar(
-                        page: homePageController.page,
-                        onChanged: changePage,
-                      );
-                    },
-                  ),
+                  child: Consumer<HomePageController>(builder: (_, __, ___) {
+                    return HomeBottomBar(
+                      page: homePageController.page,
+                      onChanged: changePage,
+                    );
+                  },),
                 ),
               ],
             ),
           ),
           Positioned(
             right: 0,
-            top: 24 + MediaQuery.of(context).padding.top,
+            top: 24 + MediaQuery.of(context).viewPadding.top,
             child: HomeCartButton(
               scaffoldKey: scaffoldKey,
-              isDrawerOpen: isDrawerOpen,
+              drawerOpen: drawerOpen,
             ),
           ),
         ],

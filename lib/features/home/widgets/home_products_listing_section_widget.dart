@@ -4,9 +4,9 @@ import 'package:menu/features/product/widgets/horizontal_product_card.dart';
 
 class HomeProductsListingSectionWidget extends StatelessWidget {
   const HomeProductsListingSectionWidget({
-    super.key,
+    Key? key,
     required this.section,
-  });
+  }) : super(key: key);
 
   final HomeProductsListingSection section;
 
@@ -29,12 +29,14 @@ class HomeProductsListingSectionWidget extends StatelessWidget {
         ListView.separated(
           shrinkWrap: true,
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          itemBuilder: (_, index) {
+          itemBuilder: (_, i) {
             return HorizontalProductCard(
-              product: section.products[index],
+              product: section.products[i],
             );
           },
-          separatorBuilder: (_, __) => const SizedBox(height: 8),
+          separatorBuilder: (_, __) => const SizedBox(
+            height: 8,
+          ),
           itemCount: section.products.length,
         ),
       ],

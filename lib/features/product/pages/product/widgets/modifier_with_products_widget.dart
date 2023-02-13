@@ -12,20 +12,18 @@ class ModifierWithProductsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: modifier,
-      child: Consumer<ModifierWithProducts>(
-        builder: (_, __, ___) {
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: modifier.products.length,
-            itemBuilder: (context, index) {
-              return ProductListItem(
-                productWithDiscount: modifier.products[index],
-                modifier: modifier,
-              );
-            },
-          );
-        },
-      ),
+      child: Consumer<ModifierWithProducts>(builder: (_, __, ___) {
+        return ListView.builder(
+          shrinkWrap: true,
+          itemCount: modifier.products.length,
+          itemBuilder: (context, i) {
+            return ProductListItem(
+              productWithDiscount: modifier.products[i],
+              modifier: modifier,
+            );
+          },
+        );
+      },),
     );
   }
 }

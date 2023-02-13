@@ -1,17 +1,18 @@
-import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
 import 'package:menu/core/widgets/core_back_button.dart';
 import 'package:menu/core/widgets/core_elevated_button.dart';
 import 'package:menu/core/widgets/core_page_title.dart';
 import 'package:menu/core/widgets/core_text_field.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
+import 'package:menu/features/cart/pages/cart/cart_page_actions.dart';
 import 'package:menu/features/cart/pages/cart/widgets/cart_item.dart';
-import 'package:provider/provider.dart';
-
-import 'cart_page_actions.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
@@ -21,29 +22,11 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> implements CartPageActions {
-  late final CartController cartController;
-
-  @override
-  void goToHome() {
-    context.push('/menu');
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    cartController = context.read<CartController>();
-    cartController.setActions(this);
-  }
-
-  @override
-  void dispose() {
-    cartController.setActions(null);
-    super.dispose();
-  }
+  late final CartController controller;
 
   @override
   Widget build(BuildContext context) {
-    final cartController = context.watch<CartController>();
+    final CartController controller = context.watch();
 
     return Scaffold(
       body: Stack(
@@ -54,27 +37,19 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
               Row(
                 children: const [
                   SizedBox(width: 24),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: CoreBackButton(),
-                  ),
-                  Expanded(
-                    child: CorePageTitle(
-                      title: 'Carrinho',
-                    ),
-                  ),
+                  CoreBackButton(),
+                  Expanded(child: CorePageTitle(title: 'Carrinho')),
                 ],
               ),
-              const SizedBox(
-                height: 32,
-              ),
+              const SizedBox(height: 32),
               ListView.builder(
                 shrinkWrap: true,
                 padding: const EdgeInsets.only(left: 24, right: 16),
-                itemCount: cartController.products.length,
-                itemBuilder: (context, index) {
+                itemCount: controller.productCount,
+                itemBuilder: (_, i) {
+                  final product = controller.products[i];
                   return CartItem(
-                    product: cartController.products[index],
+                    product: product,
                   );
                 },
               ),
@@ -86,13 +61,10 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
             bottom: 24,
             child: CoreElevatedButton(
               title:
-                  'Finalizar por ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(cartController.totalPrice)}',
-              onPressed: cartController.products.isNotEmpty
+                  'Finalizar por ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(controller.totalPrice)}',
+              onPressed: controller.products.isNotEmpty
                   ? () {
-                      showUserInfoDialog(
-                        context,
-                        cartController,
-                      );
+                      showUserInfoDialog(context);
                     }
                   : null,
             ),
@@ -102,51 +74,53 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
     );
   }
 
-  void showUserInfoDialog(BuildContext context, CartController cartController) {
+  void showUserInfoDialog(BuildContext context) {
+    final CartController cartController = context.read();
+
     showDialog(
       context: context,
-      builder: (context) {
+      builder: (_) {
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
           backgroundColor: const Color(0xff212730),
           child: Container(
-            padding: const EdgeInsets.all(24),
             width: 400,
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  'Quase lá',
+                const Text(
+                  'Quase lá!',
                   style: TextStyle(
-                    color: Theme.of(context).primaryColor,
                     fontSize: 20,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 16),
                 const Text(
-                  'Precisamos fazer um pouco sobre você para finalizar seu pedido.',
+                  'Precisamos saber um pouco sobre você para finalizar seu pedido...',
                   style: TextStyle(
-                    color: Colors.white,
                     fontSize: 16,
+                    color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 32),
                 CoreTextField(
                   initialValue: cartController.userName,
                   title: 'Nome',
-                  hint: 'Ex: João da Silva',
+                  hint: 'Seu nome',
                   textInputType: TextInputType.name,
                   onChanged: cartController.setUserName,
                 ),
                 const SizedBox(height: 16),
                 CoreTextField(
                   initialValue: cartController.userPhone,
-                  title: 'Telefone',
-                  hint: 'Ex: (11) 99999-9999',
+                  title: 'Celular',
+                  hint: '(99) 91234-5678',
                   textInputType: TextInputType.phone,
                   formatters: [
                     FilteringTextInputFormatter.digitsOnly,
@@ -158,13 +132,10 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                 Consumer<CartController>(
                   builder: (_, __, ___) {
                     return CoreElevatedButton(
-                      title: 'Enviar pedido',
                       onPressed: cartController.isFormValid
-                          ? () {
-                              cartController.sendOrder();
-                              Navigator.of(context).pop();
-                            }
+                          ? cartController.sendOrder
                           : null,
+                      title: 'Enviar pedido',
                     );
                   },
                 ),
@@ -174,5 +145,23 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
         );
       },
     );
+  }
+
+  @override
+  void goToHome() {
+    context.push('/menu');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller = context.read();
+    controller.setActions(this);
+  }
+
+  @override
+  void dispose() {
+    controller.setActions(null);
+    super.dispose();
   }
 }

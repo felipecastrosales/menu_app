@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:menu/features/product/models/product.dart';
 import 'package:menu/features/product/repositories/product_repository.dart';
 
 class ProductPageController extends ChangeNotifier {
-  ProductPageController({
-    required this.id,
-  });
+  ProductPageController({required this.id});
 
   final int id;
 

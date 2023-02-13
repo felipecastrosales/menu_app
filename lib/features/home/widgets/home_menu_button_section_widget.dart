@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-
-import 'package:provider/provider.dart';
-
 import 'package:menu/features/home/models/home_menu_button_section.dart';
 import 'package:menu/features/home/pages/home/home_page_controller.dart';
+import 'package:provider/provider.dart';
 
 class HomeMenuButtonSectionWidget extends StatelessWidget {
   const HomeMenuButtonSectionWidget({
-    super.key,
+    Key? key,
     required this.section,
-  });
+  }) : super(key: key);
 
   final HomeMenuButtonSection section;
 

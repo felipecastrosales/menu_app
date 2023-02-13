@@ -23,6 +23,8 @@ class StrapiProductRepository implements ProductRepository {
 
 abstract class ProductRepository {
   Future<List<Product>> getProductsByCategory(Category category);
+
   Future<List<Product>> getProducts();
+
   Future<Product> getProduct(int id);
 }

@@ -20,8 +20,7 @@ abstract class HomeSection {
           return null;
       }
     } catch (e, s) {
-      debugPrint('Error parsing HomeSection: $e');
-      debugPrint('StackTrace: $s');
+      debugPrint('$e $s');
       return null;
     }
   }

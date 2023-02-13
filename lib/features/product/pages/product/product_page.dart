@@ -1,21 +1,18 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:menu/core/widgets/core_back_button.dart';
 import 'package:menu/core/widgets/core_elevated_button.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/product/pages/product/product_page_controller.dart';
 import 'package:menu/features/product/pages/product/widgets/modifier_widget.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 
 class ProductPage extends StatefulWidget {
-  const ProductPage({
-    super.key,
-    required this.id,
-  });
+  const ProductPage({Key? key, required this.id}) : super(key: key);
 
   final int id;
 
@@ -164,24 +161,11 @@ class _ProductPageState extends State<ProductPage> {
                               final cartController =
                                   context.read<CartController>();
                               cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
-                              cartController.addProduct(product);
                               context.push('/menu');
                             }
                           : null,
                     ),
-                  ),
+                  )
                 ],
               );
             }
@@ -223,7 +207,7 @@ class MyClipper extends CustomClipper<Path> {
       ..quadraticBezierTo(size.width, 0, size.width - dx, dy)
       ..lineTo(size.width - dX + dx, size.height - dy)
       ..quadraticBezierTo(size.width - dX, size.height,
-          size.width - dX - borderRadius, size.height)
+          size.width - dX - borderRadius, size.height,)
       ..close();
 
     return path;

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import 'package:menu/core/extensions/num_extension.dart';
 import 'package:menu/features/product/models/product.dart';
 
@@ -6,8 +7,8 @@ class Order extends Equatable {
   const Order({
     required this.table,
     required this.products,
-    required this.userName,
     required this.userPhone,
+    required this.userName,
   });
 
   final String table;
@@ -19,25 +20,25 @@ class Order extends Equatable {
     return {
       'table': table,
       'totalPrice': products
-          .fold(0.0, (sum, product) => sum + product.total)
+          .fold(0.0, (previousValue, element) => previousValue + element.total)
           .truncateFixed(2),
       'clientName': userName,
       'clientPhone': userPhone,
       'products': [
-        for (final product in products)
+        for (final p in products)
           {
-            'id': product.id,
-            'basePrice': product.basePrice,
-            'totalPrice': product.total.truncateFixed(2),
+            'product': p.id,
+            'basePrice': p.basePrice,
+            'totalPrice': p.total.truncateFixed(2),
             'modifiers': [
-              for (final modifier in product.modifiers
-                  .where((modifier) => modifier.selectedOptions.isNotEmpty))
-                for (final option in modifier.selectedOptions)
+              for (final m
+                  in p.modifiers.where((m) => m.selectedOptions.isNotEmpty))
+                for (final option in m.selectedOptions)
                   {
-                    'title': '${modifier.info.title} - ${option.title}',
-                    'price': option.total..truncateFixed(2),
+                    'title': '${m.info.title} - ${option.title}',
+                    'price': option.total.truncateFixed(2),
                   }
-            ],
+            ]
           }
       ],
     };

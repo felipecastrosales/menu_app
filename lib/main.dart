@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:menu/core/routes/app_routes.dart';
-import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:provider/provider.dart';
 
+import 'package:menu/core/routes/app_routes.dart';
+import 'package:menu/features/cart/controllers/cart_controller.dart';
+
 void main() {
-  runApp(
-    const MenuApp(),
-  );
+  runApp(const MenuApp());
 }
 
 class MenuApp extends StatelessWidget {
@@ -18,43 +18,55 @@ class MenuApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => CartController(),
       child: MaterialApp.router(
-        title: 'Menu App',
+        title: 'Startto\'s Menu',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
           scaffoldBackgroundColor: const Color(0xff1f2027),
           primaryColor: const Color(0xff7a3dff),
           textTheme: GoogleFonts.latoTextTheme(),
-          drawerTheme: DrawerThemeData(
-            backgroundColor: const Color(0xff1f2027).withOpacity(0.9),
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Color(0xff7a3dff),
           ),
+          drawerTheme: DrawerThemeData(
+              backgroundColor: const Color(0xff1f2027).withOpacity(0.9),),
         ),
         routerConfig: router,
-      ),
-      builder: (context, child) {
-        return ColoredBox(
-          color: const Color(0xff1f2027),
-          child: Align(
-            child: Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color(0xff7a3dff).withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
+        builder: (context, child) {
+          return ScrollConfiguration(
+            behavior: NoGlowBehavior(),
+            child: ColoredBox(
+              color: const Color(0xff1f2027),
+              child: Align(
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 700),
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xff7a3dff).withOpacity(0.4),
+                      offset: const Offset(4, 4),
+                      blurRadius: 10,
+                    ),
+                    BoxShadow(
+                      color: const Color(0xff7a3dff).withOpacity(0.4),
+                      offset: const Offset(-4, 4),
+                      blurRadius: 10,
+                    )
+                  ],),
+                  child: child!,
+                ),
               ),
-              constraints: const BoxConstraints(
-                maxWidth: 700,
-              ),
-              child: child,
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
+  }
+}
+
+class NoGlowBehavior extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details,) {
+    return child;
   }
 }

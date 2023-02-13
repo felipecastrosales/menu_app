@@ -3,10 +3,7 @@ import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:provider/provider.dart';
 
 class CorePageTitle extends StatelessWidget {
-  const CorePageTitle({
-    super.key,
-    required this.title,
-  });
+  const CorePageTitle({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -27,10 +24,8 @@ class CorePageTitle extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Consumer<CartController>(
-            builder: (context, cartController, child) {
-              if (cartController.table == null) {
-                return const SizedBox.shrink();
-              }
+            builder: (_, cartController, __) {
+              if (cartController.table == null) return Container();
               return Text(
                 'Mesa ${cartController.table}',
                 style: const TextStyle(color: Color(0xff5f6066)),

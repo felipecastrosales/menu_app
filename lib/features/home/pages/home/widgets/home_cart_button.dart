@@ -4,13 +4,13 @@ import 'package:provider/provider.dart';
 
 class HomeCartButton extends StatefulWidget {
   const HomeCartButton({
-    super.key,
+    Key? key,
     required this.scaffoldKey,
-    required this.isDrawerOpen,
-  });
+    required this.drawerOpen,
+  }) : super(key: key);
 
   final GlobalKey<ScaffoldState> scaffoldKey;
-  final bool isDrawerOpen;
+  final bool drawerOpen;
 
   @override
   State<HomeCartButton> createState() => _HomeCartButtonState();
@@ -18,68 +18,57 @@ class HomeCartButton extends StatefulWidget {
 
 class _HomeCartButtonState extends State<HomeCartButton>
     with SingleTickerProviderStateMixin {
-  late AnimationController animationController = AnimationController(
+  late AnimationController controller = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 300),
   );
 
   late Animation<Color?> colorAnimation = ColorTween(
-    begin: Theme.of(context).primaryColor,
-    end: const Color(0xff393c44),
-  ).animate(animationController);
+          begin: Theme.of(context).primaryColor, end: const Color(0xff393c44),)
+      .animate(controller);
 
-  late Animation<double> rotationAnimation = Tween<double>(
-    begin: 1,
-    end: .75,
-  ).animate(animationController);
+  late Animation<double> rotationAnimation =
+      Tween<double>(begin: 1, end: 0.75).animate(controller);
 
   late Animation<double> scaleAnimation = TweenSequence<double>([
-    TweenSequenceItem(
-      tween: Tween<double>(begin: 1, end: 0),
-      weight: 1,
-    ),
-    TweenSequenceItem(
-      tween: Tween<double>(begin: 0, end: 1),
-      weight: 1,
-    ),
-  ]).animate(animationController);
+    TweenSequenceItem(tween: Tween(begin: 1, end: 0), weight: 1),
+    TweenSequenceItem(tween: Tween(begin: 0, end: 1), weight: 1),
+  ]).animate(controller);
 
   @override
   void didUpdateWidget(HomeCartButton oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.isDrawerOpen != widget.isDrawerOpen) {
-      animationController.animateTo(widget.isDrawerOpen ? 1 : 0);
+
+    if (oldWidget.drawerOpen != widget.drawerOpen) {
+      controller.animateTo(widget.drawerOpen ? 1 : 0);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    const double distanceBetweenPurpleComponentAndFinalScreen = 24;
-
     return SizedBox(
-      width: 54 + distanceBetweenPurpleComponentAndFinalScreen,
+      width: 54 + 24,
       height: 54,
       child: Stack(
         children: [
           Positioned(
             left: 0,
-            top: 0,
             bottom: 0,
+            top: 0,
             right: 24,
             child: AnimatedBuilder(
-              animation: animationController,
+              animation: controller,
               builder: (_, child) {
                 return Material(
-                  clipBehavior: Clip.antiAlias,
-                  color: colorAnimation.value,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(27),
                   ),
+                  clipBehavior: Clip.antiAlias,
+                  color: colorAnimation.value,
                   child: InkWell(
-                    borderRadius: BorderRadius.circular(27),
                     onTap: () {
                       final scaffold = widget.scaffoldKey.currentState!;
-                      if (scaffold.isDrawerOpen) {
+                      if (scaffold.isEndDrawerOpen) {
                         scaffold.closeEndDrawer();
                       } else {
                         scaffold.openEndDrawer();
@@ -90,9 +79,9 @@ class _HomeCartButtonState extends State<HomeCartButton>
                       child: ScaleTransition(
                         scale: scaleAnimation,
                         child: Icon(
-                          animationController.value < 0.5
+                          controller.value < 0.5
                               ? Icons.shopping_cart_outlined
-                              : Icons.close_rounded,
+                              : Icons.close,
                           color: Colors.white,
                         ),
                       ),
@@ -106,33 +95,31 @@ class _HomeCartButtonState extends State<HomeCartButton>
             bottom: 0,
             right: 16,
             child: Material(
-              color: Colors.transparent,
+              type: MaterialType.transparency,
               child: AnimatedContainer(
-                alignment: Alignment.center,
-                width: widget.isDrawerOpen ? 0 : 28,
-                height: widget.isDrawerOpen ? 0 : 28,
-                duration: const Duration(milliseconds: 300),
-                margin: EdgeInsets.only(right: widget.isDrawerOpen ? 14 : 0),
+                duration: const Duration(milliseconds: 200),
+                width: widget.drawerOpen ? 0 : 28,
+                height: widget.drawerOpen ? 0 : 28,
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.8),
                   shape: BoxShape.circle,
                 ),
-                child: Consumer<CartController>(
-                  builder: (context, cartController, child) {
-                    return Text(
-                      '${cartController.productCount}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    );
-                  },
-                ),
+                margin: EdgeInsets.only(right: widget.drawerOpen ? 14 : 0),
+                alignment: Alignment.center,
+                child:
+                    Consumer<CartController>(builder: (_, cartController, __) {
+                  return Text(
+                    cartController.productCount.toString(),
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  );
+                },),
               ),
             ),
-          ),
+          )
         ],
       ),
     );
