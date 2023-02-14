@@ -1,15 +1,19 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+
 import 'package:menu/features/cart/models/order.dart';
 import 'package:menu/features/cart/pages/cart/cart_page_actions.dart';
 import 'package:menu/features/cart/repositories/cart_repository.dart';
+import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class CartController extends ChangeNotifier {
   final List<Product> _products = [];
 
-  final CartRepository _cartRepository = CartRepository();
+  final CartRepository _cartRepository = CartRepository(
+    StrapiDatasourceImpl(),
+  );
 
   CartPageActions? actions;
 

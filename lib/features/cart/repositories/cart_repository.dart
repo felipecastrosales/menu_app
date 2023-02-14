@@ -2,9 +2,10 @@ import 'package:menu/features/cart/models/order.dart';
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
 
 class CartRepository {
-  final StrapiDatasource datasource = StrapiDatasourceImpl();
+  CartRepository(this._datasource);
+  final StrapiDatasource _datasource;
 
-  Future<void> createOrder(Order order) {
-    return datasource.createOrder(order);
+  Future<int> createOrder(Order order) async {
+    return await _datasource.createOrder(order);
   }
 }

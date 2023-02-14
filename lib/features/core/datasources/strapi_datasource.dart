@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+
 import 'package:menu/features/cart/models/order.dart';
 import 'package:menu/features/home/models/home_section.dart';
 import 'package:menu/features/product/models/product.dart';
@@ -72,13 +73,15 @@ class StrapiDatasourceImpl implements StrapiDatasource {
   }
 
   @override
-  Future<void> createOrder(Order order) async {
-    await _dio.post(
+  Future<int> createOrder(Order order) async {
+    final response = await _dio.post(
       '/orders',
       data: {
         'data': order.toJson(),
       },
     );
+
+    return response.data['data']['id'];
   }
 }
 
@@ -87,5 +90,5 @@ abstract class StrapiDatasource {
   Future<Product> getProduct(int id);
   Future<List<HomeSection>> getHomeSections();
   Future<List<HomeSection>> getMenuSections();
-  Future<void> createOrder(Order order);
+  Future<int> createOrder(Order order);
 }
