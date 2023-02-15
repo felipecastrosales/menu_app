@@ -1,9 +1,11 @@
+import 'package:either_dart/either.dart';
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/product/models/category.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class StrapiProductRepository implements ProductRepository {
-  final StrapiDatasource _datasource = StrapiDatasourceImpl();
+  StrapiProductRepository(this._datasource);
+  final StrapiDatasource _datasource;
 
   @override
   Future<List<Product>> getProducts() async {
@@ -16,8 +18,8 @@ class StrapiProductRepository implements ProductRepository {
   }
 
   @override
-  Future<Product> getProduct(int id) async {
-    return _datasource.getProduct(id);
+  Future<Either<GetProductError, Product>> getProduct(int id) async {
+    return await _datasource.getProduct(id);
   }
 }
 
@@ -26,5 +28,5 @@ abstract class ProductRepository {
 
   Future<List<Product>> getProducts();
 
-  Future<Product> getProduct(int id);
+  Future<Either<GetProductError, Product>> getProduct(int id);
 }

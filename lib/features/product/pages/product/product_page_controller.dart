@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:menu/core/injections/injections.dart';
+import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/product/models/product.dart';
 import 'package:menu/features/product/repositories/product_repository.dart';
 
@@ -7,18 +9,28 @@ class ProductPageController extends ChangeNotifier {
 
   final int id;
 
-  final ProductRepository productRepository = StrapiProductRepository();
+  final ProductRepository productRepository = getIt();
 
   Product? product;
 
   Future<void> getProduct() async {
-    product = await productRepository.getProduct(id);
-    if (product != null) {
-      for (final modifier in product!.modifiers) {
-        modifier.addListener(notifyListeners);
+    final result = await productRepository.getProduct(id);
+
+    if (result.isRight) {
+      if (product != null) {
+        for (final modifier in product!.modifiers) {
+          modifier.addListener(notifyListeners);
+        }
+      }
+      notifyListeners();
+    } else {
+      switch (result.left) {
+        case GetProductError.notFound:
+          break;
+        case GetProductError.unknown:
+          break;
       }
     }
-    notifyListeners();
   }
 
   num? get total => product?.total;

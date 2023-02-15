@@ -6,6 +6,7 @@ class CartRepository {
   final StrapiDatasource _datasource;
 
   Future<int> createOrder(Order order) async {
-    return await _datasource.createOrder(order);
+    final orderId = await _datasource.createOrder(order);
+    return orderId;
   }
 }

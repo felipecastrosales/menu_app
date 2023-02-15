@@ -1,19 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:either_dart/either.dart';
 
 import 'package:menu/features/cart/models/order.dart';
 import 'package:menu/features/home/models/home_section.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class StrapiDatasourceImpl implements StrapiDatasource {
-  final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: 'http://localhost:1337/api',
-      headers: {
-        'Authorization':
-            'Bearer e3e138cf15a45aef7c6e287c6f41b0763f7dbe6e5bcd37481f6e10d767a70be2bbdc5eb9866cfd26e7f0ae8d6ce74437f39cd8e263e37dd321a1e34aed4e071af9f6f20ed8d5ab2b5bd8105bd1ae42f6c8c4c8eae937399418cdfcf845598ee7f634e16c062ba677e715801e7699354911f2b63ca8fe7b2108432bce979bb674'
-      },
-    ),
-  );
+  StrapiDatasourceImpl(this._dio);
+  final Dio _dio;
 
   @override
   Future<List<Product>> getProducts({int? categoryId}) async {
@@ -33,11 +27,27 @@ class StrapiDatasourceImpl implements StrapiDatasource {
   }
 
   @override
-  Future<Product> getProduct(int id) async {
-    await Future.delayed(const Duration(seconds: 1));
-    final response =
-        await _dio.get('/products/$id', queryParameters: {'populate': 'deep'});
-    return Product.fromJson(response.data['data'])!;
+  Future<Either<GetProductError, Product>> getProduct(int id) async {
+    try {
+      await Future.delayed(const Duration(seconds: 1));
+      final response = await _dio.get(
+        '/products/$id',
+        queryParameters: {
+          'populate': 'deep',
+        },
+      );
+      return Right(Product.fromJson(response.data['data'])!);
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 404) {
+        return const Left(
+          GetProductError.notFound,
+        );
+      } else {
+        return const Left(GetProductError.unknown);
+      }
+    } catch (e) {
+      return const Left(GetProductError.unknown);
+    }
   }
 
   @override
@@ -87,8 +97,13 @@ class StrapiDatasourceImpl implements StrapiDatasource {
 
 abstract class StrapiDatasource {
   Future<List<Product>> getProducts({int? categoryId});
-  Future<Product> getProduct(int id);
+  Future<Either<GetProductError, Product>> getProduct(int id);
   Future<List<HomeSection>> getHomeSections();
   Future<List<HomeSection>> getMenuSections();
   Future<int> createOrder(Order order);
+}
+
+enum GetProductError {
+  notFound,
+  unknown,
 }

@@ -6,7 +6,10 @@ import 'package:provider/provider.dart';
 import 'package:menu/core/routes/app_routes.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 
+import 'core/injections/injections.dart';
+
 void main() {
+  configureDependencies();
   runApp(const MenuApp());
 }
 

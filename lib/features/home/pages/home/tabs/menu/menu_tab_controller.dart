@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:menu/core/extensions/string_extension.dart';
+import 'package:menu/core/injections/injections.dart';
 import 'package:menu/features/home/models/home_section.dart';
 import 'package:menu/features/home/repositories/home_repository.dart';
 
 class MenuTabController extends ChangeNotifier {
-  final HomeRepository _homeRepository = HomeRepository();
+  final HomeRepository _homeRepository = getIt();
 
   List<HomeSection>? _sections;
 

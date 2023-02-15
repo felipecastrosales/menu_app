@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menu/core/injections/injections.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/product_with_discount.dart';
 import 'package:menu/features/product/pages/product/widgets/product_list_item.dart';
@@ -12,8 +13,8 @@ class ModifierWithCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final future =
-        StrapiProductRepository().getProductsByCategory(modifier.category);
+    final future = getIt<StrapiProductRepository>()
+        .getProductsByCategory(modifier.category);
 
     return ChangeNotifierProvider.value(
       value: modifier,
