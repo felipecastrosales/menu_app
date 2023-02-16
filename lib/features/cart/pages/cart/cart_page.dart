@@ -164,4 +164,13 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
     controller.setActions(null);
     super.dispose();
   }
+
+  @override
+  void showErrorMessage() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Erro ao enviar pedido'),
+      ),
+    );
+  }
 }

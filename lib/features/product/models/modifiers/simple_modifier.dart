@@ -1,9 +1,17 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/modifier_info.dart';
 import 'package:menu/features/product/models/modifier_item.dart';
 
 class SimpleModifier extends Modifier {
   SimpleModifier({required super.info, required this.options});
+
+  @visibleForTesting
+  SimpleModifier.forTest({
+    required super.info,
+    this.options = const [],
+  });
 
   SimpleModifier.fromJson(Map<String, dynamic> json)
       : options = json['options']
@@ -16,8 +24,8 @@ class SimpleModifier extends Modifier {
   final List<SimpleModifierOption> options;
 }
 
-class SimpleModifierOption implements ModifierItem {
-  SimpleModifierOption({required this.title, required this.price});
+class SimpleModifierOption extends Equatable implements ModifierItem {
+  const SimpleModifierOption({required this.title, this.price});
 
   SimpleModifierOption.fromJson(Map<String, dynamic> json)
       : title = json['title'],
@@ -30,4 +38,7 @@ class SimpleModifierOption implements ModifierItem {
 
   @override
   num get total => price ?? 0;
+
+  @override
+  List<Object?> get props => [title, price];
 }

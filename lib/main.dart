@@ -19,7 +19,7 @@ class MenuApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => CartController(),
+      create: (_) => CartController(cartRepository: getIt()),
       child: MaterialApp.router(
         title: 'Startto\'s Menu',
         debugShowCheckedModeBanner: false,

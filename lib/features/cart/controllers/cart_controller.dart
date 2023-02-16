@@ -9,8 +9,11 @@ import 'package:menu/features/cart/repositories/cart_repository.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class CartController extends ChangeNotifier {
+  CartController({CartRepository? cartRepository, this.actions})
+      : _cartRepository = cartRepository ?? getIt();
+
   final List<Product> _products = [];
-  final CartRepository _cartRepository = getIt();
+  final CartRepository _cartRepository;
 
   CartPageActions? actions;
 
@@ -44,16 +47,19 @@ class CartController extends ChangeNotifier {
         (previousValue, product) => previousValue + product.total,
       );
 
-  String userName = '';
-  String userPhone = '';
+  String _userName = '';
+  String _userPhone = '';
+
+  String get userName => _userName;
+  String get userPhone => _userPhone;
 
   void setUserName(String t) {
-    userName = t;
+    _userName = t;
     notifyListeners();
   }
 
   void setUserPhone(String t) {
-    userPhone = t;
+    _userPhone = t;
     notifyListeners();
   }
 
@@ -66,17 +72,20 @@ class CartController extends ChangeNotifier {
     loading = true;
     notifyListeners();
 
-    await _cartRepository.createOrder(
-      Order(
-        table: table!,
-        products: _products,
-        userName: userName,
-        userPhone: userPhone,
-      ),
-    );
-
-    _products.clear();
-    actions?.goToHome();
+    try {
+      await _cartRepository.createOrder(
+        Order(
+          table: table!,
+          products: _products,
+          userName: userName,
+          userPhone: userPhone,
+        ),
+      );
+      _products.clear();
+      actions?.goToHome();
+    } catch (e) {
+      actions?.showErrorMessage();
+    }
     loading = false;
     notifyListeners();
   }
