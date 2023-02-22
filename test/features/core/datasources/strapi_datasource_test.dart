@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
@@ -28,11 +31,9 @@ void main() {
         (_) async => Response(
           requestOptions: RequestOptions(path: ''),
           statusCode: 200,
-          // TODO: impl
-          // data: jsonDecode(
-          //   File('test/fixtures/get_product_response.json').readAsStringSync(),
-          // ),
-          data: any(named: 'data'),
+          data: jsonDecode(
+            File('test/fixtures/get_product_response.json').readAsStringSync(),
+          ),
         ),
       );
 

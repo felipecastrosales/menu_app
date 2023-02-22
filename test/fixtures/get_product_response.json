@@ -1,0 +1,969 @@
+{
+    "data": {
+        "id": 5,
+        "attributes": {
+        "title": "Burrito",
+        "createdAt": "2023-01-10T00:59:11.630Z",
+        "updatedAt": "2023-01-31T00:46:21.286Z",
+        "publishedAt": "2023-01-10T00:59:14.153Z",
+        "locale": "pt-BR",
+        "description": "Muito delicioso sgdsgs gdsdg sdgdsg sgs dg dsogh osg hdsgoshig odih osigh sdgoi hgopsighdo ghsogihs goi hsgod ighsdog ihsdoghisdogih dsogdih sdogi hsoi ghsdogi hsdog ihsdogi hdsgo shgo ghsog hsdo hdsog hsoig hdsgd",
+        "originalBasePrice": null,
+        "basePrice": 17.99,
+        "image": {
+            "data": {
+            "id": 1,
+            "attributes": {
+                "name": "burrito.jpg",
+                "alternativeText": null,
+                "caption": null,
+                "width": 1280,
+                "height": 720,
+                "formats": {
+                "thumbnail": {
+                    "name": "thumbnail_burrito.jpg",
+                    "hash": "thumbnail_burrito_32453370f5",
+                    "ext": ".jpg",
+                    "mime": "image/jpeg",
+                    "path": null,
+                    "width": 245,
+                    "height": 138,
+                    "size": 7.81,
+                    "url": "/uploads/thumbnail_burrito_32453370f5.jpg"
+                },
+                "medium": {
+                    "name": "medium_burrito.jpg",
+                    "hash": "medium_burrito_32453370f5",
+                    "ext": ".jpg",
+                    "mime": "image/jpeg",
+                    "path": null,
+                    "width": 750,
+                    "height": 422,
+                    "size": 43.24,
+                    "url": "/uploads/medium_burrito_32453370f5.jpg"
+                },
+                "large": {
+                    "name": "large_burrito.jpg",
+                    "hash": "large_burrito_32453370f5",
+                    "ext": ".jpg",
+                    "mime": "image/jpeg",
+                    "path": null,
+                    "width": 1000,
+                    "height": 563,
+                    "size": 68.18,
+                    "url": "/uploads/large_burrito_32453370f5.jpg"
+                },
+                "small": {
+                    "name": "small_burrito.jpg",
+                    "hash": "small_burrito_32453370f5",
+                    "ext": ".jpg",
+                    "mime": "image/jpeg",
+                    "path": null,
+                    "width": 500,
+                    "height": 281,
+                    "size": 22.95,
+                    "url": "/uploads/small_burrito_32453370f5.jpg"
+                }
+                },
+                "hash": "burrito_32453370f5",
+                "ext": ".jpg",
+                "mime": "image/jpeg",
+                "size": 100.17,
+                "url": "/uploads/burrito_32453370f5.jpg",
+                "previewUrl": null,
+                "provider": "local",
+                "provider_metadata": null,
+                "createdAt": "2023-01-10T00:59:03.669Z",
+                "updatedAt": "2023-01-10T00:59:03.669Z"
+            }
+            }
+        },
+        "category": {
+            "data": {
+            "id": 4,
+            "attributes": {
+                "title": "Principais",
+                "createdAt": "2023-01-10T23:26:30.726Z",
+                "updatedAt": "2023-01-10T23:37:14.906Z",
+                "publishedAt": "2023-01-10T23:26:31.546Z",
+                "locale": "pt-BR",
+                "products": {
+                "data": [
+                    {
+                    "id": 5,
+                    "attributes": {
+                        "title": "Burrito",
+                        "createdAt": "2023-01-10T00:59:11.630Z",
+                        "updatedAt": "2023-01-31T00:46:21.286Z",
+                        "publishedAt": "2023-01-10T00:59:14.153Z",
+                        "locale": "pt-BR",
+                        "description": "Muito delicioso sgdsgs gdsdg sdgdsg sgs dg dsogh osg hdsgoshig odih osigh sdgoi hgopsighdo ghsogihs goi hsgod ighsdog ihsdoghisdogih dsogdih sdogi hsoi ghsdogi hsdog ihsdogi hdsgo shgo ghsog hsdo hdsog hsoig hdsgd",
+                        "originalBasePrice": null,
+                        "basePrice": 17.99,
+                        "image": {
+                        "data": {
+                            "id": 1,
+                            "attributes": {
+                            "name": "burrito.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 1280,
+                            "height": 720,
+                            "formats": {
+                                "thumbnail": {
+                                "name": "thumbnail_burrito.jpg",
+                                "hash": "thumbnail_burrito_32453370f5",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 245,
+                                "height": 138,
+                                "size": 7.81,
+                                "url": "/uploads/thumbnail_burrito_32453370f5.jpg"
+                                },
+                                "medium": {
+                                "name": "medium_burrito.jpg",
+                                "hash": "medium_burrito_32453370f5",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 750,
+                                "height": 422,
+                                "size": 43.24,
+                                "url": "/uploads/medium_burrito_32453370f5.jpg"
+                                },
+                                "large": {
+                                "name": "large_burrito.jpg",
+                                "hash": "large_burrito_32453370f5",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 1000,
+                                "height": 563,
+                                "size": 68.18,
+                                "url": "/uploads/large_burrito_32453370f5.jpg"
+                                },
+                                "small": {
+                                "name": "small_burrito.jpg",
+                                "hash": "small_burrito_32453370f5",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 500,
+                                "height": 281,
+                                "size": 22.95,
+                                "url": "/uploads/small_burrito_32453370f5.jpg"
+                                }
+                            },
+                            "hash": "burrito_32453370f5",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 100.17,
+                            "url": "/uploads/burrito_32453370f5.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2023-01-10T00:59:03.669Z",
+                            "updatedAt": "2023-01-10T00:59:03.669Z"
+                            }
+                        }
+                        },
+                        "category": {
+                        "data": {
+                            "id": 4,
+                            "attributes": {
+                            "title": "Principais",
+                            "createdAt": "2023-01-10T23:26:30.726Z",
+                            "updatedAt": "2023-01-10T23:37:14.906Z",
+                            "publishedAt": "2023-01-10T23:26:31.546Z",
+                            "locale": "pt-BR",
+                            "products": {
+                                "data": [
+                                {
+                                    "id": 5,
+                                    "attributes": {
+                                    "title": "Burrito",
+                                    "createdAt": "2023-01-10T00:59:11.630Z",
+                                    "updatedAt": "2023-01-31T00:46:21.286Z",
+                                    "publishedAt": "2023-01-10T00:59:14.153Z",
+                                    "locale": "pt-BR",
+                                    "description": "Muito delicioso sgdsgs gdsdg sdgdsg sgs dg dsogh osg hdsgoshig odih osigh sdgoi hgopsighdo ghsogihs goi hsgod ighsdog ihsdoghisdogih dsogdih sdogi hsoi ghsdogi hsdog ihsdogi hdsgo shgo ghsog hsdo hdsog hsoig hdsgd",
+                                    "originalBasePrice": null,
+                                    "basePrice": 17.99
+                                    }
+                                },
+                                {
+                                    "id": 12,
+                                    "attributes": {
+                                    "title": "Taco",
+                                    "createdAt": "2023-01-12T00:54:44.000Z",
+                                    "updatedAt": "2023-01-24T00:00:39.119Z",
+                                    "publishedAt": "2023-01-24T00:00:03.293Z",
+                                    "locale": "pt-BR",
+                                    "description": "Muito saborososo",
+                                    "originalBasePrice": 23.99,
+                                    "basePrice": 21.99
+                                    }
+                                }
+                                ]
+                            },
+                            "localizations": {
+                                "data": []
+                            }
+                            }
+                        }
+                        },
+                        "options": [
+                        {
+                            "id": 11,
+                            "__component": "product.modifier",
+                            "options": [
+                            {
+                                "id": 22,
+                                "title": "Pequeno",
+                                "price": null
+                            },
+                            {
+                                "id": 23,
+                                "title": "Médio",
+                                "price": 3.99
+                            },
+                            {
+                                "id": 24,
+                                "title": "Grande",
+                                "price": 5.99
+                            }
+                            ],
+                            "info": {
+                            "id": 1,
+                            "title": "Tamanho",
+                            "minQuantity": 1,
+                            "maxQuantity": 1,
+                            "allowRepeated": false
+                            }
+                        },
+                        {
+                            "id": 1,
+                            "__component": "product.modificador-com-produto",
+                            "info": {
+                            "id": 2,
+                            "title": "Bebida",
+                            "minQuantity": 1,
+                            "maxQuantity": 2,
+                            "allowRepeated": true
+                            },
+                            "products": [
+                            {
+                                "id": 1,
+                                "discountPercentage": 100
+                            },
+                            {
+                                "id": 3,
+                                "discountPercentage": 10
+                            },
+                            {
+                                "id": 2,
+                                "discountPercentage": 5
+                            }
+                            ]
+                        },
+                        {
+                            "id": 1,
+                            "__component": "product.modificador-com-categoria",
+                            "info": {
+                            "id": 3,
+                            "title": "Sobremesa",
+                            "minQuantity": 1,
+                            "maxQuantity": 1,
+                            "allowRepeated": true
+                            },
+                            "category": {
+                            "data": {
+                                "id": 3,
+                                "attributes": {
+                                "title": "Sobremesas",
+                                "createdAt": "2023-01-10T23:26:21.768Z",
+                                "updatedAt": "2023-01-10T23:26:23.057Z",
+                                "publishedAt": "2023-01-10T23:26:23.053Z",
+                                "locale": "pt-BR"
+                                }
+                            }
+                            }
+                        }
+                        ],
+                        "localizations": {
+                        "data": []
+                        }
+                    }
+                    },
+                    {
+                    "id": 12,
+                    "attributes": {
+                        "title": "Taco",
+                        "createdAt": "2023-01-12T00:54:44.000Z",
+                        "updatedAt": "2023-01-24T00:00:39.119Z",
+                        "publishedAt": "2023-01-24T00:00:03.293Z",
+                        "locale": "pt-BR",
+                        "description": "Muito saborososo",
+                        "originalBasePrice": 23.99,
+                        "basePrice": 21.99,
+                        "image": {
+                        "data": {
+                            "id": 6,
+                            "attributes": {
+                            "name": "pexels-rené-roa-12261167.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 1280,
+                            "height": 853,
+                            "formats": {
+                                "thumbnail": {
+                                "name": "thumbnail_pexels-rené-roa-12261167.jpg",
+                                "hash": "thumbnail_pexels_rene_roa_12261167_bbe71bf055",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 234,
+                                "height": 156,
+                                "size": 8.5,
+                                "url": "/uploads/thumbnail_pexels_rene_roa_12261167_bbe71bf055.jpg"
+                                },
+                                "medium": {
+                                "name": "medium_pexels-rené-roa-12261167.jpg",
+                                "hash": "medium_pexels_rene_roa_12261167_bbe71bf055",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 750,
+                                "height": 500,
+                                "size": 48.88,
+                                "url": "/uploads/medium_pexels_rene_roa_12261167_bbe71bf055.jpg"
+                                },
+                                "small": {
+                                "name": "small_pexels-rené-roa-12261167.jpg",
+                                "hash": "small_pexels_rene_roa_12261167_bbe71bf055",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 500,
+                                "height": 333,
+                                "size": 26.5,
+                                "url": "/uploads/small_pexels_rene_roa_12261167_bbe71bf055.jpg"
+                                },
+                                "large": {
+                                "name": "large_pexels-rené-roa-12261167.jpg",
+                                "hash": "large_pexels_rene_roa_12261167_bbe71bf055",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 1000,
+                                "height": 666,
+                                "size": 76.44,
+                                "url": "/uploads/large_pexels_rene_roa_12261167_bbe71bf055.jpg"
+                                }
+                            },
+                            "hash": "pexels_rene_roa_12261167_bbe71bf055",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 115.69,
+                            "url": "/uploads/pexels_rene_roa_12261167_bbe71bf055.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2023-01-24T00:00:24.017Z",
+                            "updatedAt": "2023-01-24T00:00:24.017Z"
+                            }
+                        }
+                        },
+                        "category": {
+                        "data": {
+                            "id": 4,
+                            "attributes": {
+                            "title": "Principais",
+                            "createdAt": "2023-01-10T23:26:30.726Z",
+                            "updatedAt": "2023-01-10T23:37:14.906Z",
+                            "publishedAt": "2023-01-10T23:26:31.546Z",
+                            "locale": "pt-BR",
+                            "products": {
+                                "data": [
+                                {
+                                    "id": 5,
+                                    "attributes": {
+                                    "title": "Burrito",
+                                    "createdAt": "2023-01-10T00:59:11.630Z",
+                                    "updatedAt": "2023-01-31T00:46:21.286Z",
+                                    "publishedAt": "2023-01-10T00:59:14.153Z",
+                                    "locale": "pt-BR",
+                                    "description": "Muito delicioso sgdsgs gdsdg sdgdsg sgs dg dsogh osg hdsgoshig odih osigh sdgoi hgopsighdo ghsogihs goi hsgod ighsdog ihsdoghisdogih dsogdih sdogi hsoi ghsdogi hsdog ihsdogi hdsgo shgo ghsog hsdo hdsog hsoig hdsgd",
+                                    "originalBasePrice": null,
+                                    "basePrice": 17.99
+                                    }
+                                },
+                                {
+                                    "id": 12,
+                                    "attributes": {
+                                    "title": "Taco",
+                                    "createdAt": "2023-01-12T00:54:44.000Z",
+                                    "updatedAt": "2023-01-24T00:00:39.119Z",
+                                    "publishedAt": "2023-01-24T00:00:03.293Z",
+                                    "locale": "pt-BR",
+                                    "description": "Muito saborososo",
+                                    "originalBasePrice": 23.99,
+                                    "basePrice": 21.99
+                                    }
+                                }
+                                ]
+                            },
+                            "localizations": {
+                                "data": []
+                            }
+                            }
+                        }
+                        },
+                        "options": [],
+                        "localizations": {
+                        "data": []
+                        }
+                    }
+                    }
+                ]
+                },
+                "localizations": {
+                "data": []
+                }
+            }
+            }
+        },
+        "options": [
+            {
+            "id": 11,
+            "__component": "product.modifier",
+            "options": [
+                {
+                "id": 22,
+                "title": "Pequeno",
+                "price": null
+                },
+                {
+                "id": 23,
+                "title": "Médio",
+                "price": 3.99
+                },
+                {
+                "id": 24,
+                "title": "Grande",
+                "price": 5.99
+                }
+            ],
+            "info": {
+                "id": 1,
+                "title": "Tamanho",
+                "minQuantity": 1,
+                "maxQuantity": 1,
+                "allowRepeated": false
+            }
+            },
+            {
+            "id": 1,
+            "__component": "product.modificador-com-produto",
+            "info": {
+                "id": 2,
+                "title": "Bebida",
+                "minQuantity": 1,
+                "maxQuantity": 2,
+                "allowRepeated": true
+            },
+            "products": [
+                {
+                "id": 1,
+                "discountPercentage": 100,
+                "product": {
+                    "data": {
+                    "id": 9,
+                    "attributes": {
+                        "title": "Coca-cola",
+                        "createdAt": "2023-01-11T00:20:41.873Z",
+                        "updatedAt": "2023-01-17T00:38:24.658Z",
+                        "publishedAt": "2023-01-17T00:38:24.649Z",
+                        "locale": "pt-BR",
+                        "description": "350ml",
+                        "originalBasePrice": null,
+                        "basePrice": 5.99,
+                        "image": {
+                        "data": {
+                            "id": 4,
+                            "attributes": {
+                            "name": "pexels-pixabay-50593.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 1280,
+                            "height": 982,
+                            "formats": {
+                                "thumbnail": {
+                                "name": "thumbnail_pexels-pixabay-50593.jpg",
+                                "hash": "thumbnail_pexels_pixabay_50593_23be02fb70",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 204,
+                                "height": 156,
+                                "size": 5.9,
+                                "url": "/uploads/thumbnail_pexels_pixabay_50593_23be02fb70.jpg"
+                                },
+                                "medium": {
+                                "name": "medium_pexels-pixabay-50593.jpg",
+                                "hash": "medium_pexels_pixabay_50593_23be02fb70",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 750,
+                                "height": 575,
+                                "size": 45.03,
+                                "url": "/uploads/medium_pexels_pixabay_50593_23be02fb70.jpg"
+                                },
+                                "large": {
+                                "name": "large_pexels-pixabay-50593.jpg",
+                                "hash": "large_pexels_pixabay_50593_23be02fb70",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 1000,
+                                "height": 767,
+                                "size": 71.59,
+                                "url": "/uploads/large_pexels_pixabay_50593_23be02fb70.jpg"
+                                },
+                                "small": {
+                                "name": "small_pexels-pixabay-50593.jpg",
+                                "hash": "small_pexels_pixabay_50593_23be02fb70",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 500,
+                                "height": 384,
+                                "size": 23.69,
+                                "url": "/uploads/small_pexels_pixabay_50593_23be02fb70.jpg"
+                                }
+                            },
+                            "hash": "pexels_pixabay_50593_23be02fb70",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 108.18,
+                            "url": "/uploads/pexels_pixabay_50593_23be02fb70.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2023-01-11T00:20:26.062Z",
+                            "updatedAt": "2023-01-11T00:20:26.062Z"
+                            }
+                        }
+                        },
+                        "category": {
+                        "data": {
+                            "id": 1,
+                            "attributes": {
+                            "title": "Bebidas",
+                            "createdAt": "2023-01-10T23:25:58.206Z",
+                            "updatedAt": "2023-01-10T23:26:07.227Z",
+                            "publishedAt": "2023-01-10T23:26:00.448Z",
+                            "locale": "pt-BR"
+                            }
+                        }
+                        },
+                        "options": [],
+                        "localizations": {
+                        "data": []
+                        }
+                    }
+                    }
+                },
+                "availableWeekdays": {
+                    "data": [
+                    {
+                        "id": 1,
+                        "attributes": {
+                        "title": "Segunda-feira",
+                        "createdAt": "2023-01-11T00:34:08.833Z",
+                        "updatedAt": "2023-01-11T00:34:08.833Z",
+                        "locale": "pt-BR",
+                        "localizations": {
+                            "data": []
+                        }
+                        }
+                    }
+                    ]
+                }
+                },
+                {
+                "id": 3,
+                "discountPercentage": 10,
+                "product": {
+                    "data": {
+                    "id": 9,
+                    "attributes": {
+                        "title": "Coca-cola",
+                        "createdAt": "2023-01-11T00:20:41.873Z",
+                        "updatedAt": "2023-01-17T00:38:24.658Z",
+                        "publishedAt": "2023-01-17T00:38:24.649Z",
+                        "locale": "pt-BR",
+                        "description": "350ml",
+                        "originalBasePrice": null,
+                        "basePrice": 5.99,
+                        "image": {
+                        "data": {
+                            "id": 4,
+                            "attributes": {
+                            "name": "pexels-pixabay-50593.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 1280,
+                            "height": 982,
+                            "formats": {
+                                "thumbnail": {
+                                "name": "thumbnail_pexels-pixabay-50593.jpg",
+                                "hash": "thumbnail_pexels_pixabay_50593_23be02fb70",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 204,
+                                "height": 156,
+                                "size": 5.9,
+                                "url": "/uploads/thumbnail_pexels_pixabay_50593_23be02fb70.jpg"
+                                },
+                                "medium": {
+                                "name": "medium_pexels-pixabay-50593.jpg",
+                                "hash": "medium_pexels_pixabay_50593_23be02fb70",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 750,
+                                "height": 575,
+                                "size": 45.03,
+                                "url": "/uploads/medium_pexels_pixabay_50593_23be02fb70.jpg"
+                                },
+                                "large": {
+                                "name": "large_pexels-pixabay-50593.jpg",
+                                "hash": "large_pexels_pixabay_50593_23be02fb70",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 1000,
+                                "height": 767,
+                                "size": 71.59,
+                                "url": "/uploads/large_pexels_pixabay_50593_23be02fb70.jpg"
+                                },
+                                "small": {
+                                "name": "small_pexels-pixabay-50593.jpg",
+                                "hash": "small_pexels_pixabay_50593_23be02fb70",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 500,
+                                "height": 384,
+                                "size": 23.69,
+                                "url": "/uploads/small_pexels_pixabay_50593_23be02fb70.jpg"
+                                }
+                            },
+                            "hash": "pexels_pixabay_50593_23be02fb70",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 108.18,
+                            "url": "/uploads/pexels_pixabay_50593_23be02fb70.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2023-01-11T00:20:26.062Z",
+                            "updatedAt": "2023-01-11T00:20:26.062Z"
+                            }
+                        }
+                        },
+                        "category": {
+                        "data": {
+                            "id": 1,
+                            "attributes": {
+                            "title": "Bebidas",
+                            "createdAt": "2023-01-10T23:25:58.206Z",
+                            "updatedAt": "2023-01-10T23:26:07.227Z",
+                            "publishedAt": "2023-01-10T23:26:00.448Z",
+                            "locale": "pt-BR"
+                            }
+                        }
+                        },
+                        "options": [],
+                        "localizations": {
+                        "data": []
+                        }
+                    }
+                    }
+                },
+                "availableWeekdays": {
+                    "data": [
+                    {
+                        "id": 2,
+                        "attributes": {
+                        "title": "Terça-feira",
+                        "createdAt": "2023-01-11T00:34:14.595Z",
+                        "updatedAt": "2023-01-11T00:34:14.595Z",
+                        "locale": "pt-BR",
+                        "localizations": {
+                            "data": []
+                        }
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "attributes": {
+                        "title": "Quarta-feira",
+                        "createdAt": "2023-01-11T00:36:22.970Z",
+                        "updatedAt": "2023-01-11T00:36:22.970Z",
+                        "locale": "pt-BR",
+                        "localizations": {
+                            "data": []
+                        }
+                        }
+                    }
+                    ]
+                }
+                },
+                {
+                "id": 2,
+                "discountPercentage": 5,
+                "product": {
+                    "data": {
+                    "id": 8,
+                    "attributes": {
+                        "title": "Pepsi",
+                        "createdAt": "2023-01-11T00:13:59.707Z",
+                        "updatedAt": "2023-01-11T00:20:46.867Z",
+                        "publishedAt": "2023-01-11T00:20:46.862Z",
+                        "locale": "pt-BR",
+                        "description": "350ml",
+                        "originalBasePrice": null,
+                        "basePrice": 5.99,
+                        "image": {
+                        "data": {
+                            "id": 3,
+                            "attributes": {
+                            "name": "pexels-martin-péchy-1292294.jpg",
+                            "alternativeText": null,
+                            "caption": null,
+                            "width": 1280,
+                            "height": 853,
+                            "formats": {
+                                "thumbnail": {
+                                "name": "thumbnail_pexels-martin-péchy-1292294.jpg",
+                                "hash": "thumbnail_pexels_martin_pechy_1292294_26d8e22e3b",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 234,
+                                "height": 156,
+                                "size": 6.69,
+                                "url": "/uploads/thumbnail_pexels_martin_pechy_1292294_26d8e22e3b.jpg"
+                                },
+                                "medium": {
+                                "name": "medium_pexels-martin-péchy-1292294.jpg",
+                                "hash": "medium_pexels_martin_pechy_1292294_26d8e22e3b",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 750,
+                                "height": 500,
+                                "size": 43.01,
+                                "url": "/uploads/medium_pexels_martin_pechy_1292294_26d8e22e3b.jpg"
+                                },
+                                "small": {
+                                "name": "small_pexels-martin-péchy-1292294.jpg",
+                                "hash": "small_pexels_martin_pechy_1292294_26d8e22e3b",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 500,
+                                "height": 333,
+                                "size": 20.57,
+                                "url": "/uploads/small_pexels_martin_pechy_1292294_26d8e22e3b.jpg"
+                                },
+                                "large": {
+                                "name": "large_pexels-martin-péchy-1292294.jpg",
+                                "hash": "large_pexels_martin_pechy_1292294_26d8e22e3b",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "path": null,
+                                "width": 1000,
+                                "height": 666,
+                                "size": 79.18,
+                                "url": "/uploads/large_pexels_martin_pechy_1292294_26d8e22e3b.jpg"
+                                }
+                            },
+                            "hash": "pexels_martin_pechy_1292294_26d8e22e3b",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 138.18,
+                            "url": "/uploads/pexels_martin_pechy_1292294_26d8e22e3b.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2023-01-11T00:13:28.786Z",
+                            "updatedAt": "2023-01-11T00:13:28.786Z"
+                            }
+                        }
+                        },
+                        "category": {
+                        "data": {
+                            "id": 1,
+                            "attributes": {
+                            "title": "Bebidas",
+                            "createdAt": "2023-01-10T23:25:58.206Z",
+                            "updatedAt": "2023-01-10T23:26:07.227Z",
+                            "publishedAt": "2023-01-10T23:26:00.448Z",
+                            "locale": "pt-BR"
+                            }
+                        }
+                        },
+                        "options": [],
+                        "localizations": {
+                        "data": []
+                        }
+                    }
+                    }
+                },
+                "availableWeekdays": {
+                    "data": []
+                }
+                }
+            ]
+            },
+            {
+            "id": 1,
+            "__component": "product.modificador-com-categoria",
+            "info": {
+                "id": 3,
+                "title": "Sobremesa",
+                "minQuantity": 1,
+                "maxQuantity": 1,
+                "allowRepeated": true
+            },
+            "category": {
+                "data": {
+                "id": 3,
+                "attributes": {
+                    "title": "Sobremesas",
+                    "createdAt": "2023-01-10T23:26:21.768Z",
+                    "updatedAt": "2023-01-10T23:26:23.057Z",
+                    "publishedAt": "2023-01-10T23:26:23.053Z",
+                    "locale": "pt-BR",
+                    "products": {
+                    "data": [
+                        {
+                        "id": 6,
+                        "attributes": {
+                            "title": "Paleta Mexicana",
+                            "createdAt": "2023-01-11T00:02:40.175Z",
+                            "updatedAt": "2023-01-11T00:04:40.099Z",
+                            "publishedAt": "2023-01-11T00:04:40.094Z",
+                            "locale": "pt-BR",
+                            "description": "Bem geladas",
+                            "originalBasePrice": 11.99,
+                            "basePrice": 9.99,
+                            "image": {
+                            "data": {
+                                "id": 2,
+                                "attributes": {
+                                "name": "pexels-jill-wellington-461189.jpg",
+                                "alternativeText": null,
+                                "caption": null,
+                                "width": 1280,
+                                "height": 853,
+                                "formats": {
+                                    "thumbnail": {
+                                    "name": "thumbnail_pexels-jill-wellington-461189.jpg",
+                                    "hash": "thumbnail_pexels_jill_wellington_461189_def33f94b6",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 234,
+                                    "height": 156,
+                                    "size": 8.96,
+                                    "url": "/uploads/thumbnail_pexels_jill_wellington_461189_def33f94b6.jpg"
+                                    },
+                                    "large": {
+                                    "name": "large_pexels-jill-wellington-461189.jpg",
+                                    "hash": "large_pexels_jill_wellington_461189_def33f94b6",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 1000,
+                                    "height": 666,
+                                    "size": 71.67,
+                                    "url": "/uploads/large_pexels_jill_wellington_461189_def33f94b6.jpg"
+                                    },
+                                    "medium": {
+                                    "name": "medium_pexels-jill-wellington-461189.jpg",
+                                    "hash": "medium_pexels_jill_wellington_461189_def33f94b6",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 750,
+                                    "height": 500,
+                                    "size": 46.79,
+                                    "url": "/uploads/medium_pexels_jill_wellington_461189_def33f94b6.jpg"
+                                    },
+                                    "small": {
+                                    "name": "small_pexels-jill-wellington-461189.jpg",
+                                    "hash": "small_pexels_jill_wellington_461189_def33f94b6",
+                                    "ext": ".jpg",
+                                    "mime": "image/jpeg",
+                                    "path": null,
+                                    "width": 500,
+                                    "height": 333,
+                                    "size": 26.2,
+                                    "url": "/uploads/small_pexels_jill_wellington_461189_def33f94b6.jpg"
+                                    }
+                                },
+                                "hash": "pexels_jill_wellington_461189_def33f94b6",
+                                "ext": ".jpg",
+                                "mime": "image/jpeg",
+                                "size": 105.48,
+                                "url": "/uploads/pexels_jill_wellington_461189_def33f94b6.jpg",
+                                "previewUrl": null,
+                                "provider": "local",
+                                "provider_metadata": null,
+                                "createdAt": "2023-01-11T00:02:17.669Z",
+                                "updatedAt": "2023-02-01T01:01:56.149Z"
+                                }
+                            }
+                            },
+                            "category": {
+                            "data": {
+                                "id": 3,
+                                "attributes": {
+                                "title": "Sobremesas",
+                                "createdAt": "2023-01-10T23:26:21.768Z",
+                                "updatedAt": "2023-01-10T23:26:23.057Z",
+                                "publishedAt": "2023-01-10T23:26:23.053Z",
+                                "locale": "pt-BR"
+                                }
+                            }
+                            },
+                            "options": [],
+                            "localizations": {
+                            "data": []
+                            }
+                        }
+                        }
+                    ]
+                    },
+                    "localizations": {
+                    "data": []
+                    }
+                }
+                }
+            }
+            }
+        ],
+        "localizations": {
+            "data": []
+        }
+        }
+    },
+    "meta": {}
+    }
