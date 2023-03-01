@@ -38,7 +38,7 @@ class _HomeTabState extends State<HomeTab> {
         ),
         children: [
           const CorePageTitle(
-            title: 'Startto\'s Mexican Food',
+            title: 'Felipo\'s Mexican Food',
           ),
           Consumer<HomeTabController>(
             builder: (_, __, ___) {

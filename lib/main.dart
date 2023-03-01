@@ -21,7 +21,7 @@ class MenuApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => CartController(cartRepository: getIt()),
       child: MaterialApp.router(
-        title: 'Startto\'s Menu',
+        title: 'Felipo\'s Menu',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xff1f2027),

@@ -19,7 +19,7 @@ class _ScanPageState extends State<ScanPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const CorePageTitle(
-                title: 'Bem-vindo(a)! ao Startto\'s Mexican Food',
+                title: 'Bem-vindo(a)! ao Felipo\'s Mexican Food',
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
