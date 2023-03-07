@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:brasil_fields/brasil_fields.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:menu/core/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
 import 'package:menu/core/widgets/core_back_button.dart';
@@ -110,7 +111,7 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                 ),
                 const SizedBox(height: 32),
                 CoreTextField(
-                  initialValue: cartController.userName,
+                  initialValue: cartController.userName.value,
                   title: 'Nome',
                   hint: 'Seu nome',
                   textInputType: TextInputType.name,
@@ -118,7 +119,7 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                 ),
                 const SizedBox(height: 16),
                 CoreTextField(
-                  initialValue: cartController.userPhone,
+                  initialValue: cartController.userPhone.value,
                   title: 'Celular',
                   hint: '(99) 91234-5678',
                   textInputType: TextInputType.phone,
@@ -129,15 +130,13 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                   onChanged: cartController.setUserPhone,
                 ),
                 const SizedBox(height: 32),
-                Consumer<CartController>(
-                  builder: (_, __, ___) {
-                    return CoreElevatedButton(
-                      onPressed: cartController.isFormValid
-                          ? cartController.sendOrder
-                          : null,
-                      title: 'Enviar pedido',
-                    );
-                  },
+                Obx(
+                  () => CoreElevatedButton(
+                    onPressed: cartController.isFormValid
+                        ? cartController.sendOrder
+                        : null,
+                    title: 'Enviar pedido',
+                  ),
                 ),
               ],
             ),
@@ -149,7 +148,7 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
 
   @override
   void goToHome() {
-    context.push('/menu');
+    Get.toNamed(AppRoutes.menu.path);
   }
 
   @override

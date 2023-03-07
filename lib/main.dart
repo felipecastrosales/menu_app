@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +19,11 @@ class MenuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return Provider(
       create: (_) => CartController(cartRepository: getIt()),
-      child: MaterialApp.router(
+      child: GetMaterialApp(
+        initialRoute: AppRoutes.scan.path,
+        getPages: appPages,
         title: 'Felipo\'s Menu',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -34,7 +37,6 @@ class MenuApp extends StatelessWidget {
             backgroundColor: const Color(0xff1f2027).withOpacity(0.9),
           ),
         ),
-        routerConfig: router,
         builder: (context, child) {
           return ScrollConfiguration(
             behavior: NoGlowBehavior(),

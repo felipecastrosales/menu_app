@@ -1,10 +1,13 @@
-import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
-import 'package:menu/features/cart/controllers/cart_controller.dart';
-import 'package:menu/features/cart/widgets/cart_item_summary.dart';
-import 'package:go_router/go_router.dart';
+
+import 'package:auto_animated/auto_animated.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
+import 'package:menu/core/routes/app_routes.dart';
+import 'package:menu/features/cart/controllers/cart_controller.dart';
+import 'package:menu/features/cart/widgets/cart_item_summary.dart';
 
 class HomeCartDrawer extends StatelessWidget {
   const HomeCartDrawer({super.key});
@@ -122,7 +125,7 @@ class HomeCartDrawer extends StatelessWidget {
                           clipBehavior: Clip.antiAlias,
                           child: InkWell(
                             onTap: () {
-                              context.push('/checkout');
+                              Get.toNamed(AppRoutes.checkout.path);
                             },
                             child: const Icon(
                               Icons.arrow_forward_outlined,

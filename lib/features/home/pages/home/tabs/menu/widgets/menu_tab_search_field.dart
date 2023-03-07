@@ -34,7 +34,7 @@ class _MenuTabSearchFieldState extends State<MenuTabSearchField> {
             horizontal: 16,
           ),
           border: InputBorder.none,
-          suffixIcon: controller.search.isNotEmpty
+          suffixIcon: controller.search.value.isNotEmpty
               ? IconButton(
                   onPressed: () {
                     controller.setSearch('');

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import 'package:menu/core/routes/app_routes.dart';
 import 'package:menu/core/widgets/core_delete_button.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/product/models/product.dart';
-import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({Key? key, required this.product}) : super(key: key);
@@ -81,7 +84,7 @@ class CartItem extends StatelessWidget {
               final cartController = context.read<CartController>();
               cartController.removeProduct(product);
               if (cartController.products.isEmpty) {
-                context.push('/menu');
+                Get.toNamed(AppRoutes.menu.path);
               }
             },
           ),

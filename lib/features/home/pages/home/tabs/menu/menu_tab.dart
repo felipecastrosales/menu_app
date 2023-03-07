@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:provider/provider.dart';
 
 import 'package:menu/core/widgets/core_page_title.dart';
 import 'package:menu/features/home/models/home_banner_section.dart';
@@ -31,60 +31,55 @@ class _MenuTabState extends State<MenuTab> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: controller,
-      child: ListView(
-        padding: const EdgeInsets.only(
-          top: 24,
-          bottom: 24 + 60 + 16,
-        ),
-        children: [
-          const CorePageTitle(
-            title: 'Cardápio',
-          ),
-          const SizedBox(height: 24),
-          Consumer<MenuTabController>(
-            builder: (_, __, ___) {
-              if (controller.sections == null) {
-                return Center(
-                  child: LoadingAnimationWidget.inkDrop(
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                );
-              }
-
-              return Column(
-                children: [
-                  const MenuTabSearchField(),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(top: 24),
-                    itemBuilder: (_, i) {
-                      final section = controller.sections![i];
-                      if (section is HomeProductsListingSection) {
-                        return HomeProductsListingSectionWidget(
-                          section: section,
-                        );
-                      } else if (section is HomeBannerSection) {
-                        return HomeBannerSectionWidget(section: section);
-                      } else if (section is HomeProductsCarouselSection) {
-                        return HomeProductsCarouselSectionWidget(
-                          section: section,
-                        );
-                      } else {
-                        return Container();
-                      }
-                    },
-                    separatorBuilder: (_, __) => const SizedBox(height: 24),
-                    itemCount: controller.sections!.length,
-                  ),
-                ],
-              );
-            },
-          ),
-        ],
+    return ListView(
+      padding: const EdgeInsets.only(
+        top: 24,
+        bottom: 24 + 60 + 16,
       ),
+      children: [
+        const CorePageTitle(
+          title: 'Cardápio',
+        ),
+        const SizedBox(height: 24),
+        Obx(() {
+          if (controller.sections == null) {
+            return Center(
+              child: LoadingAnimationWidget.inkDrop(
+                color: Colors.white,
+                size: 50,
+              ),
+            );
+          }
+
+          return Column(
+            children: [
+              const MenuTabSearchField(),
+              ListView.separated(
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(top: 24),
+                itemBuilder: (_, i) {
+                  final section = controller.sections![i];
+                  if (section is HomeProductsListingSection) {
+                    return HomeProductsListingSectionWidget(
+                      section: section,
+                    );
+                  } else if (section is HomeBannerSection) {
+                    return HomeBannerSectionWidget(section: section);
+                  } else if (section is HomeProductsCarouselSection) {
+                    return HomeProductsCarouselSectionWidget(
+                      section: section,
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+                separatorBuilder: (_, __) => const SizedBox(height: 24),
+                itemCount: controller.sections!.length,
+              ),
+            ],
+          );
+        }),
+      ],
     );
   }
 }

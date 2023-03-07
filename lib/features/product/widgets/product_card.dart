@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:menu/features/product/models/product.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 class ProductCard extends StatelessWidget {
@@ -20,7 +20,7 @@ class ProductCard extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            context.push('/products/${product.id}');
+            Get.toNamed('/products/${product.id}');
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

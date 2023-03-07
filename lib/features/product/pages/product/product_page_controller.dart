@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+
 import 'package:menu/core/injections/injections.dart';
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/product/models/product.dart';
 import 'package:menu/features/product/repositories/product_repository.dart';
 
-class ProductPageController extends ChangeNotifier {
+class ProductPageController extends GetxController {
   ProductPageController({
     required this.id,
     ProductRepository? productRepository,
@@ -14,18 +15,15 @@ class ProductPageController extends ChangeNotifier {
 
   final ProductRepository productRepository;
 
-  Product? product;
+  final Rxn<Product> product = Rxn<Product>();
 
   Future<void> getProduct() async {
     final result = await productRepository.getProduct(id);
 
     if (result.isRight) {
-      if (product != null) {
-        for (final modifier in product!.modifiers) {
-          modifier.addListener(notifyListeners);
-        }
-      }
-      notifyListeners();
+      // for (final modifier in product.value!.modifiers) {
+      // modifier.addListener(update);
+      // }
     } else {
       switch (result.left) {
         case GetProductError.notFound:
@@ -36,17 +34,14 @@ class ProductPageController extends ChangeNotifier {
     }
   }
 
-  num? get total => product?.total;
-  bool get isValid =>
-      product != null && !product!.modifiers.any((m) => !m.isValid);
+  num? get total => product.value?.total;
+  bool get isValid => !product.value!.modifiers.any((m) => !m.isValid);
 
   @override
   void dispose() {
-    if (product != null) {
-      for (final modifier in product!.modifiers) {
-        modifier.removeListener(notifyListeners);
-      }
-    }
+    // for (final modifier in product.value!.modifiers) {
+    // modifier.removeListener(notifyListeners);
+    // }
     super.dispose();
   }
 }

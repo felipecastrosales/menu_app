@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:menu/core/injections/injections.dart';
 
 import 'package:menu/features/cart/models/order.dart';
@@ -8,15 +8,14 @@ import 'package:menu/features/cart/pages/cart/cart_page_actions.dart';
 import 'package:menu/features/cart/repositories/cart_repository.dart';
 import 'package:menu/features/product/models/product.dart';
 
-class CartController extends ChangeNotifier {
+class CartController extends GetxController {
   CartController({CartRepository? cartRepository, this.actions})
       : _cartRepository = cartRepository ?? getIt();
 
-  final List<Product> _products = [];
+  final RxList<Product> _products = RxList<Product>([]);
   final CartRepository _cartRepository;
 
   CartPageActions? actions;
-
   String? table;
 
   void setTable(String? t) {
@@ -30,12 +29,10 @@ class CartController extends ChangeNotifier {
 
   void addProduct(Product product) {
     _products.add(product);
-    notifyListeners();
   }
 
   void removeProduct(Product product) {
     _products.remove(product);
-    notifyListeners();
   }
 
   int get productCount => _products.length;
@@ -47,38 +44,37 @@ class CartController extends ChangeNotifier {
         (previousValue, product) => previousValue + product.total,
       );
 
-  String _userName = '';
-  String _userPhone = '';
+  final RxString _userName = ''.obs;
+  final RxString _userPhone = ''.obs;
 
-  String get userName => _userName;
-  String get userPhone => _userPhone;
+  RxString get userName => _userName;
+  RxString get userPhone => _userPhone;
 
   void setUserName(String t) {
-    _userName = t;
-    notifyListeners();
+    _userName.value = t;
   }
 
   void setUserPhone(String t) {
-    _userPhone = t;
-    notifyListeners();
+    _userPhone.value = t;
   }
 
-  bool loading = false;
+  RxBool loading = false.obs;
 
   bool get isFormValid =>
-      userName.length >= 4 && userPhone.length >= 14 && !loading;
+      userName.value.length >= 4 &&
+      userPhone.value.length >= 14 &&
+      !loading.value;
 
   Future<void> sendOrder() async {
-    loading = true;
-    notifyListeners();
+    loading.value = true;
 
     try {
       await _cartRepository.createOrder(
         Order(
           table: table!,
           products: _products,
-          userName: userName,
-          userPhone: userPhone,
+          userName: userName.value,
+          userPhone: userPhone.value,
         ),
       );
       _products.clear();
@@ -86,8 +82,7 @@ class CartController extends ChangeNotifier {
     } catch (e) {
       actions?.showErrorMessage();
     }
-    loading = false;
-    notifyListeners();
+    loading.value = false;
   }
 
   @override

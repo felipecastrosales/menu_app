@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 
 class CoreBackButton extends StatelessWidget {
   const CoreBackButton({super.key});
@@ -13,7 +13,7 @@ class CoreBackButton extends StatelessWidget {
       ),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () => context.canPop() ? context.pop() : context.push('/'),
+        onTap: () => Get.routing.isBack == true ? Get.back() : Get.toNamed('/'),
         child: const SizedBox(
           width: 42,
           height: 42,

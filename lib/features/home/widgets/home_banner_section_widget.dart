@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:menu/features/home/models/home_banner_section.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeBannerSectionWidget extends StatelessWidget {
   const HomeBannerSectionWidget({
@@ -35,7 +35,7 @@ class HomeBannerSectionWidget extends StatelessWidget {
               clipBehavior: Clip.antiAlias,
               child: InkWell(
                 onTap: () {
-                  context.push('/products/${section.productId}');
+                  Get.toNamed('/products/${section.productId}');
                 },
                 child: Image.network(
                   section.imageUrl,

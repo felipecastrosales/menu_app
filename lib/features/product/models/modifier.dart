@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:menu/features/product/models/modifier_info.dart';
 import 'package:menu/features/product/models/modifier_item.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
@@ -30,7 +31,7 @@ abstract class Modifier extends ChangeNotifier {
 
   final ModifierInfo info;
 
-  final List<ModifierItem> _selectedOptions = [];
+  final RxList<ModifierItem> _selectedOptions = RxList<ModifierItem>([]);
 
   UnmodifiableListView<ModifierItem> get selectedOptions =>
       UnmodifiableListView(_selectedOptions);
@@ -46,12 +47,10 @@ abstract class Modifier extends ChangeNotifier {
     if (info.maxQuantity == 1) {
       _selectedOptions.removeWhere((element) => element != option);
     }
-    notifyListeners();
   }
 
   void removeItem(ModifierItem option) {
     _selectedOptions.remove(option);
-    notifyListeners();
   }
 
   bool contains(ModifierItem option) {

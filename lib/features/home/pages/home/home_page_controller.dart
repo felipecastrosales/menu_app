@@ -1,16 +1,16 @@
-import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 enum HomePageTab { home, menu }
 
-class HomePageController extends ChangeNotifier {
+class HomePageController extends GetxController {
   HomePageController({required this.changePage});
 
   final Function(int) changePage;
 
-  int page = 0;
+  final RxInt page = 0.obs;
 
   void onPageChanged(int newPage) {
-    page = newPage;
-    notifyListeners();
+    page.value = newPage;
+    update();
   }
 }
