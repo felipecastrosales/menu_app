@@ -28,6 +28,7 @@ class HomeProductsListingSectionWidget extends StatelessWidget {
         ),
         ListView.separated(
           shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 24),
           itemBuilder: (_, i) {
             return HorizontalProductCard(

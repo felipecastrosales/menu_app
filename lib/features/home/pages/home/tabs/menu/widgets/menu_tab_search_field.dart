@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:menu/features/home/pages/home/tabs/menu/menu_tab_controller.dart';
-import 'package:provider/provider.dart';
 
 class MenuTabSearchField extends StatefulWidget {
   const MenuTabSearchField({super.key});
@@ -14,7 +14,7 @@ class _MenuTabSearchFieldState extends State<MenuTabSearchField> {
 
   @override
   Widget build(BuildContext context) {
-    final MenuTabController controller = context.read();
+    final MenuTabController controller = Get.find<MenuTabController>();
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 24),

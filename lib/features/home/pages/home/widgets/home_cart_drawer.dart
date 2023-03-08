@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_animated/auto_animated.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 import 'package:menu/core/routes/app_routes.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
@@ -14,7 +13,7 @@ class HomeCartDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CartController cartController = context.watch();
+    final CartController cartController = Get.find();
 
     return SizedBox(
       width: 102,

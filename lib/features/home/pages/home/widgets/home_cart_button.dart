@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
-import 'package:provider/provider.dart';
 
 class HomeCartButton extends StatefulWidget {
   const HomeCartButton({
@@ -18,6 +18,8 @@ class HomeCartButton extends StatefulWidget {
 
 class _HomeCartButtonState extends State<HomeCartButton>
     with SingleTickerProviderStateMixin {
+  final CartController cartController = Get.find();
+
   late AnimationController controller = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 300),
@@ -107,21 +109,19 @@ class _HomeCartButtonState extends State<HomeCartButton>
                 ),
                 margin: EdgeInsets.only(right: widget.drawerOpen ? 14 : 0),
                 alignment: Alignment.center,
-                child: Consumer<CartController>(
-                  builder: (_, cartController, __) {
-                    return Text(
-                      cartController.productCount.toString(),
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    );
-                  },
+                child: Obx(
+                  () => Text(
+                    cartController.productCount.toString(),
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

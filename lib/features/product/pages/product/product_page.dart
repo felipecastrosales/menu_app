@@ -9,7 +9,6 @@ import 'package:menu/features/product/pages/product/product_page_controller.dart
 import 'package:menu/features/product/pages/product/widgets/modifier_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:provider/provider.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key, required this.id}) : super(key: key);
@@ -22,7 +21,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   late final ProductPageController controller =
-      ProductPageController(id: widget.id);
+      Get.put(ProductPageController(id: widget.id));
 
   @override
   void initState() {
@@ -33,8 +32,8 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<ProductPageController>(
-        builder: (context, controller, child) {
+      body: Obx(
+        () {
           if (controller.product.value == null) {
             return Center(
               child: LoadingAnimationWidget.inkDrop(
@@ -156,8 +155,7 @@ class _ProductPageState extends State<ProductPage> {
                         'Adicionar por ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(controller.total)}',
                     onPressed: controller.isValid
                         ? () {
-                            final cartController =
-                                context.read<CartController>();
+                            final cartController = Get.find<CartController>();
                             cartController.addProduct(product.value!);
                             Get.toNamed('/menu');
                           }

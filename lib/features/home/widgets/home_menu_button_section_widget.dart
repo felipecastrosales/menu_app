@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:menu/features/home/models/home_menu_button_section.dart';
 import 'package:menu/features/home/pages/home/home_page_controller.dart';
-import 'package:provider/provider.dart';
 
 class HomeMenuButtonSectionWidget extends StatelessWidget {
   const HomeMenuButtonSectionWidget({
@@ -24,7 +24,8 @@ class HomeMenuButtonSectionWidget extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: () {
-            final HomePageController controller = context.read();
+            final HomePageController controller =
+                Get.find<HomePageController>();
             controller.changePage(HomePageTab.menu.index);
           },
           child: Padding(

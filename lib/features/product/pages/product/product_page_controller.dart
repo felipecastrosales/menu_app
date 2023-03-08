@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:menu/core/injections/injections.dart';
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/product/models/product.dart';
 import 'package:menu/features/product/repositories/product_repository.dart';
@@ -9,7 +8,7 @@ class ProductPageController extends GetxController {
   ProductPageController({
     required this.id,
     ProductRepository? productRepository,
-  }) : productRepository = productRepository ?? getIt();
+  }) : productRepository = productRepository ?? Get.find();
 
   final int id;
 
@@ -21,9 +20,7 @@ class ProductPageController extends GetxController {
     final result = await productRepository.getProduct(id);
 
     if (result.isRight) {
-      // for (final modifier in product.value!.modifiers) {
-      // modifier.addListener(update);
-      // }
+      product.value = result.right;
     } else {
       switch (result.left) {
         case GetProductError.notFound:
@@ -36,12 +33,4 @@ class ProductPageController extends GetxController {
 
   num? get total => product.value?.total;
   bool get isValid => !product.value!.modifiers.any((m) => !m.isValid);
-
-  @override
-  void dispose() {
-    // for (final modifier in product.value!.modifiers) {
-    // modifier.removeListener(notifyListeners);
-    // }
-    super.dispose();
-  }
 }

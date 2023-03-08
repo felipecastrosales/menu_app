@@ -7,7 +7,6 @@ import 'package:menu/features/home/pages/home/tabs/menu/menu_tab.dart';
 import 'package:menu/features/home/pages/home/widgets/home_bottom_bar.dart';
 import 'package:menu/features/home/pages/home/widgets/home_cart_button.dart';
 import 'package:menu/features/home/pages/home/widgets/home_cart_drawer.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.table}) : super(key: key);
@@ -19,8 +18,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final HomePageController homePageController = HomePageController(
-    changePage: changePage,
+  late final HomePageController homePageController = Get.put(
+    HomePageController(
+      changePage: changePage,
+    ),
   );
 
   final PageController pageController = PageController();
@@ -39,8 +40,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
-    context.read<CartController>().setTable(widget.table);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.find<CartController>().setTable(widget.table);
+    });
   }
 
   @override

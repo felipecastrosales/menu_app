@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:menu/core/widgets/core_delete_button.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/product/models/product.dart';
-import 'package:provider/provider.dart';
 
 class CartItemSummary extends StatelessWidget {
   const CartItemSummary({Key? key, required this.product}) : super(key: key);
@@ -29,7 +29,7 @@ class CartItemSummary extends StatelessWidget {
                 right: 10,
                 child: CoreDeleteButton(
                   onTap: () {
-                    context.read<CartController>().removeProduct(product);
+                    Get.find<CartController>().removeProduct(product);
                   },
                 ),
               )

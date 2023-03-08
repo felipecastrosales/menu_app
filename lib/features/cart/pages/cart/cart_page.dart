@@ -5,7 +5,6 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:menu/core/routes/app_routes.dart';
-import 'package:provider/provider.dart';
 
 import 'package:menu/core/widgets/core_back_button.dart';
 import 'package:menu/core/widgets/core_elevated_button.dart';
@@ -23,61 +22,59 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> implements CartPageActions {
-  late final CartController controller;
+  final CartController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    final CartController controller = context.watch();
-
-    return Scaffold(
-      body: Stack(
-        children: [
-          ListView(
-            padding: const EdgeInsets.only(top: 24, bottom: 90),
-            children: [
-              Row(
-                children: const [
-                  SizedBox(width: 24),
-                  CoreBackButton(),
-                  Expanded(child: CorePageTitle(title: 'Carrinho')),
-                ],
-              ),
-              const SizedBox(height: 32),
-              ListView.builder(
-                shrinkWrap: true,
-                padding: const EdgeInsets.only(left: 24, right: 16),
-                itemCount: controller.productCount,
-                itemBuilder: (_, i) {
-                  final product = controller.products[i];
-                  return CartItem(
-                    product: product,
-                  );
-                },
-              ),
-            ],
-          ),
-          Positioned(
-            left: 24,
-            right: 24,
-            bottom: 24,
-            child: CoreElevatedButton(
-              title:
-                  'Finalizar por ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(controller.totalPrice)}',
-              onPressed: controller.products.isNotEmpty
-                  ? () {
-                      showUserInfoDialog(context);
-                    }
-                  : null,
+    return Obx(
+      () => Scaffold(
+        body: Stack(
+          children: [
+            ListView(
+              padding: const EdgeInsets.only(top: 24, bottom: 90),
+              children: [
+                Row(
+                  children: const [
+                    SizedBox(width: 24),
+                    CoreBackButton(),
+                    Expanded(child: CorePageTitle(title: 'Carrinho')),
+                  ],
+                ),
+                const SizedBox(height: 32),
+                ListView.builder(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(left: 24, right: 16),
+                  itemCount: controller.productCount,
+                  itemBuilder: (_, i) {
+                    final product = controller.products[i];
+                    return CartItem(
+                      product: product,
+                    );
+                  },
+                ),
+              ],
             ),
-          )
-        ],
+            Positioned(
+              left: 24,
+              right: 24,
+              bottom: 24,
+              child: CoreElevatedButton(
+                title:
+                    'Finalizar por ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(controller.totalPrice)}',
+                onPressed: controller.products.isNotEmpty
+                    ? () {
+                        showUserInfoDialog(context);
+                      }
+                    : null,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
   void showUserInfoDialog(BuildContext context) {
-    final CartController cartController = context.read();
-
     showDialog(
       context: context,
       builder: (_) {
@@ -111,15 +108,15 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                 ),
                 const SizedBox(height: 32),
                 CoreTextField(
-                  initialValue: cartController.userName.value,
+                  initialValue: controller.userName.value,
                   title: 'Nome',
                   hint: 'Seu nome',
                   textInputType: TextInputType.name,
-                  onChanged: cartController.setUserName,
+                  onChanged: controller.setUserName,
                 ),
                 const SizedBox(height: 16),
                 CoreTextField(
-                  initialValue: cartController.userPhone.value,
+                  initialValue: controller.userPhone.value,
                   title: 'Celular',
                   hint: '(99) 91234-5678',
                   textInputType: TextInputType.phone,
@@ -127,14 +124,13 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                     FilteringTextInputFormatter.digitsOnly,
                     TelefoneInputFormatter(),
                   ],
-                  onChanged: cartController.setUserPhone,
+                  onChanged: controller.setUserPhone,
                 ),
                 const SizedBox(height: 32),
                 Obx(
                   () => CoreElevatedButton(
-                    onPressed: cartController.isFormValid
-                        ? cartController.sendOrder
-                        : null,
+                    onPressed:
+                        controller.isFormValid ? controller.sendOrder : null,
                     title: 'Enviar pedido',
                   ),
                 ),
@@ -154,7 +150,7 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
   @override
   void initState() {
     super.initState();
-    controller = context.read();
+    // controller = context.read();
     controller.setActions(this);
   }
 

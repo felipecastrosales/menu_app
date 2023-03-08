@@ -52,6 +52,7 @@ class _HomeTabState extends State<HomeTab> {
 
           return ListView.separated(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.only(top: 24),
             itemBuilder: (_, i) {
               final section = controller.sections.value![i];

@@ -56,6 +56,7 @@ class _MenuTabState extends State<MenuTab> {
               const MenuTabSearchField(),
               ListView.separated(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.only(top: 24),
                 itemBuilder: (_, i) {
                   final section = controller.sections![i];

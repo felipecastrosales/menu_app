@@ -1,7 +1,6 @@
 import 'dart:collection';
 
 import 'package:get/get.dart';
-import 'package:menu/core/injections/injections.dart';
 
 import 'package:menu/features/cart/models/order.dart';
 import 'package:menu/features/cart/pages/cart/cart_page_actions.dart';
@@ -10,17 +9,17 @@ import 'package:menu/features/product/models/product.dart';
 
 class CartController extends GetxController {
   CartController({CartRepository? cartRepository, this.actions})
-      : _cartRepository = cartRepository ?? getIt();
+      : _cartRepository = cartRepository ?? Get.find();
 
   final RxList<Product> _products = RxList<Product>([]);
   final CartRepository _cartRepository;
 
   CartPageActions? actions;
-  String? table;
+  final Rxn<String> table = Rxn<String>();
 
   void setTable(String? t) {
     if (t == null) return;
-    table = t;
+    table.value = t;
   }
 
   void setActions(CartPageActions? actions) {
@@ -71,7 +70,7 @@ class CartController extends GetxController {
     try {
       await _cartRepository.createOrder(
         Order(
-          table: table!,
+          table: table.value!,
           products: _products,
           userName: userName.value,
           userPhone: userPhone.value,
