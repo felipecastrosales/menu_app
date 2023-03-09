@@ -10,6 +10,7 @@ class CoreTextField extends StatelessWidget {
     this.formatters,
     required this.onChanged,
     this.initialValue,
+    this.obscureText = false,
   }) : super(key: key);
 
   final String? initialValue;
@@ -18,6 +19,7 @@ class CoreTextField extends StatelessWidget {
   final TextInputType? textInputType;
   final List<TextInputFormatter>? formatters;
   final Function(String) onChanged;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class CoreTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
           ),
           child: TextFormField(
+            obscureText: obscureText,
             initialValue: initialValue,
             decoration: InputDecoration(
               isCollapsed: true,

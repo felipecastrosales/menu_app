@@ -1,9 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:menu/core/utils/token_interceptor.dart';
+import 'package:menu/features/auth/datasources/strapi_auth_datasource.dart';
+import 'package:menu/features/auth/repository/auth_repository.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/cart/repositories/cart_repository.dart';
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/home/repositories/home_repository.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class CoreBindings implements Bindings {
   @override
@@ -20,8 +24,18 @@ class CoreBindings implements Bindings {
 
     Get.put(dio);
     Get.lazyPut<StrapiDatasource>(() => StrapiDatasourceImpl(Get.find()));
+    Get.lazyPut<StrapiAuthDatasource>(() => StrapiAuthDatasource(Get.find()));
     Get.lazyPut<CartRepository>(() => CartRepository(Get.find()));
+    Get.put<AuthRepository>(AuthRepository(Get.find()), permanent: true);
     Get.lazyPut(() => HomeRepository(Get.find()));
     Get.lazyPut(() => CartController());
+
+    dio.interceptors.addAll([
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+      ),
+      TokenInterceptor(Get.find()),
+    ]);
   }
 }

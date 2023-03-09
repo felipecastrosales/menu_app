@@ -56,7 +56,7 @@ void main() {
       ).thenThrow(
         DioError(
           requestOptions: RequestOptions(path: ''),
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(
             requestOptions: RequestOptions(path: ''),
             statusCode: 404,
@@ -84,7 +84,7 @@ void main() {
       ).thenThrow(
         DioError(
           requestOptions: RequestOptions(path: ''),
-          type: DioErrorType.response,
+          type: DioErrorType.badResponse,
           response: Response(
             requestOptions: RequestOptions(path: ''),
             statusCode: 500,

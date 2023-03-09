@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:menu/features/auth/pages/auth/auth_page.dart';
+import 'package:menu/features/auth/repository/auth_repository.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 
 import 'package:menu/features/cart/pages/cart/cart_page.dart';
+import 'package:menu/features/dashboard/pages/dashboard/dashboard_page.dart';
 import 'package:menu/features/home/pages/home/home_page.dart';
 import 'package:menu/features/product/pages/product/product_page.dart';
 import 'package:menu/features/product/pages/product/product_page_bindings.dart';
@@ -13,7 +16,9 @@ enum AppRoutes {
   menu('/menu'),
   scan('/'),
   products('/products/:pid'),
-  checkout('/checkout');
+  checkout('/checkout'),
+  auth('/auth'),
+  dashboard('/dashboard');
 
   const AppRoutes(this.path);
 
@@ -43,6 +48,16 @@ final appPages = [
     name: AppRoutes.checkout.path,
     page: () => const CartPage(),
   ),
+  GetPage(
+    name: AppRoutes.auth.path,
+    page: () => const AuthPage(),
+    middlewares: [NotAuthenticatedMiddleware()],
+  ),
+  GetPage(
+    name: AppRoutes.dashboard.path,
+    page: () => const DashboardPage(),
+    middlewares: [AuthenticatedMiddleware()],
+  ),
 ];
 
 void routingCallback(Routing? route) {
@@ -70,6 +85,28 @@ void routingCallback(Routing? route) {
       !Get.parameters.containsKey('table') &&
       route.previous != AppRoutes.scan.path) {
     Get.offNamed(AppRoutes.scan.path);
+  }
+}
+
+class AuthenticatedMiddleware extends GetMiddleware {
+  @override
+  RouteSettings? redirect(String? route) {
+    final AuthRepository repository = Get.find();
+    if (!repository.isLoggedIn) {
+      return RouteSettings(name: AppRoutes.auth.path);
+    }
+    return null;
+  }
+}
+
+class NotAuthenticatedMiddleware extends GetMiddleware {
+  @override
+  RouteSettings? redirect(String? route) {
+    final AuthRepository repository = Get.find();
+    if (repository.isLoggedIn) {
+      return RouteSettings(name: AppRoutes.dashboard.path);
+    }
+    return null;
   }
 }
 
