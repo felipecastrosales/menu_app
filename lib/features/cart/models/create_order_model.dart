@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:menu/core/extensions/num_extension.dart';
 import 'package:menu/features/product/models/product.dart';
 
-class Order extends Equatable {
-  const Order({
+class CreateOrderModel extends Equatable {
+  const CreateOrderModel({
     required this.table,
     required this.products,
     required this.userPhone,

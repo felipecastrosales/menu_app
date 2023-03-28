@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:get/get.dart';
 
-import 'package:menu/features/cart/models/order.dart';
+import 'package:menu/features/cart/models/create_order_model.dart';
 import 'package:menu/features/cart/pages/cart/cart_page_actions.dart';
 import 'package:menu/features/cart/repositories/cart_repository.dart';
 import 'package:menu/features/product/models/product.dart';
@@ -69,7 +69,7 @@ class CartController extends GetxController {
 
     try {
       await _cartRepository.createOrder(
-        Order(
+        CreateOrderModel(
           table: table.value!,
           products: _products,
           userName: userName.value,

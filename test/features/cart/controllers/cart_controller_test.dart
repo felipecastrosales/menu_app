@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
-import 'package:menu/features/cart/models/order.dart';
+import 'package:menu/features/cart/models/create_order_model.dart';
 import 'package:menu/features/cart/pages/cart/cart_page_actions.dart';
 import 'package:menu/features/cart/repositories/cart_repository.dart';
 import 'package:menu/features/product/models/product.dart';
@@ -14,7 +14,7 @@ class MockNotifyListeners extends Mock {
   void call();
 }
 
-class MockOrder extends Mock implements Order {}
+class MockOrder extends Mock implements CreateOrderModel {}
 
 void main() {
   late CartRepository cartRepository;
@@ -138,7 +138,7 @@ void main() {
       test(
           'in success case when create order, should clear the cart and redirect to home',
           () async {
-        const tOrder = Order(
+        const tOrder = CreateOrderModel(
           products: [product],
           table: '1',
           userName: 'John Doe',

@@ -7,6 +7,7 @@ import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/cart/repositories/cart_repository.dart';
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/home/repositories/home_repository.dart';
+import 'package:menu/features/orders/repositories/order_repository.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class CoreBindings implements Bindings {
@@ -26,6 +27,7 @@ class CoreBindings implements Bindings {
     Get.lazyPut<StrapiDatasource>(() => StrapiDatasourceImpl(Get.find()));
     Get.lazyPut<StrapiAuthDatasource>(() => StrapiAuthDatasource(Get.find()));
     Get.lazyPut<CartRepository>(() => CartRepository(Get.find()));
+    Get.lazyPut<OrderRepository>(() => OrderRepository(Get.find()));
     Get.put<AuthRepository>(AuthRepository(Get.find()), permanent: true);
     Get.lazyPut(() => HomeRepository(Get.find()));
     Get.lazyPut(() => CartController());

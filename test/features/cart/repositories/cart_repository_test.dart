@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:menu/features/cart/models/order.dart';
+import 'package:menu/features/cart/models/create_order_model.dart';
 import 'package:menu/features/cart/repositories/cart_repository.dart';
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
 
 class MockStrapiDatasource extends Mock implements StrapiDatasource {}
 
-class OrderFake extends Fake implements Order {}
+class OrderFake extends Fake implements CreateOrderModel {}
 
 void main() {
   late StrapiDatasource datasource = MockStrapiDatasource();
@@ -29,7 +29,7 @@ void main() {
 
     test('Should returns order id when create order with success', () async {
       // arrange
-      const tOrder = Order(
+      const tOrder = CreateOrderModel(
         table: '1',
         products: [],
         userName: 'userName',
@@ -52,7 +52,7 @@ void main() {
 
     test('Should returns exception if has error in create order', () async {
       // arrange
-      const tOrder = Order(
+      const tOrder = CreateOrderModel(
         table: '1',
         products: [],
         userName: 'userName',

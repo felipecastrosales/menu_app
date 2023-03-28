@@ -55,7 +55,7 @@ final appPages = [
   ),
   GetPage(
     name: AppRoutes.dashboard.path,
-    page: () => const DashboardPage(),
+    page: () => DashboardPage(),
     middlewares: [AuthenticatedMiddleware()],
   ),
 ];

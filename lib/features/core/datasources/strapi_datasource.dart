@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 
-import 'package:menu/features/cart/models/order.dart';
+import 'package:menu/features/cart/models/create_order_model.dart';
 import 'package:menu/features/home/models/home_section.dart';
+import 'package:menu/features/orders/models/order.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class StrapiDatasourceImpl implements StrapiDatasource {
@@ -83,15 +84,23 @@ class StrapiDatasourceImpl implements StrapiDatasource {
   }
 
   @override
-  Future<int> createOrder(Order order) async {
-    final response = await _dio.post(
+  Future<int> createOrder(CreateOrderModel order) async {
+    final response = await _dio.post('/orders');
+    return response.data['data']['id'];
+  }
+
+  @override
+  Future<List> getOrders(OrderStatus? status) async {
+    final response = await _dio.get(
       '/orders',
-      data: {
-        'data': order.toJson(),
+      queryParameters: {
+        if (status != null) 'filters[status][\$eq]': status.name,
+        'populate': 'deep',
       },
     );
-
-    return response.data['data']['id'];
+    return response.data['data']
+        .map<OrderProduct>((order) => Order.fromMap(order))
+        .toList();
   }
 }
 
@@ -100,7 +109,8 @@ abstract class StrapiDatasource {
   Future<Either<GetProductError, Product>> getProduct(int id);
   Future<List<HomeSection>> getHomeSections();
   Future<List<HomeSection>> getMenuSections();
-  Future<int> createOrder(Order order);
+  Future<int> createOrder(CreateOrderModel order);
+  Future<List> getOrders(OrderStatus? status);
 }
 
 enum GetProductError {
