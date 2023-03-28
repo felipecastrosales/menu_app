@@ -53,10 +53,10 @@ packages:
     dependency: "direct main"
     description:
       name: brasil_fields
-      sha256: "786b8646a9782f9bb394f74fa86eaa11cb9930f55d396b0f1039fa89baa26d1a"
+      sha256: c36edf02897d3470ebfff6f9fafc0e87a648c7d3e3f0a2386fe72fda7e9c6437
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.0"
+    version: "1.11.0"
   characters:
     dependency: transitive
     description:
@@ -125,10 +125,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "3709d74615bba5e443eb141f6a7f4bcc4788f8fae6f743edadfb79c2a8e6287e"
+      sha256: f7c26ddb3a10ff033cf1bfbf2c668feb3472327f48385775f7cf25b104f8bfce
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.1"
+    version: "5.1.0"
   either_dart:
     dependency: "direct main"
     description:
@@ -215,10 +215,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_fonts
-      sha256: "148c716f5929371d335d29c2952119b34842b1a8e5607e37bb9f68f96e88068a"
+      sha256: "927573f2e8a8d65c17931e21918ad0ab0666b1b636537de7c4932bdb487b190f"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.1"
+    version: "4.0.3"
   http:
     dependency: transitive
     description:
@@ -649,5 +649,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.18.5 <3.0.0"
+  dart: ">=2.19.2 <3.0.0"
   flutter: ">=3.0.0"
