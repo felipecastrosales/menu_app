@@ -3,15 +3,15 @@ import 'package:flutter/services.dart';
 
 class CoreTextField extends StatelessWidget {
   const CoreTextField({
-    Key? key,
+    super.key,
     required this.title,
     required this.hint,
     this.textInputType,
     this.formatters,
     required this.onChanged,
     this.initialValue,
-    this.obscureText = false,
-  }) : super(key: key);
+    this.obscure = false,
+  });
 
   final String? initialValue;
   final String title;
@@ -19,7 +19,7 @@ class CoreTextField extends StatelessWidget {
   final TextInputType? textInputType;
   final List<TextInputFormatter>? formatters;
   final Function(String) onChanged;
-  final bool obscureText;
+  final bool obscure;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,6 @@ class CoreTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
           ),
           child: TextFormField(
-            obscureText: obscureText,
             initialValue: initialValue,
             decoration: InputDecoration(
               isCollapsed: true,
@@ -60,6 +59,7 @@ class CoreTextField extends StatelessWidget {
             keyboardType: textInputType,
             inputFormatters: formatters,
             onChanged: onChanged,
+            obscureText: obscure,
           ),
         )
       ],

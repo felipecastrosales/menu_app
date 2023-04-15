@@ -9,7 +9,7 @@ import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({Key? key, required this.product}) : super(key: key);
+  const CartItem({super.key, required this.product});
 
   final Product product;
 
@@ -80,7 +80,7 @@ class CartItem extends StatelessWidget {
           alignment: Alignment.topRight,
           child: CoreDeleteButton(
             onTap: () {
-              final cartController = Get.find<CartController>();
+              final CartController cartController = Get.find();
               cartController.removeProduct(product);
               if (cartController.products.isEmpty) {
                 Get.toNamed(AppRoutes.menu.path);

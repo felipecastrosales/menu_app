@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:menu/core/routes/app_routes.dart';
 
+import 'package:menu/core/routes/app_routes.dart';
 import 'package:menu/core/widgets/core_back_button.dart';
 import 'package:menu/core/widgets/core_elevated_button.dart';
 import 'package:menu/core/widgets/core_page_title.dart';
@@ -26,8 +26,8 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
+    return Obx(() {
+      return Scaffold(
         body: Stack(
           children: [
             ListView(
@@ -70,8 +70,8 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
             )
           ],
         ),
-      ),
-    );
+      );
+    });
   }
 
   void showUserInfoDialog(BuildContext context) {
@@ -108,7 +108,7 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                 ),
                 const SizedBox(height: 32),
                 CoreTextField(
-                  initialValue: controller.userName.value,
+                  initialValue: controller.userName,
                   title: 'Nome',
                   hint: 'Seu nome',
                   textInputType: TextInputType.name,
@@ -116,7 +116,7 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                 ),
                 const SizedBox(height: 16),
                 CoreTextField(
-                  initialValue: controller.userPhone.value,
+                  initialValue: controller.userPhone,
                   title: 'Celular',
                   hint: '(99) 91234-5678',
                   textInputType: TextInputType.phone,
@@ -127,13 +127,13 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
                   onChanged: controller.setUserPhone,
                 ),
                 const SizedBox(height: 32),
-                Obx(
-                  () => CoreElevatedButton(
+                Obx(() {
+                  return CoreElevatedButton(
                     onPressed:
                         controller.isFormValid ? controller.sendOrder : null,
                     title: 'Enviar pedido',
-                  ),
-                ),
+                  );
+                }),
               ],
             ),
           ),
@@ -150,7 +150,6 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
   @override
   void initState() {
     super.initState();
-    // controller = context.read();
     controller.setActions(this);
   }
 
@@ -161,11 +160,8 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
   }
 
   @override
-  void showErrorMessage() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Erro ao enviar pedido'),
-      ),
-    );
-  }
+  void showErrorMessage() {}
+
+  @override
+  void showSuccessMessage() {}
 }

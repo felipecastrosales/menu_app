@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
@@ -45,7 +46,7 @@ class ModifierWidget extends StatelessWidget {
 }
 
 class ModifierHeader extends StatelessWidget {
-  const ModifierHeader({Key? key, required this.modifier}) : super(key: key);
+  const ModifierHeader({super.key, required this.modifier});
 
   final Modifier modifier;
 

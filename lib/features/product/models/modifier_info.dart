@@ -17,11 +17,6 @@ class ModifierInfo {
   final int? maxQuantity;
   final bool allowRepeated;
 
-  @override
-  String toString() {
-    return 'ModifierInfo{title: $title, minQuantity: $minQuantity, maxQuantity: $maxQuantity, allowRepeated: $allowRepeated}';
-  }
-
   ModifierInfo copyWith({
     String? title,
     int? minQuantity,
@@ -34,5 +29,10 @@ class ModifierInfo {
       maxQuantity: maxQuantity ?? this.maxQuantity,
       allowRepeated: allowRepeated ?? this.allowRepeated,
     );
+  }
+
+  @override
+  String toString() {
+    return 'ModifierInfo(title: $title, minQuantity: $minQuantity, maxQuantity: $maxQuantity, allowRepeated: $allowRepeated)';
   }
 }

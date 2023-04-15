@@ -11,26 +11,25 @@ class ProductPageController extends GetxController {
   }) : productRepository = productRepository ?? Get.find();
 
   final int id;
-
   final ProductRepository productRepository;
-
   final Rxn<Product> product = Rxn<Product>();
 
   Future<void> getProduct() async {
     final result = await productRepository.getProduct(id);
-
     if (result.isRight) {
       product.value = result.right;
     } else {
       switch (result.left) {
-        case GetProductError.notFound:
-          break;
         case GetProductError.unknown:
+          break;
+        case GetProductError.notFound:
           break;
       }
     }
   }
 
   num? get total => product.value?.total;
-  bool get isValid => !product.value!.modifiers.any((m) => !m.isValid);
+
+  bool get isValid =>
+      product.value != null && !product.value!.modifiers.any((m) => !m.isValid);
 }

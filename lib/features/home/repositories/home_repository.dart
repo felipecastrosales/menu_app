@@ -2,14 +2,15 @@ import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/home/models/home_section.dart';
 
 class HomeRepository {
-  HomeRepository(this.datasource);
-  final StrapiDatasource datasource;
+  HomeRepository(this._datasource);
+
+  final StrapiDatasource _datasource;
 
   Future<List<HomeSection>> getHomeSections() {
-    return datasource.getHomeSections();
+    return _datasource.getHomeSections();
   }
 
   Future<List<HomeSection>> getMenuSections() {
-    return datasource.getMenuSections();
+    return _datasource.getMenuSections();
   }
 }

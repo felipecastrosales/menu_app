@@ -1,73 +1,76 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import 'dashboard_page_controller.dart';
+import 'package:menu/features/dashboard/pages/dashboard/dashboard_page_controller.dart';
+import 'package:menu/features/dashboard/pages/dashboard/widgets/dashboard_card.dart';
+import 'package:menu/features/order/models/order.dart';
 
-class DashboardPage extends StatelessWidget {
-  DashboardPage({super.key});
+class DashboardPage extends StatefulWidget {
+  const DashboardPage({
+    super.key,
+    required this.status,
+  });
 
+  final OrderStatus? status;
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
   final DashboardPageController controller = Get.put(DashboardPageController());
+
+  @override
+  void initState() {
+    super.initState();
+    controller.loadOrders(widget.status);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() {
-        if (controller.orders.value == null) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        return Wrap(
-          children: [
-            for (final order in controller.orders.value!)
-              Card(
-                clipBehavior: Clip.antiAlias,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: SizedBox(
-                  height: 300,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              '#${order.id}',
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                            Text(
-                              'Mesa: ${order.table}',
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                            Text(
-                              'Status: ${order.status}',
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 1,
-                        color: Colors.black,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: const [
-                            Text(
-                              'Itens',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+      body: GetBuilder<DashboardPageController>(
+        builder: (_) {
+          return Obx(() {
+            if (controller.items.value?.isEmpty ?? false) {
+              return const Center(
+                child: Text(
+                  'Nenhum pedido encontrado',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
                   ),
                 ),
+              );
+            }
+
+            if (controller.items.value == null) {
+              return Center(
+                child: LoadingAnimationWidget.inkDrop(
+                  color: Colors.white,
+                  size: 50,
+                ),
+              );
+            }
+
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final i in controller.items.value!)
+                    DashboardCard(
+                      item: i,
+                    ),
+                ],
               ),
-          ],
-        );
-      }),
+            );
+          });
+        },
+      ),
     );
   }
 }

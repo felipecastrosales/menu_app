@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class HomeBottomBar extends StatelessWidget {
   const HomeBottomBar({
-    Key? key,
+    super.key,
     required this.page,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final int page;
   final Function(int) onChanged;

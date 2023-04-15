@@ -11,6 +11,5 @@ class HomePageController extends GetxController {
 
   void onPageChanged(int newPage) {
     page.value = newPage;
-    update();
   }
 }

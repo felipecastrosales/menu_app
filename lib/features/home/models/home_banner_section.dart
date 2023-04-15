@@ -16,7 +16,7 @@ class HomeBannerSection extends HomeSection {
       title: json['title'],
       size: HomeBannerSize.values.byName(json['size']),
       imageUrl:
-          'http://localhost:1337${json['image']['data']['attributes']['url']}',
+          'http://localhost:1338${json['image']['data']['attributes']['url']}',
       productId: json['product']['data']['id'],
     );
   }

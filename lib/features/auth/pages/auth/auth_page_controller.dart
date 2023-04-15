@@ -1,19 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:menu/features/auth/repository/auth_repository.dart';
+import 'package:flutter/cupertino.dart';
 
-import 'auth_page_actions.dart';
+import 'package:get/get.dart';
+
+import 'package:menu/features/auth/pages/auth/auth_page_actions.dart';
+import 'package:menu/features/auth/repositories/auth_repository.dart';
 
 class AuthPageController extends GetxController {
-  final AuthRepository _repository = Get.find();
-  AuthPageActions? _actions;
-
   AuthPageController(this._actions);
+
+  AuthPageActions? _actions;
+  final AuthRepository _repository = Get.find();
 
   final _username = RxString('');
   final _password = RxString('');
 
-  void setEmail(String value) => _username.value = value;
+  void setUsername(String value) => _username.value = value;
   void setPassword(String value) => _password.value = value;
 
   bool get _isUsernameValid => _username.value.length >= 4;
@@ -24,10 +25,10 @@ class AuthPageController extends GetxController {
   @visibleForTesting
   Future<void> login() async {
     final result = await _repository.login(_username.value, _password.value);
-
     if (result.isLeft) {
       _actions?.showErrorMessage(result.left);
     } else {
+      debugPrint(result.right.jwt);
       _actions?.navToDashboard();
     }
   }
@@ -35,6 +36,5 @@ class AuthPageController extends GetxController {
   @override
   void onClose() {
     _actions = null;
-    super.onClose();
   }
 }

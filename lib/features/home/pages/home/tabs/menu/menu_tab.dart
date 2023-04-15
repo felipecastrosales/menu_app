@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
+import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'package:menu/core/widgets/core_page_title.dart';
@@ -21,7 +21,7 @@ class MenuTab extends StatefulWidget {
 }
 
 class _MenuTabState extends State<MenuTab> {
-  final MenuTabController controller = MenuTabController();
+  final MenuTabController controller = Get.put(MenuTabController());
 
   @override
   void initState() {
@@ -61,15 +61,11 @@ class _MenuTabState extends State<MenuTab> {
                 itemBuilder: (_, i) {
                   final section = controller.sections![i];
                   if (section is HomeProductsListingSection) {
-                    return HomeProductsListingSectionWidget(
-                      section: section,
-                    );
+                    return HomeProductsListingSectionWidget(section: section);
                   } else if (section is HomeBannerSection) {
                     return HomeBannerSectionWidget(section: section);
                   } else if (section is HomeProductsCarouselSection) {
-                    return HomeProductsCarouselSectionWidget(
-                      section: section,
-                    );
+                    return HomeProductsCarouselSectionWidget(section: section);
                   } else {
                     return Container();
                   }

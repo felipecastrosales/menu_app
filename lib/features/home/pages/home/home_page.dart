@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/home/pages/home/home_page_controller.dart';
 import 'package:menu/features/home/pages/home/tabs/home/home_tab.dart';
@@ -9,7 +11,7 @@ import 'package:menu/features/home/pages/home/widgets/home_cart_button.dart';
 import 'package:menu/features/home/pages/home/widgets/home_cart_drawer.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.table}) : super(key: key);
+  const HomePage({super.key, required this.table});
 
   final String? table;
 
@@ -40,9 +42,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.find<CartController>().setTable(widget.table);
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) => Get.find<CartController>().setTable(widget.table),
+    );
   }
 
   @override
@@ -73,12 +75,12 @@ class _HomePageState extends State<HomePage> {
               ),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: Obx(
-                  () => HomeBottomBar(
+                child: Obx(() {
+                  return HomeBottomBar(
                     page: homePageController.page.value,
                     onChanged: changePage,
-                  ),
-                ),
+                  );
+                }),
               ),
             ],
           ),

@@ -11,7 +11,7 @@ dependencies:
   brasil_fields: ^1.11.0
   cupertino_icons: ^1.0.5
   diacritic: ^0.1.3
-  dio: ^5.1.0
+  dio: ^5.1.1
   either_dart: ^0.3.0
   equatable: ^2.0.5
   flutter:

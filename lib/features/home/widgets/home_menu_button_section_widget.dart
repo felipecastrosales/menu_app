@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import 'package:menu/features/home/models/home_menu_button_section.dart';
 import 'package:menu/features/home/pages/home/home_page_controller.dart';
 
 class HomeMenuButtonSectionWidget extends StatelessWidget {
   const HomeMenuButtonSectionWidget({
-    Key? key,
+    super.key,
     required this.section,
-  }) : super(key: key);
+  });
 
   final HomeMenuButtonSection section;
 
@@ -24,8 +26,7 @@ class HomeMenuButtonSectionWidget extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: () {
-            final HomePageController controller =
-                Get.find<HomePageController>();
+            final HomePageController controller = Get.find();
             controller.changePage(HomePageTab.menu.index);
           },
           child: Padding(

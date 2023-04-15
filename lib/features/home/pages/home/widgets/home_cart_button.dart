@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 
 class HomeCartButton extends StatefulWidget {
   const HomeCartButton({
-    Key? key,
+    super.key,
     required this.scaffoldKey,
     required this.drawerOpen,
-  }) : super(key: key);
+  });
 
   final GlobalKey<ScaffoldState> scaffoldKey;
   final bool drawerOpen;
@@ -109,19 +111,19 @@ class _HomeCartButtonState extends State<HomeCartButton>
                 ),
                 margin: EdgeInsets.only(right: widget.drawerOpen ? 14 : 0),
                 alignment: Alignment.center,
-                child: Obx(
-                  () => Text(
+                child: Obx(() {
+                  return Text(
                     cartController.productCount.toString(),
                     style: TextStyle(
                       fontSize: 11,
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.w900,
                     ),
-                  ),
-                ),
+                  );
+                }),
               ),
             ),
-          ),
+          )
         ],
       ),
     );

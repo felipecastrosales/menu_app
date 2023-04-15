@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/product_with_discount.dart';
 import 'package:menu/features/product/pages/product/widgets/product_list_item.dart';
@@ -12,8 +14,8 @@ class ModifierWithCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final future =
-        Get.find<ProductRepository>().getProductsByCategory(modifier.category);
+    final ProductRepository productRepository = Get.find();
+    final future = productRepository.getProductsByCategory(modifier.category);
 
     return FutureBuilder(
       future: future,
@@ -27,6 +29,7 @@ class ModifierWithCategoryWidget extends StatelessWidget {
               productWithDiscount: ProductWithDiscount(
                 product: snapshot.data![i],
                 discountPercentage: 0,
+                availableWeekdays: const [],
               ),
               modifier: modifier,
             );

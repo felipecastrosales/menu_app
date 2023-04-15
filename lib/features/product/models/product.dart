@@ -26,7 +26,7 @@ class Product extends Equatable {
         originalBasePrice: attr['originalBasePrice'],
         basePrice: attr['basePrice'],
         imageUrl:
-            'http://localhost:1337${attr['image']['data']['attributes']['url']}',
+            'http://localhost:1338${attr['image']['data']['attributes']['url']}',
         category: Category.fromJson(attr['data']),
         modifiers: List<Modifier>.from(
           attr['options']
@@ -36,7 +36,6 @@ class Product extends Equatable {
         ),
       );
     } catch (e) {
-      //debugPrint('$e $s');
       return null;
     }
   }
@@ -47,7 +46,6 @@ class Product extends Equatable {
   final num? originalBasePrice;
   final num basePrice;
   final String imageUrl;
-
   final Category? category;
   final List<Modifier> modifiers;
 
@@ -57,11 +55,6 @@ class Product extends Equatable {
         0,
         (previousValue, element) => previousValue + element.total,
       );
-
-  @override
-  String toString() {
-    return 'Product{id: $id, title: $title, basePrice: $basePrice, modifiers: $modifiers}';
-  }
 
   @override
   List<Object?> get props => [
@@ -74,4 +67,7 @@ class Product extends Equatable {
         category,
         modifiers,
       ];
+
+  @override
+  bool get stringify => true;
 }

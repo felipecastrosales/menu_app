@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:menu/core/widgets/core_page_title.dart';
 
 class ScanPage extends StatefulWidget {

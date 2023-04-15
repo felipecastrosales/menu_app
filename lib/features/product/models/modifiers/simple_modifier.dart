@@ -1,11 +1,16 @@
+import 'package:flutter/cupertino.dart';
+
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/modifier_info.dart';
 import 'package:menu/features/product/models/modifier_item.dart';
 
 class SimpleModifier extends Modifier {
-  SimpleModifier({required super.info, required this.options});
+  SimpleModifier({
+    required super.info,
+    required this.options,
+  });
 
   @visibleForTesting
   SimpleModifier.forTest({

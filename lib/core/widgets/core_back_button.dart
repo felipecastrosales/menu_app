@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
+import 'package:menu/core/routes/app_routes.dart';
 
 class CoreBackButton extends StatelessWidget {
   const CoreBackButton({super.key});
@@ -7,13 +10,15 @@ class CoreBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      clipBehavior: Clip.antiAlias,
       color: const Color(0xff393c44),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(21),
       ),
-      clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () => Get.routing.isBack == true ? Get.back() : Get.toNamed('/'),
+        onTap: () => Get.routing.isBack == true
+            ? Get.back(canPop: true)
+            : Get.toNamed(AppRoutes.scan.path),
         child: const SizedBox(
           width: 42,
           height: 42,

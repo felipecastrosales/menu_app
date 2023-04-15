@@ -1,15 +1,19 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
+
 import 'package:get/get.dart';
+
 import 'package:menu/features/product/models/modifier_info.dart';
 import 'package:menu/features/product/models/modifier_item.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_category.dart';
 import 'package:menu/features/product/models/modifiers/modifier_with_products.dart';
 import 'package:menu/features/product/models/modifiers/simple_modifier.dart';
 
-abstract class Modifier extends ChangeNotifier {
-  Modifier({required this.info});
+abstract class Modifier extends GetxController {
+  Modifier({
+    required this.info,
+  });
 
   static Modifier? fromJson(Map<String, dynamic> json) {
     try {
@@ -31,7 +35,7 @@ abstract class Modifier extends ChangeNotifier {
 
   final ModifierInfo info;
 
-  final RxList<ModifierItem> _selectedOptions = RxList<ModifierItem>([]);
+  final RxList<ModifierItem> _selectedOptions = RxList([]);
 
   UnmodifiableListView<ModifierItem> get selectedOptions =>
       UnmodifiableListView(_selectedOptions);
@@ -78,7 +82,5 @@ abstract class Modifier extends ChangeNotifier {
   }
 
   @override
-  String toString() {
-    return 'Modifier{info: $info}';
-  }
+  String toString() => 'Modifier(info: $info)';
 }

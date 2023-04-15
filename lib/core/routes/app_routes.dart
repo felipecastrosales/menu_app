@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:menu/features/auth/pages/auth/auth_page.dart';
-import 'package:menu/features/auth/repository/auth_repository.dart';
-import 'package:menu/features/cart/controllers/cart_controller.dart';
 
+import 'package:menu/features/auth/pages/auth/auth_page.dart';
+import 'package:menu/features/auth/repositories/auth_repository.dart';
+import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/cart/pages/cart/cart_page.dart';
 import 'package:menu/features/dashboard/pages/dashboard/dashboard_page.dart';
 import 'package:menu/features/home/pages/home/home_page.dart';
+import 'package:menu/features/order/models/order.dart';
 import 'package:menu/features/product/pages/product/product_page.dart';
 import 'package:menu/features/product/pages/product/product_page_bindings.dart';
 import 'package:menu/features/scan/pages/scan/scan_page.dart';
 
 enum AppRoutes {
-  menu('/menu'),
+  menu('/menu'), // /menu?table=1
   scan('/'),
   products('/products/:pid'),
-  checkout('/checkout'),
   auth('/auth'),
-  dashboard('/dashboard');
+  dashboard('/dashboard'),
+  checkout('/checkout');
+// dashboard?status=preparing
+// dashboard?status=delivered =paid
 
   const AppRoutes(this.path);
 
@@ -29,70 +32,65 @@ final appPages = [
   GetPage(
     name: AppRoutes.scan.path,
     page: () => const ScanPage(),
+    middlewares: [TestMiddleware()],
   ),
   GetPage(
     name: AppRoutes.menu.path,
-    page: () => HomePage(
-      table: Get.parameters['table'],
-    ),
+    page: () => HomePage(table: Get.parameters['table']),
+    middlewares: [TestMiddleware()],
   ),
   GetPage(
     name: AppRoutes.products.path,
-    binding: ProductPageBindings(),
     page: () {
       final id = int.tryParse(Get.parameters['pid'] ?? '');
-      return id != null ? ProductPage(id: id) : const SizedBox();
+      return id == null ? const SizedBox() : ProductPage(id: id);
     },
+    binding: ProductPageBindings(),
+    middlewares: [TestMiddleware()],
   ),
   GetPage(
     name: AppRoutes.checkout.path,
     page: () => const CartPage(),
+    middlewares: [TestMiddleware()],
   ),
   GetPage(
     name: AppRoutes.auth.path,
-    page: () => const AuthPage(),
+    page: () => AuthPage(),
     middlewares: [NotAuthenticatedMiddleware()],
   ),
   GetPage(
     name: AppRoutes.dashboard.path,
-    page: () => DashboardPage(),
-    middlewares: [AuthenticatedMiddleware()],
+    page: () => DashboardPage(
+      status: Get.parameters['status'] != null
+          ? OrderStatus.values.byName(Get.parameters['status']!)
+          : null,
+    ),
+    middlewares: [
+      AuthenticatedMiddleware(),
+    ],
   ),
 ];
 
-void routingCallback(Routing? route) {
-  if (route == null) return;
-  final CartController cartController = Get.find();
-  if (route.current == AppRoutes.checkout.path &&
-      cartController.products.isEmpty) {
-    Future.delayed(Duration.zero, () {
-      Get.offNamed(AppRoutes.menu.path);
-    });
-  } else if (route.current != AppRoutes.scan.path &&
-      cartController.table.value == null &&
-      !Get.parameters.containsKey('table') &&
-      route.previous != AppRoutes.scan.path) {
-    Future.delayed(Duration.zero, () {
-      Get.toNamed(AppRoutes.scan.path);
-    });
-  }
-
-  if (route.current == AppRoutes.checkout.path &&
-      cartController.products.isEmpty) {
-    Get.offNamed(AppRoutes.menu.path);
-  } else if (route.current != AppRoutes.scan.path &&
-      cartController.table.value == null &&
-      !Get.parameters.containsKey('table') &&
-      route.previous != AppRoutes.scan.path) {
-    Get.offNamed(AppRoutes.scan.path);
+class TestMiddleware extends GetMiddleware {
+  @override
+  RouteSettings? redirect(String? route) {
+    final CartController cartController = Get.find();
+    if (route == AppRoutes.checkout.path && cartController.products.isEmpty) {
+      return RouteSettings(name: AppRoutes.menu.path);
+    } else if (route != AppRoutes.scan.path &&
+        cartController.table.value == null &&
+        !Get.parameters.containsKey('table')) {
+      return RouteSettings(name: AppRoutes.scan.path);
+    }
+    return null;
   }
 }
 
 class AuthenticatedMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    final AuthRepository repository = Get.find();
-    if (!repository.isLoggedIn) {
+    final AuthRepository authRepository = Get.find();
+    if (!authRepository.isLoggedIn) {
       return RouteSettings(name: AppRoutes.auth.path);
     }
     return null;
@@ -102,22 +100,10 @@ class AuthenticatedMiddleware extends GetMiddleware {
 class NotAuthenticatedMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    final AuthRepository repository = Get.find();
-    if (repository.isLoggedIn) {
+    final AuthRepository authRepository = Get.find();
+    if (authRepository.isLoggedIn) {
       return RouteSettings(name: AppRoutes.dashboard.path);
     }
     return null;
   }
 }
-
-// redirect: (context, state) {
-//   final CartController cartController = context.read();
-//   if (state.subloc == '/checkout' && cartController.products.isEmpty) {
-//     return '/menu';
-//   } else if (state.subloc != AppRoutes.scan.path &&
-//       cartController.table == null &&
-//       !state.queryParams.containsKey('table')) {
-//     return AppRoutes.scan.path;
-//   }
-//   return null;
-// },

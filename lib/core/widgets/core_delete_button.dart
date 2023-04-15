@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CoreDeleteButton extends StatelessWidget {
-  const CoreDeleteButton({Key? key, required this.onTap}) : super(key: key);
+  const CoreDeleteButton({super.key, required this.onTap});
 
   final VoidCallback? onTap;
 

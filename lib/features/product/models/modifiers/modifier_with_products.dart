@@ -3,7 +3,10 @@ import 'package:menu/features/product/models/modifier_info.dart';
 import 'package:menu/features/product/models/product_with_discount.dart';
 
 class ModifierWithProducts extends Modifier {
-  ModifierWithProducts({required super.info, required this.products});
+  ModifierWithProducts({
+    required super.info,
+    required this.products,
+  });
 
   ModifierWithProducts.fromJson(Map<String, dynamic> json)
       : products = List<ProductWithDiscount>.from(

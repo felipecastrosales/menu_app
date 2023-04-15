@@ -1,5 +1,8 @@
 class Category {
-  Category({required this.id, required this.title});
+  Category({
+    required this.id,
+    required this.title,
+  });
 
   static Category? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
@@ -9,7 +12,6 @@ class Category {
         title: json['attributes']['title'],
       );
     } catch (e) {
-      //debugPrint('$e $s');
       return null;
     }
   }

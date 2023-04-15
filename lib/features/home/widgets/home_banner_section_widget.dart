@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import 'package:menu/features/home/models/home_banner_section.dart';
 
 class HomeBannerSectionWidget extends StatelessWidget {
   const HomeBannerSectionWidget({
-    Key? key,
+    super.key,
     required this.section,
-  }) : super(key: key);
+  });
 
   final HomeBannerSection section;
 

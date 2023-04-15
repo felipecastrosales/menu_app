@@ -1,17 +1,20 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+import 'package:menu/core/routes/app_routes.dart';
 import 'package:menu/core/widgets/core_back_button.dart';
 import 'package:menu/core/widgets/core_elevated_button.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/product/pages/product/product_page_controller.dart';
 import 'package:menu/features/product/pages/product/widgets/modifier_widget.dart';
-import 'package:intl/intl.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ProductPage extends StatefulWidget {
-  const ProductPage({Key? key, required this.id}) : super(key: key);
+  const ProductPage({super.key, required this.id});
 
   final int id;
 
@@ -42,7 +45,7 @@ class _ProductPageState extends State<ProductPage> {
               ),
             );
           } else {
-            final product = controller.product;
+            final product = controller.product.value!;
 
             return Stack(
               fit: StackFit.expand,
@@ -77,7 +80,7 @@ class _ProductPageState extends State<ProductPage> {
                               clipper: MyClipper(),
                               clipBehavior: Clip.antiAlias,
                               child: Image.network(
-                                product.value!.imageUrl,
+                                product.imageUrl,
                                 height: 200,
                                 width: double.maxFinite,
                                 fit: BoxFit.cover,
@@ -92,7 +95,7 @@ class _ProductPageState extends State<ProductPage> {
                           vertical: 32,
                         ),
                         child: Text(
-                          product.value!.title,
+                          product.title,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 30,
@@ -104,7 +107,7 @@ class _ProductPageState extends State<ProductPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 52),
                         child: Text(
-                          product.value!.description,
+                          product.description,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 14,
@@ -119,17 +122,17 @@ class _ProductPageState extends State<ProductPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'A partir de ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(product.value!.basePrice)}',
+                              'A partir de ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(product.basePrice)}',
                               style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            if (product.value!.originalBasePrice != null) ...[
+                            if (product.originalBasePrice != null) ...[
                               const SizedBox(width: 8),
                               Text(
                                 NumberFormat.simpleCurrency(locale: 'pt_BR')
-                                    .format(product.value!.originalBasePrice),
+                                    .format(product.originalBasePrice),
                                 style: const TextStyle(
                                   color: Color(0xff5f6066),
                                   fontSize: 10,
@@ -141,7 +144,7 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ),
                       const SizedBox(height: 32),
-                      for (final modifier in product.value!.modifiers)
+                      for (final modifier in product.modifiers)
                         ModifierWidget(modifier: modifier),
                     ],
                   ),
@@ -155,9 +158,9 @@ class _ProductPageState extends State<ProductPage> {
                         'Adicionar por ${NumberFormat.simpleCurrency(locale: 'pt_BR').format(controller.total)}',
                     onPressed: controller.isValid
                         ? () {
-                            final cartController = Get.find<CartController>();
-                            cartController.addProduct(product.value!);
-                            Get.toNamed('/menu');
+                            final CartController cartController = Get.find();
+                            cartController.addProduct(product);
+                            Get.toNamed(AppRoutes.menu.path);
                           }
                         : null,
                   ),

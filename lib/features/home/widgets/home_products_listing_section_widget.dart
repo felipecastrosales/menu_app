@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:menu/features/home/models/home_products_listing_section.dart';
 import 'package:menu/features/product/widgets/horizontal_product_card.dart';
 
 class HomeProductsListingSectionWidget extends StatelessWidget {
   const HomeProductsListingSectionWidget({
-    Key? key,
+    super.key,
     required this.section,
-  }) : super(key: key);
+  });
 
   final HomeProductsListingSection section;
 

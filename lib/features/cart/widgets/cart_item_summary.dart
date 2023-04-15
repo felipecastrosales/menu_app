@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import 'package:menu/core/widgets/core_delete_button.dart';
 import 'package:menu/features/cart/controllers/cart_controller.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class CartItemSummary extends StatelessWidget {
-  const CartItemSummary({Key? key, required this.product}) : super(key: key);
+  const CartItemSummary({super.key, required this.product});
 
   final Product product;
 

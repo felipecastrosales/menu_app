@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import 'package:menu/features/cart/models/create_order_model.dart';
@@ -13,7 +15,6 @@ class CartController extends GetxController {
 
   final RxList<Product> _products = RxList<Product>([]);
   final CartRepository _cartRepository;
-
   CartPageActions? actions;
   final Rxn<String> table = Rxn<String>();
 
@@ -46,8 +47,8 @@ class CartController extends GetxController {
   final RxString _userName = ''.obs;
   final RxString _userPhone = ''.obs;
 
-  RxString get userName => _userName;
-  RxString get userPhone => _userPhone;
+  String get userName => _userName.value;
+  String get userPhone => _userPhone.value;
 
   void setUserName(String t) {
     _userName.value = t;
@@ -60,8 +61,8 @@ class CartController extends GetxController {
   RxBool loading = false.obs;
 
   bool get isFormValid =>
-      userName.value.length >= 4 &&
-      userPhone.value.length >= 14 &&
+      _userName.value.length >= 4 &&
+      _userPhone.value.length >= 14 &&
       !loading.value;
 
   Future<void> sendOrder() async {
@@ -72,15 +73,18 @@ class CartController extends GetxController {
         CreateOrderModel(
           table: table.value!,
           products: _products,
-          userName: userName.value,
-          userPhone: userPhone.value,
+          userName: _userName.value,
+          userPhone: _userPhone.value,
         ),
       );
       _products.clear();
+      actions?.showSuccessMessage();
       actions?.goToHome();
     } catch (e) {
+      debugPrint('Cart error $e');
       actions?.showErrorMessage();
     }
+
     loading.value = false;
   }
 

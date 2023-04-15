@@ -3,7 +3,10 @@ import 'package:menu/features/home/models/home_section.dart';
 import 'package:menu/features/product/models/product.dart';
 
 class HomeProductsListingSection extends HomeSection {
-  HomeProductsListingSection({required this.title, required this.products});
+  HomeProductsListingSection({
+    required this.title,
+    required this.products,
+  });
 
   static HomeProductsListingSection fromJson(Map<String, dynamic> json) {
     return HomeProductsListingSection(

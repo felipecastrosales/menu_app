@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
+import 'package:intl/intl.dart';
+
 import 'package:menu/features/product/models/modifier.dart';
 import 'package:menu/features/product/models/product_with_discount.dart';
 import 'package:menu/features/product/pages/product/widgets/modifier_item_action.dart';
-import 'package:intl/intl.dart';
 
 class ProductListItem extends StatelessWidget {
   const ProductListItem({
@@ -16,6 +18,8 @@ class ProductListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('WEEKDAYS ${productWithDiscount.availableWeekdays}');
+
     return InkWell(
       onTap: modifier.canAddItem
           ? () {
@@ -29,8 +33,9 @@ class ProductListItem extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              foregroundImage:
-                  NetworkImage(productWithDiscount.product.imageUrl),
+              foregroundImage: NetworkImage(
+                productWithDiscount.product.imageUrl,
+              ),
               radius: 20,
             ),
             const SizedBox(width: 16),

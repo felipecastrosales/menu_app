@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+
 import 'package:menu/features/core/datasources/strapi_datasource.dart';
 import 'package:menu/features/product/models/category.dart';
 import 'package:menu/features/product/models/product.dart';

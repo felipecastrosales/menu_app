@@ -1,25 +1,27 @@
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
+
 import 'package:menu/features/auth/models/login_response.dart';
 
 class StrapiAuthDatasource {
-  final Dio client;
+  StrapiAuthDatasource(this._dio);
 
-  StrapiAuthDatasource(this.client);
+  final Dio _dio;
 
   Future<Either<LoginError, LoginResponse>> login(
     String identifier,
     String password,
   ) async {
     try {
-      final response = await client.post(
+      final response = await _dio.post(
         '/auth/local',
         data: {
           'identifier': identifier,
           'password': password,
         },
       );
-      return Right(LoginResponse.fromJson(response.data));
+      final loginResponse = LoginResponse.fromJson(response.data);
+      return Right(loginResponse);
     } on DioError catch (e) {
       if (e.type == DioErrorType.badResponse) {
         return const Left(LoginError.invalidCredentials);
@@ -31,9 +33,8 @@ class StrapiAuthDatasource {
 
 enum LoginError {
   invalidCredentials('As credenciais inseridas são inválidas'),
-  unexpectedError('Ocorreu um erro inesperado');
+  unexpectedError('Um erro inesperado ocorreu');
 
   const LoginError(this.message);
-
   final String message;
 }

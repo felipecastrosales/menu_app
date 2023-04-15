@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:menu/features/auth/repository/auth_repository.dart';
+
+import 'package:menu/features/auth/repositories/auth_repository.dart';
 
 class TokenInterceptor extends Interceptor {
-  final AuthRepository _authRepository;
-
   TokenInterceptor(this._authRepository);
+  final AuthRepository _authRepository;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {

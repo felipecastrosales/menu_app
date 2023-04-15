@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-
 import 'package:menu/core/widgets/core_page_title.dart';
 import 'package:menu/features/home/models/home_banner_section.dart';
 import 'package:menu/features/home/models/home_menu_button_section.dart';
@@ -11,6 +7,8 @@ import 'package:menu/features/home/pages/home/tabs/home/home_tab_controller.dart
 import 'package:menu/features/home/widgets/home_banner_section_widget.dart';
 import 'package:menu/features/home/widgets/home_menu_button_section_widget.dart';
 import 'package:menu/features/home/widgets/home_products_carousel_section_widget.dart';
+import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -25,7 +23,6 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     super.initState();
-
     controller.loadSections();
   }
 
