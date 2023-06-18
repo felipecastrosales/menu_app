@@ -33,8 +33,8 @@ class _CartPageState extends State<CartPage> implements CartPageActions {
             ListView(
               padding: const EdgeInsets.only(top: 24, bottom: 90),
               children: [
-                Row(
-                  children: const [
+                const Row(
+                  children: [
                     SizedBox(width: 24),
                     CoreBackButton(),
                     Expanded(child: CorePageTitle(title: 'Carrinho')),

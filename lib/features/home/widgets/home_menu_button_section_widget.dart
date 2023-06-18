@@ -29,11 +29,11 @@ class HomeMenuButtonSectionWidget extends StatelessWidget {
             final HomePageController controller = Get.find();
             controller.changePage(HomePageTab.menu.index);
           },
-          child: Padding(
-            padding: const EdgeInsets.all(16),
+          child: const Padding(
+            padding: EdgeInsets.all(16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   'Ver menu completo',
                   style: TextStyle(

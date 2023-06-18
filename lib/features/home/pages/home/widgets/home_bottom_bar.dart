@@ -63,9 +63,9 @@ class HomeBottomBar extends StatelessWidget {
                         onTap: () {
                           onChanged(0);
                         },
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Icon(
                               Icons.home_outlined,
                               color: Colors.white,
@@ -96,9 +96,9 @@ class HomeBottomBar extends StatelessWidget {
                         onTap: () {
                           onChanged(1);
                         },
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Icon(
                               Icons.menu,
                               color: Colors.white,

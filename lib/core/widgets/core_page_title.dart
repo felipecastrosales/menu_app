@@ -31,7 +31,7 @@ class CorePageTitle extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Obx(() {
-            if (cartController.table.value == null) return Container();
+            if (cartController.table.value == null) return const SizedBox();
             return Text(
               'Mesa ${cartController.table.value}',
               style: const TextStyle(color: Color(0xff5f6066)),
